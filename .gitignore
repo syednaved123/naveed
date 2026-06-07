@@ -1,0 +1,14 @@
+# Working notes from the weekly automation (may contain sensitive/member data)
+automation/inbox/
+automation/issues/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Env / secrets
+.env
+.env.*
