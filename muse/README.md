@@ -7,6 +7,12 @@ streamed live into the chat.
 
 Powered by [Claude](https://www.anthropic.com/) via the Anthropic API.
 
+> **Just want to use it? No setup, no coding.**
+> Open **[`standalone/muse.html`](standalone/muse.html)** in your web browser —
+> that single file *is* the whole app. See
+> **[`standalone/HOW-TO-USE.md`](standalone/HOW-TO-USE.md)** for a 3-step guide.
+> The Next.js version below is for hosting Muse on a real website.
+
 ## What it can do
 
 Muse runs a real agentic loop on the server. On each turn Claude can call:
