@@ -22,6 +22,16 @@ Tool activity is surfaced live in the UI as chips ("Searching the web: …"),
 and answers stream token-by-token with Markdown formatting and clickable
 citations.
 
+The UI also supports:
+
+- **Streamed reasoning** — a collapsible "Thinking" trace shows Claude's
+  summarized reasoning as it works.
+- **Stop generation** — cancel an in-flight response; the request is aborted
+  server-side too (no wasted tokens).
+- **Conversation persistence** — your chat is saved to `localStorage` and
+  restored on reload. "New chat" clears it.
+- **Copy** — one-click copy of any reply.
+
 ## Architecture
 
 ```

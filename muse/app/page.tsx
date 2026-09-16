@@ -8,9 +8,12 @@ type ToolActivity = { name: string; detail?: string };
 type Message = {
   role: "user" | "assistant";
   content: string;
+  thinking?: string;
   tools?: ToolActivity[];
   error?: string;
 };
+
+const STORAGE_KEY = "muse:conversation";
 
 const SUGGESTIONS = [
   {
@@ -53,6 +56,33 @@ export default function Home() {
   const [busy, setBusy] = useState(false);
   const messagesRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
+  const loadedRef = useRef(false);
+
+  // Load any saved conversation on first mount.
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) setMessages(parsed);
+      }
+    } catch {
+      /* ignore corrupt/unavailable storage */
+    }
+    loadedRef.current = true;
+  }, []);
+
+  // Persist when idle (avoids a write per streamed token).
+  useEffect(() => {
+    if (!loadedRef.current || busy) return;
+    try {
+      if (messages.length === 0) localStorage.removeItem(STORAGE_KEY);
+      else localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+    } catch {
+      /* ignore */
+    }
+  }, [messages, busy]);
 
   const scrollToBottom = useCallback(() => {
     const el = messagesRef.current;
@@ -70,6 +100,10 @@ export default function Home() {
     ta.style.height = Math.min(ta.scrollHeight, 180) + "px";
   }, []);
 
+  const stop = useCallback(() => {
+    abortRef.current?.abort();
+  }, []);
+
   const send = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
@@ -85,12 +119,23 @@ export default function Home() {
       requestAnimationFrame(autosize);
 
       const wire = history.map((m) => ({ role: m.role, content: m.content }));
+      const controller = new AbortController();
+      abortRef.current = controller;
+
+      const update = (fn: (m: Message) => Message) => {
+        setMessages((prev) => {
+          const next = [...prev];
+          next[next.length - 1] = fn(next[next.length - 1]);
+          return next;
+        });
+      };
 
       try {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ messages: wire }),
+          signal: controller.signal,
         });
 
         if (!res.ok || !res.body) {
@@ -101,14 +146,6 @@ export default function Home() {
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
-
-        const update = (fn: (m: Message) => Message) => {
-          setMessages((prev) => {
-            const next = [...prev];
-            next[next.length - 1] = fn(next[next.length - 1]);
-            return next;
-          });
-        };
 
         while (true) {
           const { value, done } = await reader.read();
@@ -139,6 +176,11 @@ export default function Home() {
 
             if (event.type === "text" && event.text) {
               update((m) => ({ ...m, content: m.content + event.text }));
+            } else if (event.type === "thinking" && event.text) {
+              update((m) => ({
+                ...m,
+                thinking: (m.thinking ?? "") + event.text,
+              }));
             } else if (event.type === "tool" && event.name) {
               const activity = toolLabel(event.name, event.input);
               update((m) => ({ ...m, tools: [...(m.tools ?? []), activity] }));
@@ -148,13 +190,19 @@ export default function Home() {
           }
         }
       } catch (err) {
-        const msg = err instanceof Error ? err.message : "Something went wrong.";
-        setMessages((prev) => {
-          const next = [...prev];
-          next[next.length - 1] = { ...next[next.length - 1], error: msg };
-          return next;
-        });
+        if (controller.signal.aborted) {
+          // User pressed Stop — keep whatever streamed so far.
+          update((m) => ({
+            ...m,
+            content: m.content || "_(stopped)_",
+          }));
+        } else {
+          const msg =
+            err instanceof Error ? err.message : "Something went wrong.";
+          update((m) => ({ ...m, error: msg }));
+        }
       } finally {
+        abortRef.current = null;
         setBusy(false);
       }
     },
@@ -173,6 +221,16 @@ export default function Home() {
     }
   };
 
+  const newChat = () => {
+    if (busy) return;
+    setMessages([]);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+  };
+
   const empty = messages.length === 0;
 
   return (
@@ -185,11 +243,7 @@ export default function Home() {
         </div>
         <div className="spacer" />
         {!empty && (
-          <button
-            className="new-chat"
-            onClick={() => !busy && setMessages([])}
-            disabled={busy}
-          >
+          <button className="new-chat" onClick={newChat} disabled={busy}>
             New chat
           </button>
         )}
@@ -226,6 +280,16 @@ export default function Home() {
                 {m.role === "assistant" ? "✦" : "🙂"}
               </div>
               <div className="bubble">
+                {m.thinking && (
+                  <details className="thinking">
+                    <summary>Thinking</summary>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: renderMarkdown(m.thinking),
+                      }}
+                    />
+                  </details>
+                )}
                 {m.tools && m.tools.length > 0 && (
                   <div className="tools">
                     {m.tools.map((t, j) => (
@@ -239,11 +303,14 @@ export default function Home() {
                 )}
                 {m.role === "assistant" ? (
                   m.content ? (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: renderMarkdown(m.content),
-                      }}
-                    />
+                    <>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: renderMarkdown(m.content),
+                        }}
+                      />
+                      {!busy && <CopyButton text={m.content} />}
+                    </>
                   ) : (
                     !m.error && (
                       <div className="typing">
@@ -276,14 +343,26 @@ export default function Home() {
             placeholder="Ask Muse anything…"
             rows={1}
           />
-          <button
-            className="send"
-            type="submit"
-            disabled={busy || !input.trim()}
-            aria-label="Send"
-          >
-            {busy ? "…" : "↑"}
-          </button>
+          {busy ? (
+            <button
+              className="send stop"
+              type="button"
+              onClick={stop}
+              aria-label="Stop"
+              title="Stop generating"
+            >
+              ■
+            </button>
+          ) : (
+            <button
+              className="send"
+              type="submit"
+              disabled={!input.trim()}
+              aria-label="Send"
+            >
+              ↑
+            </button>
+          )}
         </div>
         <div className="hint">
           Muse can make mistakes — it uses live tools, so double-check anything
@@ -291,6 +370,27 @@ export default function Home() {
         </div>
       </form>
     </div>
+  );
+}
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      className="copy-btn"
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        } catch {
+          /* clipboard unavailable */
+        }
+      }}
+      title="Copy reply"
+    >
+      {copied ? "✓ Copied" : "⧉ Copy"}
+    </button>
   );
 }
 

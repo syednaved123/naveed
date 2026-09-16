@@ -93,16 +93,26 @@ export async function POST(req: Request) {
 
       try {
         for (let iteration = 0; iteration < MAX_ITERATIONS; iteration++) {
-          const llm = client.messages.stream({
-            model: MODEL,
-            max_tokens: 8000,
-            system: SYSTEM_PROMPT,
-            tools: allTools as unknown as Anthropic.ToolUnion[],
-            output_config: { effort: EFFORT },
-            messages,
-          } as Anthropic.MessageStreamParams);
+          // Stop if the client navigated away or hit "Stop".
+          if (req.signal.aborted) break;
 
-          // Forward text as it is generated.
+          const llm = client.messages.stream(
+            {
+              model: MODEL,
+              max_tokens: 8000,
+              system: SYSTEM_PROMPT,
+              tools: allTools as unknown as Anthropic.ToolUnion[],
+              output_config: { effort: EFFORT },
+              // `adaptive` thinking + `output_config` are newer than this
+              // SDK's static types, but the SDK forwards them to the API as-is.
+              thinking: { type: "adaptive", display: "summarized" },
+              messages,
+            } as unknown as Anthropic.MessageStreamParams,
+            { signal: req.signal },
+          );
+
+          // Forward reasoning summary and answer text as they are generated.
+          llm.on("thinking", (delta) => send({ type: "thinking", text: delta }));
           llm.on("text", (delta) => send({ type: "text", text: delta }));
 
           const message = await llm.finalMessage();
@@ -173,13 +183,22 @@ export async function POST(req: Request) {
           messages.push({ role: "user", content: toolResults });
         }
       } catch (err) {
-        const msg =
-          err instanceof Anthropic.APIError
-            ? `API error ${err.status}: ${err.message}`
-            : err instanceof Error
-              ? err.message
-              : "Unknown error";
-        send({ type: "error", error: msg });
+        // Client aborted (navigated away or pressed Stop) — not an error.
+        if (
+          req.signal.aborted ||
+          err instanceof Anthropic.APIUserAbortError ||
+          (err instanceof Error && err.name === "AbortError")
+        ) {
+          // fall through to `finally` and close quietly
+        } else {
+          const msg =
+            err instanceof Anthropic.APIError
+              ? `API error ${err.status}: ${err.message}`
+              : err instanceof Error
+                ? err.message
+                : "Unknown error";
+          send({ type: "error", error: msg });
+        }
       } finally {
         send({ type: "done" });
         controller.close();
