@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Muse — AI Agent</title>
+<style>
+  :root {
+    --bg: #0b0b12; --bg-soft: #12121c; --panel: #171724; --panel-2: #1e1e2e;
+    --border: #2a2a3c; --text: #e9e9f2; --text-dim: #a2a2b8; --text-faint: #6e6e86;
+    --accent: #a78bfa; --accent-2: #7c6cf0; --accent-soft: rgba(167,139,250,.14);
+    --user-bubble: #2a2340; --danger: #ff7a90; --radius: 16px;
+    --shadow: 0 10px 40px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    background:
+      radial-gradient(900px 500px at 15% -10%, rgba(124,108,240,.18), transparent 60%),
+      radial-gradient(700px 500px at 100% 0%, rgba(167,139,250,.12), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { display: flex; flex-direction: column; height: 100vh; max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+  /* Header */
+  .header { display: flex; align-items: center; gap: 12px; padding: 20px 4px 14px; }
+  .logo { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: grid; place-items: center; font-size: 20px; box-shadow: 0 6px 20px rgba(124,108,240,.4); flex-shrink: 0; }
+  .title { display: flex; flex-direction: column; line-height: 1.2; }
+  .title h1 { margin: 0; font-size: 18px; letter-spacing: .2px; }
+  .title span { font-size: 12.5px; color: var(--text-dim); }
+  .header .spacer { flex: 1; }
+  .icon-btn { background: var(--panel); border: 1px solid var(--border); color: var(--text-dim);
+    border-radius: 10px; padding: 8px 12px; font-size: 13px; cursor: pointer; transition: all .15s ease; }
+  .icon-btn:hover { color: var(--text); border-color: var(--accent-2); }
+  .icon-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* Messages */
+  .messages { flex: 1; overflow-y: auto; padding: 8px 2px 20px; display: flex; flex-direction: column; gap: 18px; scroll-behavior: smooth; }
+  .row { display: flex; gap: 12px; align-items: flex-start; }
+  .row.user { flex-direction: row-reverse; }
+  .avatar { width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0; display: grid; place-items: center; font-size: 15px; margin-top: 2px; }
+  .avatar.assistant { background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+  .avatar.user { background: var(--panel-2); border: 1px solid var(--border); }
+  .bubble { max-width: 78%; padding: 12px 15px; border-radius: var(--radius); font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
+  .row.assistant .bubble { background: var(--panel); border: 1px solid var(--border); border-top-left-radius: 6px; }
+  .row.user .bubble { background: var(--user-bubble); border: 1px solid #372e52; border-top-right-radius: 6px; }
+  .bubble p { margin: 0 0 10px; } .bubble p:last-child { margin-bottom: 0; }
+  .bubble ul, .bubble ol { margin: 6px 0 10px; padding-left: 22px; } .bubble li { margin: 3px 0; }
+  .bubble a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(167,139,250,.4); }
+  .bubble a:hover { border-bottom-color: var(--accent); }
+  .bubble code { background: #0e0e18; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .bubble pre { background: #0e0e18; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; overflow-x: auto; margin: 8px 0; }
+  .bubble pre code { background: none; border: none; padding: 0; font-size: 13px; line-height: 1.5; }
+  .bubble h1, .bubble h2, .bubble h3 { margin: 14px 0 8px; line-height: 1.3; }
+  .bubble h1 { font-size: 19px; } .bubble h2 { font-size: 17px; } .bubble h3 { font-size: 15.5px; }
+  .bubble strong { color: #fff; }
+  .bubble blockquote { border-left: 3px solid var(--accent-2); margin: 8px 0; padding: 2px 0 2px 12px; color: var(--text-dim); }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .tool-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-soft);
+    border: 1px solid rgba(167,139,250,.3); color: var(--accent); border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 500; }
+  .tool-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .error-note { color: var(--danger); font-size: 13.5px; margin-top: 8px; }
+  .copy-btn { margin-top: 8px; background: transparent; border: 1px solid var(--border); color: var(--text-faint);
+    border-radius: 8px; padding: 3px 9px; font-size: 11.5px; cursor: pointer; transition: all .15s ease; }
+  .copy-btn:hover { color: var(--text); border-color: var(--accent-2); }
+
+  .typing { display: inline-flex; gap: 4px; align-items: center; padding: 4px 0; }
+  .typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--text-faint); animation: blink 1.3s infinite ease-in-out both; }
+  .typing span:nth-child(2) { animation-delay: .2s; } .typing span:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%,80%,100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+
+  /* Empty state */
+  .empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; padding: 24px; }
+  .empty h2 { margin: 6px 0 0; font-size: 22px; }
+  .empty p { margin: 0; color: var(--text-dim); max-width: 460px; }
+  .suggestions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; width: 100%; max-width: 520px; }
+  .suggestion { text-align: left; background: var(--panel); border: 1px solid var(--border); color: var(--text);
+    border-radius: 12px; padding: 12px 14px; font-size: 13.5px; cursor: pointer; transition: all .15s ease; }
+  .suggestion:hover { border-color: var(--accent-2); background: var(--panel-2); }
+  .suggestion b { display: block; color: var(--accent); font-size: 12px; margin-bottom: 3px; font-weight: 600; }
+
+  /* Composer */
+  .composer { padding: 10px 0 18px; }
+  .composer-inner { display: flex; align-items: flex-end; gap: 8px; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 16px; padding: 8px 8px 8px 14px; box-shadow: var(--shadow); transition: border-color .15s ease; }
+  .composer-inner:focus-within { border-color: var(--accent-2); }
+  .composer textarea { flex: 1; background: none; border: none; outline: none; resize: none; color: var(--text);
+    font-size: 15px; line-height: 1.5; max-height: 180px; font-family: inherit; padding: 6px 0; }
+  .composer textarea::placeholder { color: var(--text-faint); }
+  .send { width: 38px; height: 38px; flex-shrink: 0; border-radius: 11px; border: none;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; cursor: pointer; display: grid; place-items: center;
+    transition: opacity .15s ease, transform .1s ease; font-size: 16px; }
+  .send:hover:not(:disabled) { transform: translateY(-1px); }
+  .send:disabled { opacity: .4; cursor: not-allowed; }
+  .send.stop { background: var(--panel-2); border: 1px solid var(--border); color: var(--danger); font-size: 13px; }
+  .send.stop:hover { border-color: var(--danger); }
+  .hint { text-align: center; color: var(--text-faint); font-size: 11.5px; margin-top: 8px; }
+
+  /* Setup / settings modal */
+  .overlay { position: fixed; inset: 0; background: rgba(5,5,10,.72); backdrop-filter: blur(4px);
+    display: grid; place-items: center; padding: 20px; z-index: 50; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 26px; width: 100%; max-width: 460px; box-shadow: var(--shadow); }
+  .card .logo { width: 52px; height: 52px; font-size: 26px; margin-bottom: 14px; }
+  .card h2 { margin: 0 0 6px; font-size: 20px; }
+  .card p { margin: 0 0 14px; color: var(--text-dim); font-size: 14px; line-height: 1.55; }
+  .card ol { margin: 0 0 16px; padding-left: 20px; color: var(--text-dim); font-size: 13.5px; line-height: 1.7; }
+  .card ol a { color: var(--accent); }
+  .field-label { font-size: 12.5px; color: var(--text-dim); margin-bottom: 6px; display: block; }
+  .card input, .card select { width: 100%; background: var(--bg-soft); border: 1px solid var(--border); color: var(--text);
+    border-radius: 10px; padding: 11px 13px; font-size: 14px; outline: none; font-family: inherit; }
+  .card input:focus, .card select:focus { border-color: var(--accent-2); }
+  .card .btn-row { display: flex; gap: 10px; margin-top: 18px; }
+  .btn { flex: 1; border: none; border-radius: 11px; padding: 12px; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: all .15s ease; }
+  .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; }
+  .btn.primary:hover { transform: translateY(-1px); }
+  .btn.primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  .btn.ghost { background: var(--panel-2); border: 1px solid var(--border); color: var(--text-dim); flex: 0 0 auto; padding: 12px 16px; }
+  .btn.ghost:hover { color: var(--text); }
+  .setup-note { font-size: 12px; color: var(--text-faint); margin-top: 14px; line-height: 1.5; }
+  .field-gap { margin-top: 14px; }
+
+  @media (max-width: 560px) { .bubble { max-width: 86%; } .suggestions { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+"use strict";
+
+/* ========================================================================
+   Muse — standalone single-file AI agent (talks directly to Claude).
+   Your API key is stored only in this browser (localStorage) and sent
+   straight to Anthropic — it never goes to anyone else.
+   ======================================================================== */
+
+const API_URL = "https://api.anthropic.com/v1/messages";
+const KEY_STORE = "muse:key";
+const MODEL_STORE = "muse:model";
+const CONV_STORE = "muse:conversation";
+const MAX_ITERATIONS = 12;
+
+const MODELS = [
+  { id: "claude-sonnet-5", label: "Claude Sonnet 5 — fast & affordable (recommended)" },
+  { id: "claude-opus-5", label: "Claude Opus 5 — most capable (pricier)" },
+];
+
+const SYSTEM_PROMPT =
+`You are Muse, a warm, sharp, and resourceful AI agent.
+
+You have real tools and you use them proactively instead of guessing:
+- web_search: search the live web for current information, facts, news, prices, docs.
+- web_fetch: fetch and read a specific URL that appears in the conversation.
+- get_current_datetime: get the real current date/time (never assume it).
+- calculator: do exact arithmetic (never do non-trivial math in your head).
+
+Guidelines:
+- When a question depends on current or factual information you're unsure about, search the web rather than relying on memory. Cite sources with links when you use them.
+- Think about which tool actually answers the question, then call it. You may call several tools before answering.
+- Be concise and genuinely helpful. Use Markdown: short paragraphs, bullet lists, and fenced code blocks where useful.
+- If a tool fails, tell the user plainly and try an alternative.`;
+
+const SERVER_TOOLS = [
+  { type: "web_search_20260209", name: "web_search", max_uses: 5 },
+  { type: "web_fetch_20260209", name: "web_fetch", max_uses: 5 },
+];
+const CUSTOM_TOOLS = [
+  {
+    name: "get_current_datetime",
+    description: "Get the current date and time. Use for 'now', 'today', or date math relative to the present.",
+    input_schema: { type: "object", properties: { timezone: { type: "string",
+      description: "Optional IANA timezone, e.g. 'America/New_York'. Defaults to UTC." } }, required: [] },
+  },
+  {
+    name: "calculator",
+    description: "Evaluate a mathematical expression and return the numeric result. Supports + - * / %, ^ or **, parentheses, unary minus, and sqrt/abs/round/floor/ceil/sin/cos/tan/log/ln plus pi and e.",
+    input_schema: { type: "object", properties: { expression: { type: "string",
+      description: "The expression, e.g. '(3 + 4) * 2 ^ 3'." } }, required: ["expression"] },
+  },
+];
+const ALL_TOOLS = [...SERVER_TOOLS, ...CUSTOM_TOOLS];
+const CUSTOM_NAMES = new Set(CUSTOM_TOOLS.map((t) => t.name));
+
+/* ------------------------- Custom tool execution ------------------------ */
+
+function executeTool(name, input) {
+  const args = input || {};
+  try {
+    if (name === "get_current_datetime") return getDatetime(args.timezone);
+    if (name === "calculator") return runCalc(args.expression);
+    return 'Error: unknown tool "' + name + '".';
+  } catch (e) {
+    return "Error running " + name + ": " + (e && e.message ? e.message : String(e));
+  }
+}
+
+function getDatetime(tz) {
+  const now = new Date();
+  const zone = (typeof tz === "string" && tz.trim()) ? tz : "UTC";
+  try {
+    const formatted = new Intl.DateTimeFormat("en-US", { timeZone: zone, dateStyle: "full", timeStyle: "long" }).format(now);
+    return JSON.stringify({ iso_utc: now.toISOString(), formatted, timezone: zone });
+  } catch {
+    const formatted = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", dateStyle: "full", timeStyle: "long" }).format(now);
+    return JSON.stringify({ warning: 'Unknown timezone "' + zone + '"; showing UTC.', iso_utc: now.toISOString(), formatted, timezone: "UTC" });
+  }
+}
+
+/* Safe calculator: tokenize -> shunting-yard -> RPN eval (no eval()). */
+const FUNCS = { sqrt: Math.sqrt, abs: Math.abs, round: Math.round, floor: Math.floor, ceil: Math.ceil,
+  sin: Math.sin, cos: Math.cos, tan: Math.tan, log: Math.log10, ln: Math.log };
+const CONSTS = { pi: Math.PI, e: Math.E };
+const OPS = {
+  "+": { p: 2, a: "l", f: (x, y) => x + y }, "-": { p: 2, a: "l", f: (x, y) => x - y },
+  "*": { p: 3, a: "l", f: (x, y) => x * y }, "/": { p: 3, a: "l", f: (x, y) => x / y },
+  "%": { p: 3, a: "l", f: (x, y) => x % y }, "^": { p: 4, a: "r", f: (x, y) => Math.pow(x, y) },
+  "u-": { p: 5, a: "r", f: (_x, y) => -y },
+};
+function runCalc(expr) {
+  if (typeof expr !== "string" || !expr.trim()) throw new Error("expression must be a non-empty string");
+  const toks = tokenize(expr.replace(/\*\*/g, "^"));
+  const rpn = toRPN(toks);
+  const result = evalRPN(rpn);
+  if (!isFinite(result)) throw new Error("result is not finite (division by zero?)");
+  return JSON.stringify({ expression: expr, result });
+}
+function tokenize(s) {
+  const t = []; let i = 0;
+  const isD = (c) => c >= "0" && c <= "9"; const isA = (c) => /[a-zA-Z]/.test(c);
+  while (i < s.length) {
+    const c = s[i];
+    if (c === " " || c === "\t" || c === "\n") { i++; continue; }
+    if (isD(c) || (c === "." && isD(s[i + 1] || ""))) {
+      let n = ""; while (i < s.length && (isD(s[i]) || s[i] === ".")) n += s[i++];
+      const v = Number(n); if (isNaN(v)) throw new Error('invalid number "' + n + '"'); t.push({ k: "num", v }); continue;
+    }
+    if (isA(c)) {
+      let w = ""; while (i < s.length && isA(s[i])) w += s[i++]; const lw = w.toLowerCase();
+      if (lw in FUNCS) t.push({ k: "func", v: lw });
+      else if (lw in CONSTS) t.push({ k: "num", v: CONSTS[lw] });
+      else throw new Error('unknown identifier "' + w + '"');
+      continue;
+    }
+    if (c === "(" || c === ")") { t.push({ k: "paren", v: c }); i++; continue; }
+    if ("+-*/%^".indexOf(c) >= 0) {
+      const prev = t[t.length - 1];
+      const unary = (c === "-" || c === "+") && (!prev || prev.k === "op" || (prev.k === "paren" && prev.v === "("));
+      if (unary) { if (c === "-") t.push({ k: "op", v: "u-" }); }
+      else t.push({ k: "op", v: c });
+      i++; continue;
+    }
+    throw new Error('unexpected character "' + c + '"');
+  }
+  return t;
+}
+function toRPN(toks) {
+  const out = [], st = [];
+  for (const tk of toks) {
+    if (tk.k === "num") out.push(tk);
+    else if (tk.k === "func") st.push(tk);
+    else if (tk.k === "op") {
+      const o1 = OPS[tk.v];
+      while (st.length) {
+        const top = st[st.length - 1];
+        if (top.k === "func") { out.push(st.pop()); continue; }
+        if (top.k === "op") { const o2 = OPS[top.v];
+          if (o2.p > o1.p || (o2.p === o1.p && o1.a === "l")) { out.push(st.pop()); continue; } }
+        break;
+      }
+      st.push(tk);
+    } else if (tk.k === "paren") {
+      if (tk.v === "(") st.push(tk);
+      else {
+        let found = false;
+        while (st.length) { const top = st.pop(); if (top.k === "paren" && top.v === "(") { found = true; break; } out.push(top); }
+        if (!found) throw new Error("mismatched parentheses");
+        const mf = st[st.length - 1]; if (mf && mf.k === "func") out.push(st.pop());
+      }
+    }
+  }
+  while (st.length) { const top = st.pop(); if (top.k === "paren") throw new Error("mismatched parentheses"); out.push(top); }
+  return out;
+}
+function evalRPN(rpn) {
+  const st = [];
+  for (const tk of rpn) {
+    if (tk.k === "num") st.push(tk.v);
+    else if (tk.k === "func") { const x = st.pop(); if (x === undefined) throw new Error("malformed expression"); st.push(FUNCS[tk.v](x)); }
+    else if (tk.k === "op") { const op = OPS[tk.v];
+      if (tk.v === "u-") { const x = st.pop(); if (x === undefined) throw new Error("malformed expression"); st.push(op.f(0, x)); }
+      else { const b = st.pop(), a = st.pop(); if (a === undefined || b === undefined) throw new Error("malformed expression"); st.push(op.f(a, b)); } }
+  }
+  if (st.length !== 1) throw new Error("malformed expression");
+  return st[0];
+}
+
+/* ----------------------------- Markdown --------------------------------- */
+
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function safeUrl(u) { const t = u.trim(); return (/^https?:\/\//i.test(t) || /^mailto:/i.test(t)) ? t : null; }
+function inlineMd(text) {
+  const stash = [];
+  text = text.replace(/`([^`]+)`/g, (_m, c) => { stash.push("<code>" + c + "</code>"); return " " + (stash.length - 1) + " "; });
+  text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_m, label, raw) => {
+    const url = safeUrl(raw.replace(/&amp;/g, "&")); if (!url) return label + " (" + raw + ")";
+    return '<a href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">' + label + "</a>"; });
+  text = text.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, (_m, pre, raw) => {
+    const url = safeUrl(raw.replace(/&amp;/g, "&")); if (!url) return pre + raw;
+    return pre + '<a href="' + escapeHtml(url) + '" target="_blank" rel="noopener noreferrer">' + raw + "</a>"; });
+  text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  text = text.replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>");
+  text = text.replace(/(^|[^_])_([^_]+)_/g, "$1<em>$2</em>");
+  text = text.replace(/ (\d+) /g, (_m, i) => stash[Number(i)]);
+  return text;
+}
+function renderMarkdown(src) {
+  const lines = src.replace(/\r\n/g, "\n").split("\n");
+  const out = []; let i = 0, list = null;
+  const close = () => { if (list) { out.push("</" + list + ">"); list = null; } };
+  while (i < lines.length) {
+    const line = lines[i];
+    const fence = line.match(/^```(\w*)\s*$/);
+    if (fence) { close(); const cls = fence[1] ? ' class="language-' + escapeHtml(fence[1]) + '"' : "";
+      const buf = []; i++; while (i < lines.length && !/^```\s*$/.test(lines[i])) { buf.push(lines[i]); i++; } i++;
+      out.push("<pre><code" + cls + ">" + escapeHtml(buf.join("\n")) + "</code></pre>"); continue; }
+    const h = line.match(/^(#{1,3})\s+(.*)$/);
+    if (h) { close(); const l = h[1].length; out.push("<h" + l + ">" + inlineMd(escapeHtml(h[2])) + "</h" + l + ">"); i++; continue; }
+    const q = line.match(/^>\s?(.*)$/);
+    if (q) { close(); out.push("<blockquote>" + inlineMd(escapeHtml(q[1])) + "</blockquote>"); i++; continue; }
+    const ol = line.match(/^\s*\d+\.\s+(.*)$/);
+    if (ol) { if (list !== "ol") { close(); out.push("<ol>"); list = "ol"; } out.push("<li>" + inlineMd(escapeHtml(ol[1])) + "</li>"); i++; continue; }
+    const ul = line.match(/^\s*[-*+]\s+(.*)$/);
+    if (ul) { if (list !== "ul") { close(); out.push("<ul>"); list = "ul"; } out.push("<li>" + inlineMd(escapeHtml(ul[1])) + "</li>"); i++; continue; }
+    if (line.trim() === "") { close(); i++; continue; }
+    close(); const para = [line]; i++;
+    while (i < lines.length && lines[i].trim() !== "" && !/^```/.test(lines[i]) && !/^#{1,3}\s/.test(lines[i]) &&
+      !/^>\s?/.test(lines[i]) && !/^\s*\d+\.\s+/.test(lines[i]) && !/^\s*[-*+]\s+/.test(lines[i])) { para.push(lines[i]); i++; }
+    out.push("<p>" + inlineMd(escapeHtml(para.join(" "))) + "</p>");
+  }
+  close(); return out.join("\n");
+}
+
+/* --------------------------- Anthropic agent ---------------------------- */
+
+/* Runs one full user turn: streams text, runs tools, loops until the model
+   is done. Calls cb.onText / cb.onTool / cb.onError. Returns when finished. */
+async function runAgent(apiKey, model, messages, cb, signal) {
+  for (let iter = 0; iter < MAX_ITERATIONS; iter++) {
+    if (signal.aborted) return;
+
+    let res;
+    try {
+      res = await fetch(API_URL, {
+        method: "POST",
+        signal,
+        headers: {
+          "content-type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerous-direct-browser-access": "true",
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: 8000,
+          stream: true,
+          system: SYSTEM_PROMPT,
+          tools: ALL_TOOLS,
+          output_config: { effort: "medium" },
+          thinking: { type: "adaptive", display: "omitted" },
+          messages,
+        }),
+      });
+    } catch (e) {
+      if (signal.aborted) return;
+      cb.onError("Couldn't reach Claude. Check your internet connection and try again. If it keeps happening, try opening this file in Chrome, Edge, or Safari.");
+      return;
+    }
+
+    if (!res.ok) {
+      let detail = "HTTP " + res.status;
+      try { const j = await res.json(); if (j && j.error && j.error.message) detail = j.error.message; } catch {}
+      cb.onError(friendlyError(res.status, detail));
+      return;
+    }
+
+    const { blocks, stopReason } = await readStream(res.body, cb, signal);
+    if (signal.aborted) return;
+
+    if (stopReason === "end_turn") return;
+    if (stopReason === "refusal") { cb.onText("\n\n_(I can't help with that request.)_"); return; }
+    if (stopReason === "max_tokens") { cb.onText("\n\n_(Response truncated — hit the length limit.)_"); return; }
+
+    // Assistant turn to echo back (clean up scratch fields; drop unsigned thinking).
+    const assistantContent = blocks
+      .filter((b) => !(b.type === "thinking" && !b.signature))
+      .map(cleanBlock);
+
+    if (stopReason === "pause_turn") { messages.push({ role: "assistant", content: assistantContent }); continue; }
+
+    const customCalls = blocks.filter((b) => b.type === "tool_use" && CUSTOM_NAMES.has(b.name));
+    if (customCalls.length === 0) return; // nothing local to run; stop cleanly
+
+    messages.push({ role: "assistant", content: assistantContent });
+    const results = customCalls.map((c) => ({ type: "tool_result", tool_use_id: c.id, content: executeTool(c.name, c.input) }));
+    messages.push({ role: "user", content: results });
+  }
+}
+
+function cleanBlock(b) {
+  const out = { type: b.type };
+  if (b.type === "text") { out.text = b.text || ""; }
+  else if (b.type === "thinking") { out.thinking = b.thinking || ""; out.signature = b.signature; }
+  else if (b.type === "tool_use" || b.type === "server_tool_use") { out.id = b.id; out.name = b.name; out.input = b.input || {}; }
+  else { return b; } // pass through anything else unchanged
+  return out;
+}
+
+/* Parse Anthropic's SSE stream into content blocks + stop_reason. */
+async function readStream(body, cb, signal) {
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  const blocks = [];
+  let stopReason = null;
+
+  while (true) {
+    if (signal.aborted) { try { reader.cancel(); } catch {} break; }
+    const { value, done } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const events = buffer.split("\n\n");
+    buffer = events.pop() || "";
+    for (const ev of events) {
+      for (const rawLine of ev.split("\n")) {
+        const line = rawLine.trim();
+        if (!line.startsWith("data:")) continue;
+        const payload = line.slice(5).trim();
+        if (!payload || payload === "[DONE]") continue;
+        let data; try { data = JSON.parse(payload); } catch { continue; }
+        handleEvent(data);
+      }
+    }
+  }
+
+  function handleEvent(data) {
+    switch (data.type) {
+      case "content_block_start": {
+        const cb0 = data.content_block || {};
+        const b = Object.assign({}, cb0);
+        if (b.type === "text" && b.text == null) b.text = "";
+        if (b.type === "thinking" && b.thinking == null) b.thinking = "";
+        if (b.type === "tool_use" || b.type === "server_tool_use") b._json = "";
+        blocks[data.index] = b;
+        break;
+      }
+      case "content_block_delta": {
+        const b = blocks[data.index]; if (!b) break; const d = data.delta || {};
+        if (d.type === "text_delta") { b.text = (b.text || "") + d.text; cb.onText(d.text); }
+        else if (d.type === "thinking_delta") { b.thinking = (b.thinking || "") + (d.thinking || ""); }
+        else if (d.type === "signature_delta") { b.signature = (b.signature || "") + (d.signature || ""); }
+        else if (d.type === "input_json_delta") { b._json = (b._json || "") + (d.partial_json || ""); }
+        break;
+      }
+      case "content_block_stop": {
+        const b = blocks[data.index]; if (!b) break;
+        if (b._json !== undefined) { try { b.input = b._json ? JSON.parse(b._json) : {}; } catch { b.input = {}; } delete b._json; }
+        if (b.type === "tool_use" || b.type === "server_tool_use") cb.onTool(b.name, b.input);
+        break;
+      }
+      case "message_delta": { if (data.delta && data.delta.stop_reason) stopReason = data.delta.stop_reason; break; }
+      default: break;
+    }
+  }
+
+  return { blocks: blocks.filter(Boolean), stopReason };
+}
+
+function friendlyError(status, detail) {
+  if (status === 401) return "Your API key was rejected. Open Settings (⚙) and re-enter a valid key.";
+  if (status === 400 && /credit|billing|balance/i.test(detail)) return "Your Anthropic account needs credit. Add billing at console.anthropic.com, then try again.";
+  if (status === 429) return "Rate limit or quota reached. Wait a moment (or check your plan) and try again.";
+  if (status === 529) return "Claude is overloaded right now. Please try again in a few seconds.";
+  return "Error: " + detail;
+}
+
+/* ------------------------------ Tool UI --------------------------------- */
+
+function toolLabel(name, input) {
+  const a = input || {};
+  if (name === "web_search") return { name: "Searching the web", detail: String(a.query || "") };
+  if (name === "web_fetch") return { name: "Reading page", detail: String(a.url || "") };
+  if (name === "calculator") return { name: "Calculating", detail: String(a.expression || "") };
+  if (name === "get_current_datetime") return { name: "Checking the time", detail: "" };
+  return { name, detail: "" };
+}
+function truncate(s, n) { n = n || 42; return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+
+/* ------------------------------- App UI --------------------------------- */
+
+const SUGGESTIONS = [
+  { tag: "Web search", text: "What are the biggest AI announcements this week?" },
+  { tag: "Research + math", text: "Convert 250 USD to EUR at today's rate and show the calculation." },
+  { tag: "Read a page", text: "Summarize the key points of https://www.anthropic.com/news" },
+  { tag: "Time-aware", text: "What time is it right now in Tokyo and Dublin?" },
+];
+
+const state = {
+  key: localStorage.getItem(KEY_STORE) || "",
+  model: localStorage.getItem(MODEL_STORE) || MODELS[0].id,
+  messages: loadConversation(),
+  busy: false,
+  controller: null,
+  showSettings: false,
+};
+
+function loadConversation() {
+  try { const raw = localStorage.getItem(CONV_STORE); if (raw) { const p = JSON.parse(raw); if (Array.isArray(p)) return p; } } catch {}
+  return [];
+}
+function saveConversation() {
+  try { if (state.messages.length === 0) localStorage.removeItem(CONV_STORE); else localStorage.setItem(CONV_STORE, JSON.stringify(state.messages)); } catch {}
+}
+
+const appEl = document.getElementById("app");
+
+function render() {
+  const empty = state.messages.length === 0;
+  appEl.innerHTML =
+    header() +
+    (empty ? emptyState() : messagesView()) +
+    composer();
+  wire();
+  const m = document.getElementById("messages");
+  if (m) m.scrollTop = m.scrollHeight;
+  if (state.showSettings || !state.key) renderModal();
+}
+
+function header() {
+  return '' +
+    '<header class="header">' +
+      '<div class="logo">✦</div>' +
+      '<div class="title"><h1>Muse</h1><span>An AI agent with real tools</span></div>' +
+      '<div class="spacer"></div>' +
+      (state.messages.length ? '<button class="icon-btn" id="newChat"' + (state.busy ? " disabled" : "") + '>New chat</button>' : '') +
+      '<button class="icon-btn" id="settingsBtn" title="Settings" style="margin-left:8px">⚙</button>' +
+    '</header>';
+}
+
+function emptyState() {
+  return '' +
+    '<div class="empty">' +
+      '<div class="logo" style="width:56px;height:56px;font-size:28px">✦</div>' +
+      '<h2>Meet Muse</h2>' +
+      '<p>Ask anything. Muse can search the live web, read pages, do exact math, and check the current time — then reason over what it finds.</p>' +
+      '<div class="suggestions">' +
+        SUGGESTIONS.map((s, i) => '<button class="suggestion" data-sugg="' + i + '"><b>' + escapeHtml(s.tag) + '</b>' + escapeHtml(s.text) + '</button>').join("") +
+      '</div>' +
+    '</div>';
+}
+
+function messagesView() {
+  return '<div class="messages" id="messages">' + state.messages.map(renderMessage).join("") + '</div>';
+}
+
+function renderMessage(m, i) {
+  const isA = m.role === "assistant";
+  let inner = "";
+  if (m.tools && m.tools.length) {
+    inner += '<div class="tools">' + m.tools.map((t) =>
+      '<span class="tool-chip" title="' + escapeHtml(t.detail || "") + '"><span class="dot"></span>' +
+      escapeHtml(t.name) + (t.detail ? ": " + escapeHtml(truncate(t.detail)) : "") + '</span>').join("") + '</div>';
+  }
+  if (isA) {
+    if (m.content) {
+      inner += '<div>' + renderMarkdown(m.content) + '</div>';
+      if (!state.busy) inner += '<button class="copy-btn" data-copy="' + i + '">⧉ Copy</button>';
+    } else if (!m.error) {
+      inner += '<div class="typing"><span></span><span></span><span></span></div>';
+    }
+  } else {
+    inner += '<div style="white-space:pre-wrap">' + escapeHtml(m.content) + '</div>';
+  }
+  if (m.error) inner += '<div class="error-note">⚠ ' + escapeHtml(m.error) + '</div>';
+  return '<div class="row ' + m.role + '"><div class="avatar ' + m.role + '">' + (isA ? "✦" : "🙂") +
+    '</div><div class="bubble">' + inner + '</div></div>';
+}
+
+function composer() {
+  return '' +
+    '<form class="composer" id="composer">' +
+      '<div class="composer-inner">' +
+        '<textarea id="input" rows="1" placeholder="Ask Muse anything…"></textarea>' +
+        (state.busy
+          ? '<button class="send stop" id="stopBtn" type="button" title="Stop generating">■</button>'
+          : '<button class="send" id="sendBtn" type="submit" title="Send">↑</button>') +
+      '</div>' +
+      '<div class="hint">Muse can make mistakes — it uses live tools, so double-check anything important.</div>' +
+    '</form>';
+}
+
+function renderModal() {
+  const firstTime = !state.key;
+  const div = document.createElement("div");
+  div.className = "overlay";
+  div.id = "overlay";
+  div.innerHTML =
+    '<div class="card">' +
+      '<div class="logo">✦</div>' +
+      '<h2>' + (firstTime ? "Welcome to Muse" : "Settings") + '</h2>' +
+      (firstTime
+        ? '<p>Muse thinks using <strong>Claude</strong>. To turn it on, paste an Anthropic API key below. It is stored only in this browser and sent straight to Anthropic — nobody else sees it.</p>' +
+          '<ol>' +
+            '<li>Go to <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a> and sign in (or sign up).</li>' +
+            '<li>Add a little billing credit (Settings → Billing) — usage is pay-as-you-go and small.</li>' +
+            '<li>Click <em>Create Key</em>, copy it, and paste it here.</li>' +
+          '</ol>'
+        : '<p>Your key is stored only in this browser. Choose which Claude model Muse uses.</p>') +
+      '<label class="field-label">Anthropic API key</label>' +
+      '<input id="keyInput" type="password" placeholder="sk-ant-..." value="' + escapeHtml(state.key) + '" autocomplete="off" spellcheck="false" />' +
+      '<div class="field-gap"></div>' +
+      '<label class="field-label">Model</label>' +
+      '<select id="modelInput">' + MODELS.map((mo) =>
+        '<option value="' + mo.id + '"' + (mo.id === state.model ? " selected" : "") + '>' + escapeHtml(mo.label) + '</option>').join("") + '</select>' +
+      '<div class="btn-row">' +
+        (firstTime ? "" : '<button class="btn ghost" id="cancelSettings">Cancel</button>') +
+        '<button class="btn primary" id="saveSettings">' + (firstTime ? "Start using Muse" : "Save") + '</button>' +
+      '</div>' +
+      '<div class="setup-note">Tip: keep this file anywhere on your computer and double-click it to open Muse any time. Your key and chats stay on this device.</div>' +
+    '</div>';
+  document.body.appendChild(div);
+
+  const keyInput = div.querySelector("#keyInput");
+  const modelInput = div.querySelector("#modelInput");
+  const save = () => {
+    const k = keyInput.value.trim();
+    if (!k) { keyInput.focus(); return; }
+    state.key = k; state.model = modelInput.value;
+    try { localStorage.setItem(KEY_STORE, k); localStorage.setItem(MODEL_STORE, state.model); } catch {}
+    state.showSettings = false;
+    document.body.removeChild(div);
+    render();
+  };
+  div.querySelector("#saveSettings").addEventListener("click", save);
+  keyInput.addEventListener("keydown", (e) => { if (e.key === "Enter") save(); });
+  const cancel = div.querySelector("#cancelSettings");
+  if (cancel) cancel.addEventListener("click", () => { state.showSettings = false; document.body.removeChild(div); });
+  setTimeout(() => keyInput.focus(), 30);
+}
+
+function autosize(ta) { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 180) + "px"; }
+
+function wire() {
+  const nc = document.getElementById("newChat");
+  if (nc) nc.addEventListener("click", () => { if (state.busy) return; state.messages = []; saveConversation(); render(); });
+
+  const sb = document.getElementById("settingsBtn");
+  if (sb) sb.addEventListener("click", () => { state.showSettings = true; renderModal(); });
+
+  document.querySelectorAll("[data-sugg]").forEach((el) =>
+    el.addEventListener("click", () => send(SUGGESTIONS[Number(el.getAttribute("data-sugg"))].text)));
+
+  document.querySelectorAll("[data-copy]").forEach((el) =>
+    el.addEventListener("click", async () => {
+      const idx = Number(el.getAttribute("data-copy"));
+      try { await navigator.clipboard.writeText(state.messages[idx].content || ""); el.textContent = "✓ Copied";
+        setTimeout(() => { el.textContent = "⧉ Copy"; }, 1500); } catch {}
+    }));
+
+  const form = document.getElementById("composer");
+  const input = document.getElementById("input");
+  if (input) {
+    input.addEventListener("input", () => autosize(input));
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(input.value); } });
+    input.focus();
+  }
+  if (form) form.addEventListener("submit", (e) => { e.preventDefault(); if (input) send(input.value); });
+
+  const stopBtn = document.getElementById("stopBtn");
+  if (stopBtn) stopBtn.addEventListener("click", () => { if (state.controller) state.controller.abort(); });
+}
+
+async function send(text) {
+  const trimmed = (text || "").trim();
+  if (!trimmed || state.busy) return;
+  if (!state.key) { state.showSettings = true; renderModal(); return; }
+
+  state.messages.push({ role: "user", content: trimmed });
+  const assistant = { role: "assistant", content: "", tools: [] };
+  state.messages.push(assistant);
+  state.busy = true;
+  render();
+
+  const wire = state.messages
+    .filter((m) => (m.role === "user" || m.role === "assistant") && m.content)
+    .map((m) => ({ role: m.role, content: m.content }));
+  // Drop the empty assistant placeholder we just added.
+  if (wire.length && wire[wire.length - 1].role === "assistant") wire.pop();
+
+  const controller = new AbortController();
+  state.controller = controller;
+
+  const rerender = () => {
+    const el = document.getElementById("messages");
+    if (!el) return;
+    const idx = state.messages.length - 1;
+    // Re-render just the last bubble's inner for smoothness.
+    const rows = el.querySelectorAll(".row");
+    const row = rows[idx];
+    if (row) row.outerHTML = renderMessage(assistant, idx);
+    else render();
+    const m2 = document.getElementById("messages");
+    if (m2) m2.scrollTop = m2.scrollHeight;
+    rebindLastCopy();
+  };
+  const rebindLastCopy = () => {
+    document.querySelectorAll("[data-copy]").forEach((cel) => {
+      if (cel._wired) return; cel._wired = true;
+      cel.addEventListener("click", async () => {
+        try { await navigator.clipboard.writeText(state.messages[Number(cel.getAttribute("data-copy"))].content || "");
+          cel.textContent = "✓ Copied"; setTimeout(() => { cel.textContent = "⧉ Copy"; }, 1500); } catch {}
+      });
+    });
+  };
+
+  const cb = {
+    onText: (t) => { assistant.content += t; rerender(); },
+    onTool: (name, input) => { assistant.tools.push(toolLabel(name, input)); rerender(); },
+    onError: (msg) => { assistant.error = msg; rerender(); },
+  };
+
+  try {
+    await runAgent(state.key, state.model, wire, cb, controller.signal);
+  } catch (err) {
+    if (controller.signal.aborted) { if (!assistant.content) assistant.content = "_(stopped)_"; }
+    else assistant.error = (err && err.message) ? err.message : "Something went wrong.";
+  } finally {
+    state.controller = null;
+    state.busy = false;
+    saveConversation();
+    render();
+  }
+}
+
+render();
+</script>
+</body>
+</html>
