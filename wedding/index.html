@@ -14,11 +14,11 @@
   --paper-2:#efe4cf;    /* deeper paper */
   --ruby:#6c1325;       /* oxblood ruby */
   --ruby-deep:#3f0913;  /* velvet shadow */
-  --gold:#a8833f;       /* gold leaf on paper */
+  --gold:#7e5a1c;       /* gold leaf on paper (deepened for legibility) */
   --gold-hi:#e4c88a;    /* gold leaf on ruby */
-  --ink:#2b1a15;        /* text */
-  --muted:#7b6555;      /* secondary text */
-  --rule:rgba(168,131,63,.45);
+  --ink:#1f120e;        /* text */
+  --muted:#4f3b30;      /* secondary text */
+  --rule:rgba(126,90,28,.5);
   --leaf:linear-gradient(105deg,#8c6a2e 0%,#c9a45c 18%,#f6e4b3 30%,#b8913f 46%,#7f5f27 60%,#d9bb78 76%,#f3dfa8 84%,#a8833f 100%);
 
   --f-display:"Italiana","Didot",Georgia,serif;
@@ -34,13 +34,13 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:1.12rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::after{content:"";position:fixed;inset:0;background-image:var(--grain);opacity:.16;mix-blend-mode:multiply;pointer-events:none;z-index:60}
+body::after{content:"";position:fixed;inset:0;background-image:var(--grain);opacity:.07;mix-blend-mode:multiply;pointer-events:none;z-index:60}
 .wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 h1,h2,h3{font-weight:400;margin:0;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
 :focus-visible{outline:1px solid var(--gold);outline-offset:4px}
-.caps{font-family:var(--f-caps);text-transform:uppercase;letter-spacing:.32em;font-size:.7rem;color:var(--gold)}
+.caps{font-family:var(--f-caps);text-transform:uppercase;letter-spacing:.26em;font-size:.8rem;font-weight:500;color:var(--gold)}
 .leaf{background:var(--leaf);background-size:240% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 10s linear infinite}
 @keyframes sheen{to{background-position:-240% 0}}
 .velvet{background:radial-gradient(120% 90% at 50% 0%,#8a1b31 0%,var(--ruby) 40%,var(--ruby-deep) 100%);color:var(--paper)}
@@ -66,9 +66,10 @@ a{color:inherit}
   box-shadow:0 8px 18px rgba(0,0,0,.45),inset 0 2px 4px rgba(255,255,255,.5),inset 0 -4px 10px rgba(0,0,0,.35);
   animation:waxOff .7s ease 1.6s both}
 .wax::before{content:"";position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(70,45,10,.45)}
+.wax span i{font-family:var(--f-body);font-style:normal;font-size:.85em;margin-inline:.04em}
 .wax span{font-family:var(--f-display);font-size:1.6rem;color:#4b3310;letter-spacing:.04em;text-shadow:0 1px 0 rgba(255,240,200,.5)}
 @keyframes waxOff{to{transform:scale(1.25);opacity:0}}
-.intro small{position:absolute;bottom:max(40px,env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font-family:var(--f-caps);letter-spacing:.42em;font-size:.62rem;color:var(--gold-hi);text-transform:uppercase;animation:hint 1.6s ease-in-out infinite}
+.intro small{position:absolute;bottom:max(40px,env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font-family:var(--f-caps);letter-spacing:.32em;font-size:.76rem;color:var(--gold-hi);text-transform:uppercase;animation:hint 1.6s ease-in-out infinite}
 @keyframes hint{50%{opacity:.4}}
 .intro.open,.intro.open *{animation-delay:0s!important;animation-duration:.6s!important}
 .intro.open{animation-delay:.5s!important}
@@ -77,9 +78,9 @@ a{color:inherit}
 .hero{padding-block:clamp(36px,6vw,70px) clamp(70px,10vw,120px);position:relative}
 .topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(30px,5vw,56px)}
 .topline .mono{font-family:var(--f-display);font-size:1.5rem;color:var(--ruby);letter-spacing:.06em}
-.topline .mono i{font-style:normal;font-size:.8em;color:var(--gold);margin-inline:.1em}
+.topline .mono i{font-family:var(--f-body);font-style:normal;font-size:.9em;color:var(--gold);margin-inline:.1em}
 .topline nav{display:flex;gap:28px}
-.topline nav a{font-family:var(--f-caps);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+.topline nav a{font-family:var(--f-caps);font-weight:500;font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
 .topline nav a:hover{color:var(--ruby)}
 .card{position:relative;max-width:760px;margin:0 auto;background:#fbf7ee;text-align:center;
   padding:clamp(54px,9vw,96px) clamp(22px,7vw,84px) 0;
@@ -90,23 +91,23 @@ a{color:inherit}
 .corner.tl{top:8px;left:8px}.corner.tr{top:8px;right:8px;transform:scaleX(-1)}
 .corner.bl{bottom:8px;left:8px;transform:scaleY(-1)}.corner.br{bottom:8px;right:8px;transform:scale(-1)}
 .bism{font-family:var(--f-arabic);font-size:clamp(2rem,6vw,3rem);line-height:1.6;color:var(--ruby);direction:rtl}
-.bism-en{font-family:var(--f-caps);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.bism-en{font-family:var(--f-caps);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:12px}
 .bless{margin-top:36px;display:grid;gap:4px}
 .bless p:last-child{font-style:italic;font-size:1.15rem;color:var(--ink)}
-.req{margin-top:28px;font-style:italic;color:var(--muted);font-size:1.12rem}
+.req{margin-top:28px;font-style:italic;color:var(--muted);font-size:1.22rem}
 .couple{margin-top:30px;display:grid;gap:6px}
 .who{display:grid;gap:10px;justify-items:center}
-.who .pre{font-family:var(--f-caps);font-size:.78rem;letter-spacing:.6em;color:var(--gold);margin-right:-.6em}
+.who .pre{font-family:var(--f-caps);font-weight:500;font-size:.9rem;letter-spacing:.6em;color:var(--gold);margin-right:-.6em}
 .who .nm{font-family:var(--f-display);font-size:clamp(3.2rem,11vw,6.4rem);line-height:.95;color:var(--ruby);letter-spacing:.01em}
-.who .cred{font-family:var(--f-caps);font-size:.62rem;letter-spacing:.24em;color:var(--gold);line-height:1.9;margin-right:-.24em}
-.who .par{font-style:italic;color:var(--muted);font-size:1.02rem;line-height:1.4}
-.amp{font-family:var(--f-display);font-size:clamp(3.6rem,9vw,5.4rem);line-height:1;margin:18px 0 10px;padding:0 .1em}
+.who .cred{font-family:var(--f-caps);font-weight:500;font-size:.76rem;letter-spacing:.18em;color:var(--gold);line-height:1.9;margin-right:-.24em}
+.who .par{font-style:italic;color:var(--muted);font-size:1.15rem;line-height:1.4}
+.amp{font-family:var(--f-body);font-style:normal;font-size:clamp(3.6rem,9vw,5.4rem);line-height:1;margin:18px 0 10px;padding:0 .1em;color:var(--gold)}
 .insha{margin-top:42px}
 .date{margin:18px auto 0;display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:center;max-width:470px}
-.date .s{font-family:var(--f-caps);font-size:.64rem;letter-spacing:.3em;color:var(--muted);padding-block:8px;border-block:1px solid var(--rule)}
+.date .s{font-family:var(--f-caps);font-weight:500;font-size:.74rem;letter-spacing:.22em;color:var(--muted);padding-block:8px;border-block:1px solid var(--rule)}
 .date .d{font-family:var(--f-display);font-size:4rem;line-height:1;color:var(--ruby);display:block}
-.date .d i{font-family:var(--f-display);font-style:normal;font-size:.6em;color:var(--gold);margin-inline:.1em}
-.date .m{display:block;font-family:var(--f-caps);font-size:.64rem;letter-spacing:.44em;color:var(--gold);margin-top:6px;margin-right:-.44em}
+.date .d i{font-family:var(--f-body);font-style:normal;font-size:.6em;color:var(--gold);margin-inline:.1em}
+.date .m{display:block;font-family:var(--f-caps);font-weight:500;font-size:.76rem;letter-spacing:.44em;color:var(--gold);margin-top:6px;margin-right:-.44em}
 .city{margin-top:22px;font-style:italic;font-size:1.25rem}
 .charminar{display:block;width:min(420px,92%);height:auto;margin:40px auto 0;color:var(--gold)}
 .ground{height:1px;background:var(--gold);margin:0 -1px}
@@ -124,12 +125,12 @@ a{color:inherit}
 .count::before{content:"";position:absolute;inset:0;background-image:var(--damask);background-size:90px;opacity:.09}
 .count .wrap{position:relative;padding-block:clamp(70px,10vw,110px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:40px;align-items:center}
 .count h2{font-family:var(--f-script);font-size:clamp(3rem,7vw,4.6rem);line-height:1;color:var(--gold-hi);font-weight:400}
-.count h2 small{display:block;font-family:var(--f-caps);font-size:.66rem;letter-spacing:.32em;color:rgba(247,241,229,.7);margin-top:18px;text-transform:uppercase}
+.count h2 small{display:block;font-family:var(--f-caps);font-size:.76rem;letter-spacing:.26em;color:var(--paper);margin-top:18px;text-transform:uppercase}
 .clock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 .u{text-align:center;padding:0 6px;border-left:1px solid rgba(228,200,138,.3)}
 .u:first-child{border-left:0}
 .u b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(2.6rem,7vw,5rem);line-height:1;font-variant-numeric:tabular-nums lining-nums}
-.u span{font-family:var(--f-caps);font-size:.58rem;letter-spacing:.3em;color:rgba(247,241,229,.7);text-transform:uppercase;margin-right:-.3em}
+.u span{font-family:var(--f-caps);font-size:.7rem;letter-spacing:.22em;color:var(--paper);text-transform:uppercase;margin-right:-.3em}
 
 /* ---------- celebrations ---------- */
 section.sec{padding-block:clamp(90px,13vw,160px);position:relative}
@@ -139,19 +140,19 @@ section.sec{padding-block:clamp(90px,13vw,160px);position:relative}
 .ev:last-child{border-bottom:1px solid var(--rule)}
 .ev:nth-child(even) .ev-date{order:2}
 .ev-date{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:end}
-.ev-num{font-family:var(--f-display);font-size:clamp(5rem,12vw,9rem);line-height:.8;color:var(--paper-2);-webkit-text-stroke:1px var(--gold)}
+.ev-num{font-family:var(--f-display);font-size:clamp(5rem,12vw,9rem);line-height:.8;color:var(--gold)}
 .ev-day{display:grid;gap:4px}
 .ev-day b{font-family:var(--f-display);font-weight:400;font-size:clamp(3rem,7vw,4.8rem);line-height:.9;color:var(--ruby)}
-.ev-day span{font-family:var(--f-caps);font-size:.64rem;letter-spacing:.3em;color:var(--gold)}
-.ev-day em{font-size:.95rem;color:var(--muted)}
+.ev-day span{font-family:var(--f-caps);font-weight:500;font-size:.78rem;letter-spacing:.22em;color:var(--gold)}
+.ev-day em{font-size:1.05rem;color:var(--muted)}
 .ev-info{display:grid;gap:12px;min-width:0}
 .ev-info h3{font-family:var(--f-script);font-size:clamp(3.4rem,8vw,5.2rem);line-height:1;color:var(--ruby);padding:.08em 0}
-.ev-info .time{font-family:var(--f-caps);font-size:.8rem;letter-spacing:.28em;color:var(--ink)}
+.ev-info .time{font-family:var(--f-caps);font-weight:500;font-size:.92rem;letter-spacing:.28em;color:var(--ink)}
 .ev-info .venue{margin-top:6px;display:grid;gap:2px}
 .ev-info .venue strong{font-family:var(--f-display);font-weight:400;font-size:1.7rem;color:var(--ink)}
 .ev-info .venue span{color:var(--muted);font-style:italic}
 .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.btn{font-family:var(--f-caps);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;text-decoration:none;color:var(--ruby);
+.btn{font-family:var(--f-caps);font-weight:500;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;text-decoration:none;color:var(--ruby);
   padding:14px 24px;border:1px solid var(--ruby);transition:background .4s,color .4s}
 .btn:hover{background:var(--ruby);color:var(--paper)}
 .btn.fill{background:var(--ruby);color:var(--paper)}
@@ -169,10 +170,10 @@ section.sec{padding-block:clamp(90px,13vw,160px);position:relative}
 .food h3{font-family:var(--f-display);font-size:clamp(2.4rem,5.4vw,3.6rem);line-height:1.05;color:var(--ruby)}
 .food p{font-size:1.18rem;max-width:52ch}
 .food p.first::first-letter{font-family:var(--f-display);float:left;font-size:4.4em;line-height:.8;padding:.06em .1em 0 0;color:var(--gold)}
-.food .sig{font-family:var(--f-script);font-size:2.2rem;line-height:1.2;color:var(--gold)}
+.food .sig{font-family:var(--f-script);font-size:2.4rem;line-height:1.25;color:var(--ruby)}
 .gifts{padding:clamp(34px,5vw,50px);border:1px solid var(--rule);outline:1px solid var(--rule);outline-offset:6px;display:grid;gap:16px;text-align:center;background:rgba(255,255,255,.35)}
 .gifts h3{font-family:var(--f-script);font-size:3rem;line-height:1;color:var(--ruby)}
-.gifts p{font-style:italic;color:var(--muted)}
+.gifts p{font-style:italic;color:var(--muted);font-size:1.15rem}
 
 footer{text-align:center;position:relative;overflow:hidden}
 footer::before{content:"";position:absolute;inset:0;background-image:var(--damask);background-size:90px;opacity:.09}
@@ -180,7 +181,7 @@ footer .wrap{position:relative;padding-block:clamp(90px,12vw,130px) 70px;display
 footer .wax{position:relative;left:auto;top:auto;margin:0;animation:none;width:92px;height:92px}
 footer .wax span{font-size:1.9rem}
 footer .names{font-family:var(--f-script);font-size:clamp(3.6rem,10vw,6rem);line-height:1.1;padding:0 .2em}
-footer .with{font-style:italic;color:rgba(247,241,229,.75)}
+footer .with{font-style:italic;color:var(--paper);font-size:1.15rem}
 
 @media (max-width:860px){
   .topline nav{display:none}
@@ -212,7 +213,7 @@ footer .with{font-style:italic;color:rgba(247,241,229,.75)}
     <div class="env-body"></div>
     <div class="env-flap"></div>
   </div>
-  <div class="wax"><span>N&amp;S</span></div>
+  <div class="wax"><span>N<i>&amp;</i>S</span></div>
   <small>Tap to open</small>
 </div>
 
@@ -247,7 +248,7 @@ footer .with{font-style:italic;color:rgba(247,241,229,.75)}
               <span class="cred">MBA (CLOUD COMPUTING)<br>DUBLIN, IRELAND</span>
               <span class="par">Son of Mrs. &amp; Mr. Syed Arif Ahmed</span>
             </span>
-            <span class="amp leaf" aria-hidden="true">&amp;</span>
+            <span class="amp" aria-hidden="true">&amp;</span>
             <span class="who">
               <span class="nm">Sadia<br>Ahmed</span>
               <span class="cred">MA SOCIAL SCIENCES (PSYCHOLOGY)<br>HYDERABAD, INDIA</span>
@@ -318,8 +319,8 @@ footer .with{font-style:italic;color:rgba(247,241,229,.75)}
 
   <footer class="velvet">
     <div class="wrap">
-      <div class="wax" aria-hidden="true"><span>N&amp;S</span></div>
-      <div class="names leaf">Naveed &amp; Sadia</div>
+      <div class="wax" aria-hidden="true"><span>N<i>&amp;</i>S</span></div>
+      <div class="names leaf">Naveed <span style="font-family:var(--f-body)">&amp;</span> Sadia</div>
       <p class="caps">#NaveedWedsSadia</p>
       <p class="with">With best compliments from Near &amp; Dear · 07.01.2027</p>
     </div>
