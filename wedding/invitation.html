@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&family=Marcellus&display=swap">
 <style>
 /* Layout: a single centred arch (a nod to Hyderabad's Charminar arches) frames the hero;
-   below it the page alternates calm full-bleed bands — countdown, the two events, details, RSVP. */
+   below it the page alternates calm full-bleed bands — countdown, the two events, verse, details. */
 :root{
   --night:#0d1b1e;      /* deep emerald-ink ground */
   --night-2:#12262a;    /* raised band */
@@ -156,7 +156,7 @@ section.block{padding-block:clamp(72px,11vw,120px)}
 .btn.solid:hover{background:var(--gold-hi)}
 
 /* details */
-.details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-block:1px solid var(--line)}
+.details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-block:1px solid var(--line)}
 .detail{padding:38px 30px;display:grid;gap:12px;align-content:start;border-left:1px solid var(--line);min-width:0}
 .detail:first-child{border-left:0}
 .detail h3{font-size:1.6rem;font-style:italic;color:var(--gold-hi)}
@@ -236,7 +236,6 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
     <nav class="topnav" aria-label="Sections">
       <a href="#celebrations">Celebrations</a>
       <a href="#details">Details</a>
-      <a href="#rsvp">RSVP</a>
     </nav>
   </div>
 
@@ -267,7 +266,7 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
           <div class="side">2027</div>
         </div>
         <p class="hero-place">Hyderabad, India</p>
-        <div><a class="btn solid" href="#rsvp" style="margin-top:30px">Kindly RSVP</a></div>
+        <div><a class="btn solid" href="#celebrations" style="margin-top:30px">View the celebrations</a></div>
       </div>
     </div>
   </header>
@@ -311,17 +310,9 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
       </div>
       <div class="details">
         <div class="detail">
-          <p class="label">Dress code</p>
-          <h3>Formal &amp; festive</h3>
-          <p>Eastern or Western formal wear. Jewel tones are warmly welcome: emerald, gold, deep rose and ivory.</p>
-          <div class="swatches" aria-hidden="true">
-            <i style="background:#1f5c4a"></i><i style="background:#c8a565"></i><i style="background:#8c2f45"></i><i style="background:#f4eee3"></i><i style="background:#1b2f5a"></i>
-          </div>
-        </div>
-        <div class="detail">
           <p class="label">Food</p>
           <h3>A Hyderabadi table</h3>
-          <p>Expect biryani, haleem-style classics and plenty of sweet things. All food served is halal. Please tell us about any allergies in your RSVP.</p>
+          <p>Expect biryani, haleem-style classics and plenty of sweet things. All food served is halal. Please let the family know about any allergies.</p>
         </div>
         <div class="detail">
           <p class="label">Gifts</p>
@@ -329,49 +320,6 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
           <p>Having you there is the greatest gift. If you would like to give something more, your duas mean the world to us.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="block band" id="rsvp">
-    <div class="wrap rsvp">
-      <div class="rsvp-intro">
-        <p class="label">RSVP</p>
-        <h2>Will you join us?</h2>
-        <p>Let us know you're coming so we can save you a seat at the table.</p>
-        <p class="deadline" id="rsvpBy">Kindly reply by 20 February 2027</p>
-        <div class="event-links">
-          <a class="btn" id="calLink" href="#" target="_blank" rel="noopener">Add to calendar</a>
-        </div>
-      </div>
-
-      <form id="rsvpForm" novalidate>
-        <div class="row">
-          <div class="field">
-            <label for="rName">Your name</label>
-            <input type="text" id="rName" name="name" autocomplete="name" placeholder="Full name" required>
-          </div>
-          <div class="field">
-            <label for="rGuests">Number of guests</label>
-            <input type="number" id="rGuests" name="guests" min="1" max="10" value="1">
-          </div>
-        </div>
-        <fieldset>
-          <legend>Attending</legend>
-          <div class="choices" id="rAttend">
-            <label class="choice"><input type="radio" name="attend" id="rA1" value="Both celebrations" checked><span>Both</span></label>
-            <label class="choice"><input type="radio" name="attend" id="rA2" value="The Shaadi only"><span>Shaadi only</span></label>
-            <label class="choice"><input type="radio" name="attend" id="rA3" value="The Valima only"><span>Valima only</span></label>
-            <label class="choice"><input type="radio" name="attend" id="rA4" value="Unable to attend"><span>Sadly can't</span></label>
-          </div>
-        </fieldset>
-        <div class="field">
-          <label for="rMsg">A note for the couple</label>
-          <textarea id="rMsg" name="message" placeholder="Dietary needs, a dua, a kind word…"></textarea>
-        </div>
-        <button class="btn solid" type="submit">Send RSVP on WhatsApp</button>
-        <p class="form-note" id="formNote">Opens WhatsApp with your reply written out, ready to send.</p>
-        <div class="thanks" id="thanks" hidden></div>
-      </form>
     </div>
   </section>
 
@@ -388,8 +336,6 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
 /* ============ EDIT YOUR DETAILS HERE ============ */
 const WEDDING = {
   tz: "+05:30",                       // India time, for the countdown
-  rsvpBy: "15 December 2026",
-  whatsapp: "353000000000",           // RSVP number, international format, no + or spaces
   events: [
     {
       name: "The Shaadi",
@@ -419,7 +365,6 @@ const WEDDING = {
 
 const $ = id => document.getElementById(id);
 const target = new Date(WEDDING.events[0].start + ":00" + WEDDING.tz);
-$("rsvpBy").textContent = "Kindly reply by " + WEDDING.rsvpBy;
 
 /* events */
 const gcal = e => {
@@ -442,7 +387,6 @@ $("events").innerHTML = WEDDING.events.map(e => `
       <a class="btn" href="${gcal(e)}" target="_blank" rel="noopener">Save the date</a>
     </div>
   </article>`).join("");
-$("calLink").href = gcal(WEDDING.events[0]);
 
 /* countdown */
 const pad = (n,l=2) => String(n).padStart(l,"0");
@@ -456,21 +400,6 @@ function tick(){
 }
 tick(); setInterval(tick, 1000);
 
-/* RSVP via WhatsApp */
-$("rsvpForm").addEventListener("submit", ev => {
-  ev.preventDefault();
-  const name = $("rName").value.trim();
-  if(!name){ $("rName").focus(); $("formNote").textContent = "Please add your name so we know who's coming."; return; }
-  const attend = document.querySelector('input[name="attend"]:checked').value;
-  const guests = $("rGuests").value || "1";
-  const msg = $("rMsg").value.trim();
-  const text = `Assalamu alaikum! RSVP for Naveed & Sadia's wedding\n\nName: ${name}\nAttending: ${attend}\nGuests: ${guests}` + (msg ? `\nNote: ${msg}` : "");
-  const url = "https://wa.me/" + WEDDING.whatsapp + "?text=" + encodeURIComponent(text);
-  const a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove();
-  const t = $("thanks"); t.hidden = false;
-  t.innerHTML = `Thank you, ${esc(name.split(" ")[0])}. If WhatsApp didn't open, <a href="${url}" target="_blank" rel="noopener">tap here to send your RSVP</a>.`;
-  $("formNote").textContent = "Your reply is only sent once you press send in WhatsApp.";
-});
 
 /* ambient gold dust */
 (() => {
