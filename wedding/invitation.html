@@ -86,9 +86,14 @@ a{color:var(--gold-hi)}
 .names{margin-top:26px;font-size:var(--s-names);line-height:.98;letter-spacing:-.01em}
 .names .first{display:block}
 .names .prefix{display:block;font-family:var(--f-label);font-size:.2em;letter-spacing:.42em;color:var(--gold);margin-bottom:.6em;text-transform:uppercase}
+.names .parent{display:block;font-family:var(--f-body);font-weight:300;font-size:.17em;letter-spacing:.06em;color:var(--mist);margin-top:.7em;line-height:1.4;font-size:clamp(.78rem,1.4vw,.9rem)}
+.blessing{display:grid;gap:4px;margin-bottom:18px;font-family:var(--f-display);font-style:italic;font-size:1.05rem;color:var(--ivory)}
+.insha{margin-top:30px}
+.hero-date .day i{font-style:italic;color:var(--gold);font-size:.55em;margin-inline:.18em;vertical-align:.15em}
+.event .hijri{font-size:var(--s-xs);color:var(--mist);letter-spacing:.06em;margin-top:-8px}
 .names em{font-style:italic;color:var(--gold-hi)}
 .amp{display:block;font-family:var(--f-display);font-style:italic;font-size:.62em;color:var(--gold);margin:.12em 0 .1em}
-.hero-date{margin-top:34px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;max-width:420px;margin-inline:auto}
+.hero-date{margin-top:14px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;max-width:420px;margin-inline:auto}
 .hero-date .side{font-family:var(--f-label);font-size:var(--s-xs);letter-spacing:.3em;text-transform:uppercase;color:var(--mist);padding-block:8px;border-block:1px solid var(--line)}
 .hero-date .day{font-family:var(--f-display);font-size:3.2rem;line-height:1;color:var(--ivory)}
 .hero-date .month{display:block;font-family:var(--f-label);font-size:var(--s-xs);letter-spacing:.3em;color:var(--gold);margin-top:6px}
@@ -243,18 +248,25 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
           <p class="bismillah-en">In the name of Allah, the Most Gracious, the Most Merciful</p>
         </div>
         <div class="rule" aria-hidden="true"><i></i></div>
+        <div class="blessing">
+          <p class="label">With the blessings of</p>
+          <p>Late Mrs. &amp; Mr. Syed Chand Sahab</p>
+        </div>
         <p class="together">Together with their families, we joyfully invite you to celebrate the wedding of</p>
         <h1 class="names">
           <span class="first"><span class="prefix">Syed</span>Naveed <em>Ahmed</em></span>
+          <span class="parent">Son of Mrs. &amp; Mr. Syed Arif Ahmed</span>
           <span class="amp" aria-hidden="true">&amp;</span>
           <span class="first">Sadia <em>Ahmed</em></span>
+          <span class="parent">Daughter of Mrs. &amp; Mr. Basheer Ahmed</span>
         </h1>
+        <p class="label insha">In Sha Allah</p>
         <div class="hero-date">
-          <div class="side" id="heroWeekday">Saturday</div>
-          <div><span class="day" id="heroDay">20</span><span class="month" id="heroMonth">March</span></div>
-          <div class="side" id="heroYear">2027</div>
+          <div class="side">Thu · Sat</div>
+          <div><span class="day">7<i>&amp;</i>9</span><span class="month">January</span></div>
+          <div class="side">2027</div>
         </div>
-        <p class="hero-place" id="heroPlace">Dublin, Ireland</p>
+        <p class="hero-place">Hyderabad, India</p>
         <div><a class="btn solid" href="#rsvp" style="margin-top:30px">Kindly RSVP</a></div>
       </div>
     </div>
@@ -367,7 +379,7 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
     <div class="wrap">
       <div class="big">Naveed<span>&amp;</span>Sadia</div>
       <p class="label tag">#NaveedWedsSadia</p>
-      <p class="dua">With love and gratitude to our families · <span id="footDate">20.03.2027</span></p>
+      <p class="dua">With best compliments from Near &amp; Dear · 07.01.2027</p>
     </div>
   </footer>
 </main>
@@ -375,29 +387,30 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
 <script>
 /* ============ EDIT YOUR DETAILS HERE ============ */
 const WEDDING = {
-  date: "2027-03-20",                 // main wedding date (YYYY-MM-DD)
-  city: "Dublin, Ireland",
-  rsvpBy: "20 February 2027",
+  tz: "+05:30",                       // India time, for the countdown
+  rsvpBy: "15 December 2026",
   whatsapp: "353000000000",           // RSVP number, international format, no + or spaces
   events: [
     {
       name: "The Shaadi",
-      when: "Saturday · 20 March 2027",
-      start: "2027-03-20T13:00", end: "2027-03-20T15:00",
-      time: "1:00 pm",
+      when: "Thursday · 7 January 2027",
+      hijri: "28th Rajab, 1448 Hijri",
+      start: "2027-01-07T20:00", end: "2027-01-07T23:30",
+      time: "Timings to follow",
       desc: "The Nikah ceremony and wedding celebration with family and friends.",
-      venue: "Shaadi venue",
-      address: "Tap Directions for the location",
+      venue: "The Vintage Palace",
+      address: "Pillar No. 102, beside Mahboob Pride Palace, Karwan West, Karwan, Hyderabad, Telangana 500006",
       map: "https://share.google/gVLL5j5gt2xB3vRKx"
     },
     {
       name: "The Valima",
-      when: "Saturday · 20 March 2027",
-      start: "2027-03-20T19:00", end: "2027-03-20T23:00",
-      time: "7:00 pm",
-      desc: "An evening reception and dinner to celebrate the new couple.",
-      venue: "Valima venue",
-      address: "Tap Directions for the location",
+      when: "Saturday · 9 January 2027",
+      hijri: "30th Rajab, 1448 Hijri",
+      start: "2027-01-09T20:00", end: "2027-01-09T23:30",
+      time: "Timings to follow",
+      desc: "An evening reception and dinner hosted by the groom's family to celebrate the new couple.",
+      venue: "K.N. Convention",
+      address: "Plot 4, opp. National Police Academy, Raghavendra Nagar, Shivarampally Jagir, Hyderabad, Telangana 500052",
       map: "https://share.google/c2ymMuRyftisjTpzt"
     }
   ]
@@ -405,21 +418,13 @@ const WEDDING = {
 /* ================================================ */
 
 const $ = id => document.getElementById(id);
-const target = new Date(WEDDING.events[0].start);
-const d = new Date(WEDDING.date + "T12:00");
-
-$("heroWeekday").textContent = d.toLocaleDateString("en-IE",{weekday:"long"});
-$("heroDay").textContent = d.getDate();
-$("heroMonth").textContent = d.toLocaleDateString("en-IE",{month:"long"});
-$("heroYear").textContent = d.getFullYear();
-$("heroPlace").textContent = WEDDING.city;
+const target = new Date(WEDDING.events[0].start + ":00" + WEDDING.tz);
 $("rsvpBy").textContent = "Kindly reply by " + WEDDING.rsvpBy;
-$("footDate").textContent = [String(d.getDate()).padStart(2,"0"),String(d.getMonth()+1).padStart(2,"0"),d.getFullYear()].join(".");
 
 /* events */
 const gcal = e => {
   const f = s => s.replace(/[-:]/g,"") + "00";
-  const p = new URLSearchParams({action:"TEMPLATE",text:e.name+" · Naveed & Sadia",dates:f(e.start)+"/"+f(e.end),location:e.map||e.venue,details:e.desc+(e.map?"\n\nLocation: "+e.map:"")});
+  const p = new URLSearchParams({action:"TEMPLATE",text:e.name+" · Naveed & Sadia",dates:f(e.start)+"/"+f(e.end),ctz:"Asia/Kolkata",location:e.venue+", "+e.address,details:e.desc+(e.map?"\n\nLocation: "+e.map:"")});
   return "https://calendar.google.com/calendar/render?" + p.toString();
 };
 const maps = e => e.map || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(e.venue + " " + e.address);
@@ -427,6 +432,7 @@ const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 $("events").innerHTML = WEDDING.events.map(e => `
   <article class="event">
     <p class="when">${esc(e.when)}</p>
+    ${e.hijri ? `<p class="hijri">${esc(e.hijri)}</p>` : ""}
     <h3>${esc(e.name)}</h3>
     <p class="time">${esc(e.time)}</p>
     <p class="desc">${esc(e.desc)}</p>
