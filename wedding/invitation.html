@@ -254,7 +254,7 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
           <p class="label">With the blessings of</p>
           <p>Late Mrs. &amp; Mr. Syed Chand Sahab</p>
         </div>
-        <p class="together">Together with their families, we joyfully invite you to celebrate the wedding of</p>
+        <p class="together">Request the pleasure of your company at the wedding of</p>
         <h1 class="names">
           <span class="first"><span class="prefix">Syed</span>Naveed <em>Ahmed</em></span>
           <span class="cred">MBA (Cloud Computing)<br>Dublin, Ireland</span>
@@ -271,7 +271,6 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
           <div class="side">2027</div>
         </div>
         <p class="hero-place">Hyderabad, India</p>
-        <div><a class="btn solid" href="#celebrations" style="margin-top:30px">View the celebrations</a></div>
       </div>
     </div>
   </header>
@@ -293,7 +292,6 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
       <div class="head">
         <p class="label">The Celebrations</p>
         <h2>Two moments, one beginning</h2>
-        <p class="lede">We would be honoured to have you with us for both.</p>
       </div>
       <div class="events" id="events"></div>
     </div>
@@ -301,7 +299,6 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
 
   <section class="block band" style="padding-block:clamp(64px,9vw,100px)">
     <div class="wrap verse">
-      <p class="label">A word we hold close</p>
       <blockquote>“And He placed between you affection and mercy.”</blockquote>
       <p class="label"><cite>Surah Ar-Rum · 30:21</cite></p>
     </div>
@@ -323,7 +320,7 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
         <div class="detail">
           <p class="label">Gifts</p>
           <h3>Your presence</h3>
-          <p>Having you there is the greatest gift. If you would like to give something more, your duas mean the world to us.</p>
+          <p>Your presence and duas are all we wish for.</p>
         </div>
       </div>
     </div>
@@ -351,7 +348,7 @@ const WEDDING = {
       time: "Dinner · 9:00 pm",
       desc: "The Nikah ceremony and wedding celebration with family and friends.",
       venue: "The Vintage Palace",
-      address: "Pillar No. 102, beside Mahboob Pride Palace, Karwan West, Karwan, Hyderabad, Telangana 500006",
+      address: "Beside Mahboob Pride Palace, Karwan, Hyderabad",
       map: "https://share.google/gVLL5j5gt2xB3vRKx"
     },
     {
@@ -362,7 +359,7 @@ const WEDDING = {
       time: "Dinner · 9:00 pm",
       desc: "An evening reception and dinner hosted by the groom's family to celebrate the new couple.",
       venue: "K.N. Convention",
-      address: "Plot 4, opp. National Police Academy, Raghavendra Nagar, Shivarampally Jagir, Hyderabad, Telangana 500052",
+      address: "Opp. National Police Academy, Shivarampally, Hyderabad",
       map: "https://share.google/c2ymMuRyftisjTpzt"
     }
   ]
@@ -386,7 +383,6 @@ $("events").innerHTML = WEDDING.events.map(e => `
     ${e.hijri ? `<p class="hijri">${esc(e.hijri)}</p>` : ""}
     <h3>${esc(e.name)}</h3>
     <p class="time">${esc(e.time)}</p>
-    <p class="desc">${esc(e.desc)}</p>
     <div class="venue"><strong>${esc(e.venue)}</strong><span>${esc(e.address)}</span></div>
     <div class="event-links">
       <a class="btn" href="${maps(e)}" target="_blank" rel="noopener">Directions</a>
