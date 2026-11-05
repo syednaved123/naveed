@@ -347,8 +347,8 @@ footer .dua{margin-top:30px;color:var(--mist);font-size:var(--s-sm)}
           <legend>Attending</legend>
           <div class="choices" id="rAttend">
             <label class="choice"><input type="radio" name="attend" id="rA1" value="Both celebrations" checked><span>Both</span></label>
-            <label class="choice"><input type="radio" name="attend" id="rA2" value="The Nikah only"><span>Nikah only</span></label>
-            <label class="choice"><input type="radio" name="attend" id="rA3" value="The Walima only"><span>Walima only</span></label>
+            <label class="choice"><input type="radio" name="attend" id="rA2" value="The Shaadi only"><span>Shaadi only</span></label>
+            <label class="choice"><input type="radio" name="attend" id="rA3" value="The Valima only"><span>Valima only</span></label>
             <label class="choice"><input type="radio" name="attend" id="rA4" value="Unable to attend"><span>Sadly can't</span></label>
           </div>
         </fieldset>
@@ -381,22 +381,24 @@ const WEDDING = {
   whatsapp: "353000000000",           // RSVP number, international format, no + or spaces
   events: [
     {
-      name: "The Nikah",
+      name: "The Shaadi",
       when: "Saturday · 20 March 2027",
       start: "2027-03-20T13:00", end: "2027-03-20T15:00",
       time: "1:00 pm",
-      desc: "The marriage ceremony, followed by light refreshments with family and friends.",
-      venue: "Venue to be announced",
-      address: "Dublin, Ireland"
+      desc: "The Nikah ceremony and wedding celebration with family and friends.",
+      venue: "Shaadi venue",
+      address: "Tap Directions for the location",
+      map: "https://share.google/gVLL5j5gt2xB3vRKx"
     },
     {
-      name: "The Walima",
+      name: "The Valima",
       when: "Saturday · 20 March 2027",
       start: "2027-03-20T19:00", end: "2027-03-20T23:00",
       time: "7:00 pm",
       desc: "An evening reception and dinner to celebrate the new couple.",
-      venue: "Venue to be announced",
-      address: "Dublin, Ireland"
+      venue: "Valima venue",
+      address: "Tap Directions for the location",
+      map: "https://share.google/c2ymMuRyftisjTpzt"
     }
   ]
 };
@@ -417,10 +419,10 @@ $("footDate").textContent = [String(d.getDate()).padStart(2,"0"),String(d.getMon
 /* events */
 const gcal = e => {
   const f = s => s.replace(/[-:]/g,"") + "00";
-  const p = new URLSearchParams({action:"TEMPLATE",text:e.name+" · Naveed & Sadia",dates:f(e.start)+"/"+f(e.end),location:e.venue+", "+e.address,details:e.desc});
+  const p = new URLSearchParams({action:"TEMPLATE",text:e.name+" · Naveed & Sadia",dates:f(e.start)+"/"+f(e.end),location:e.map||e.venue,details:e.desc+(e.map?"\n\nLocation: "+e.map:"")});
   return "https://calendar.google.com/calendar/render?" + p.toString();
 };
-const maps = e => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(e.venue + " " + e.address);
+const maps = e => e.map || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(e.venue + " " + e.address);
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 $("events").innerHTML = WEDDING.events.map(e => `
   <article class="event">
