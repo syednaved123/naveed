@@ -50,7 +50,7 @@ a{color:inherit}
   animation:spin 240s linear infinite}
 html[data-ch="gate"] .rays,html[data-ch="bismillah"] .rays{opacity:1}
 @keyframes spin{to{transform:rotate(360deg)}}
-#gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#fx,#gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .vig{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(130% 95% at 50% 45%,transparent 50%,rgba(0,0,0,.62) 100%)}
 body::after{content:"";position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.06;background-image:var(--grain);mix-blend-mode:overlay}
 .shoot{position:fixed;z-index:1;width:150px;height:1px;pointer-events:none;border-radius:1px;
@@ -212,6 +212,7 @@ html.opened .dots{opacity:1;pointer-events:auto}
 
 <div class="sky" aria-hidden="true"></div>
 <div class="rays" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
 <canvas id="gl" aria-hidden="true"></canvas>
 <div class="vig" aria-hidden="true"></div>
 
@@ -430,11 +431,96 @@ function detect(){
   }
   if (best !== activeSec){
     activeSec = best;
-    if (root.classList.contains("opened")) root.dataset.ch = best.dataset.ch;
+    if (root.classList.contains("opened")){ root.dataset.ch = best.dataset.ch; FX.chapter(best.dataset.ch); }
     [...dots.children].forEach((b, i) => b.setAttribute("aria-current", chapters[i] === best ? "true" : "false"));
   }
   return best;
 }
+
+/* ---------- rose petals, lanterns and fireworks: a few, at chosen moments only ----------
+   Petals fall for a few seconds after the invitation opens. Fireworks rise over the Charminar while
+   the date is on screen, with a short volley at the finale. Lanterns drift up behind the verse and the
+   details. Everything sits behind the text, and the loop stops itself whenever nothing is showing. */
+const FX = (() => {
+  const R = Math.random, cv = $("#fx");
+  if (RM || !cv || !cv.getContext) return {chapter(){}, petals(){}};
+  const x = cv.getContext("2d");
+  let W = 0, H = 0, run = false, last = 0;
+  const fit = () => { const pr = Math.min(window.devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = Math.round(W * pr); cv.height = Math.round(H * pr); x.setTransform(pr, 0, 0, pr, 0, 0); };
+  fit(); addEventListener("resize", fit);
+  const small = () => W < 700;
+  const sprite = (w, h, draw) => { const c = document.createElement("canvas"); c.width = w; c.height = h; draw(c.getContext("2d")); return c; };
+  const PETALS = [["#9e1534", "#d4485f", "#5e0a1f"], ["#b81f3f", "#ea6b7c", "#6d0d22"], ["#c73a55", "#f19aa6", "#7d1428"], ["#e8a1aa", "#fbd9dc", "#b8646f"], ["#f3e3d3", "#fffaf2", "#cdb59c"]].map(([base, light, dark]) => sprite(64, 64, p => {
+    p.translate(32, 32); const g = p.createRadialGradient(-6, -10, 2, 0, 0, 34); g.addColorStop(0, light); g.addColorStop(.65, base); g.addColorStop(1, dark);
+    p.fillStyle = g; p.beginPath(); p.moveTo(0, -20); p.bezierCurveTo(12, -30, 28, -16, 22, 4); p.bezierCurveTo(16, 22, 4, 28, 0, 30); p.bezierCurveTo(-4, 28, -16, 22, -22, 4); p.bezierCurveTo(-28, -16, -12, -30, 0, -20); p.fill();
+    p.strokeStyle = "rgba(255,255,255,.16)"; p.lineWidth = 1; p.beginPath(); p.moveTo(0, -14); p.quadraticCurveTo(3, 6, 0, 24); p.stroke();
+  }));
+  const LANTERN = sprite(64, 90, p => {
+    const body = new Path2D("M14 10H50Q58 45 54 78H10Q6 45 14 10Z"), g = p.createLinearGradient(0, 10, 0, 78);
+    g.addColorStop(0, "#ffd88a"); g.addColorStop(.55, "#ffb04a"); g.addColorStop(1, "#e47a26"); p.fillStyle = g; p.fill(body);
+    const core = p.createRadialGradient(32, 62, 2, 32, 58, 26); core.addColorStop(0, "rgba(255,250,225,.95)"); core.addColorStop(1, "rgba(255,200,110,0)"); p.fillStyle = core; p.fill(body);
+    p.fillStyle = "#7a3b12"; p.fillRect(13, 8, 38, 4); p.fillRect(9, 77, 46, 4);
+  });
+  const GLOW = sprite(128, 128, p => { const g = p.createRadialGradient(64, 64, 0, 64, 64, 64); g.addColorStop(0, "rgba(255,196,100,.85)"); g.addColorStop(.35, "rgba(255,160,70,.35)"); g.addColorStop(1, "rgba(255,140,60,0)"); p.fillStyle = g; p.fillRect(0, 0, 128, 128); });
+  const PAL = ["#ffe7a8", "#f8c76a", "#fff6e0", "#f29fb2", "#ddb96c"];
+
+  const petals = [], lanterns = [], rockets = [], sparks = [];
+  let petalUntil = 0, petalFade = Infinity, petalAcc = 0, lanternsOn = false, fireOn = false, nextRocket = 0, volley = [], lastVolley = -1e9;
+  const launch = (x0, y0, ty, c) => rockets.push({x: x0, y: y0, vy: -(H * .011 + R() * H * .004), ty, c});
+  function charminar(){ const el = document.querySelector('[data-stage="charminar"]'); if (!el) return null; const r = el.getBoundingClientRect(); return r.bottom < 0 || r.top > H ? null : r; }
+
+  function tick(now){
+    if (!run) return;
+    const dt = Math.min(.05, Math.max(.001, (now - last) / 1000)); last = now; const f = dt * 60;
+    if (now < petalUntil){ petalAcc += dt * (small() ? 2.5 : 4); while (petalAcc >= 1){ petalAcc -= 1; petals.push({x: R() * W, y: -30 - R() * 40, z: .5 + R() * .6, r: R() * 6.28, vr: (R() - .5) * .04, fl: R() * 6.28, vfl: .03 + R() * .05, sw: R() * 6.28, vy: .7 + R() * .9, sp: (R() * PETALS.length) | 0, s: 14 + R() * 16}); } }
+    if (lanternsOn && lanterns.length < (small() ? 6 : 9) && R() < dt * .6) lanterns.push({x: W * (.06 + R() * .88), y: H + 60, z: .35 + R() * .65, sw: R() * 6.28, fl: R() * 6.28, a: 0});
+    if (fireOn && now > nextRocket){ const r = charminar(); if (r){ nextRocket = now + 1700 + R() * 1300; const side = R() < .5 ? .05 + R() * .2 : .75 + R() * .2; launch(r.left + r.width * side, r.bottom, r.top + r.height * (.04 + R() * .22), PAL[(R() * PAL.length) | 0]); } }
+    while (volley.length && now >= volley[0].at){ const v = volley.shift(); launch(v.x, H * .95, v.ty, v.c); }
+
+    x.clearRect(0, 0, W, H);
+    for (let i = lanterns.length - 1; i >= 0; i--){
+      const p = lanterns[i]; p.sw += .012 * f; p.fl += .2 * f; p.y -= (.25 + p.z * .45) * f; p.x += Math.sin(p.sw) * .2 * f * p.z; p.a = lanternsOn ? Math.min(1, p.a + dt * .8) : p.a - dt * .5;
+      if (p.y < -100 || p.a <= 0){ lanterns.splice(i, 1); continue; }
+      const s = 22 + p.z * 34, fk = .85 + .15 * Math.sin(p.fl) * Math.sin(p.fl * .37), fade = Math.max(0, Math.min(1, p.y / (H * .25))) * p.a;
+      x.globalCompositeOperation = "lighter"; x.globalAlpha = .5 * fk * p.z * fade; x.drawImage(GLOW, p.x - s * 1.6, p.y - s * 1.6, s * 3.2, s * 3.2);
+      x.globalCompositeOperation = "source-over"; x.globalAlpha = (.5 + .45 * p.z) * fade; x.drawImage(LANTERN, p.x - s * .32, p.y - s * .45, s * .64, s * .9);
+    }
+    x.globalCompositeOperation = "lighter";
+    for (let i = rockets.length - 1; i >= 0; i--){
+      const r = rockets[i]; r.y += r.vy * f; x.globalAlpha = .85; x.fillStyle = "#ffe9b8"; x.fillRect(r.x - 1, r.y, 2, 6);
+      if (r.y <= r.ty){ rockets.splice(i, 1); const n = small() ? 55 : 85; for (let j = 0; j < n; j++){ const a = R() * 6.283, sp = 1.4 + R() * 2.6; sparks.push({x: r.x, y: r.y, px: r.x, py: r.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, dec: .009 + R() * .008, c: R() < .7 ? r.c : "#fff6e0"}); } }
+    }
+    x.lineWidth = 1.5; x.lineCap = "round";
+    for (let i = sparks.length - 1; i >= 0; i--){
+      const s = sparks[i]; s.px = s.x; s.py = s.y; s.vx *= Math.pow(.985, f); s.vy = s.vy * Math.pow(.985, f) + .04 * f; s.x += s.vx * f; s.y += s.vy * f; s.life -= s.dec * f;
+      if (s.life <= 0){ sparks.splice(i, 1); continue; }
+      x.globalAlpha = s.life; x.strokeStyle = s.c; x.beginPath(); x.moveTo(s.px, s.py); x.lineTo(s.x, s.y); x.stroke();
+    }
+    x.globalCompositeOperation = "source-over";
+    const pf = Math.max(0, Math.min(1, 1 - (now - Math.min(petalFade, petalUntil + 3000)) / 1800));
+    if (pf <= 0 && now > petalUntil) petals.length = 0;
+    for (let i = petals.length - 1; i >= 0; i--){
+      const p = petals[i]; p.sw += .02 * f; p.fl += p.vfl * f; p.r += p.vr * f; p.x += Math.sin(p.sw) * .4 * p.z * f; p.y += p.vy * p.z * f;
+      if (p.y > H + 40){ petals.splice(i, 1); continue; }
+      const sc = p.s * p.z / 32; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.scale(Math.cos(p.fl) * sc, sc); x.globalAlpha = .8 * pf; x.drawImage(PETALS[p.sp], -32, -32); x.restore();
+    }
+    x.globalAlpha = 1;
+    if (now < petalUntil || petals.length || lanterns.length || lanternsOn || fireOn || rockets.length || sparks.length || volley.length) requestAnimationFrame(tick);
+    else { run = false; x.clearRect(0, 0, W, H); }
+  }
+  const wake = () => { if (!run){ run = true; last = performance.now(); requestAnimationFrame(tick); } };
+  return {
+    petals(ms){ petalUntil = performance.now() + ms; petalFade = Infinity; wake(); },
+    chapter(ch){
+      lanternsOn = ch === "verse" || ch === "details";
+      if (ch !== "bismillah" && ch !== "couple"){ petalFade = Math.min(petalFade, performance.now()); petalUntil = Math.min(petalUntil, performance.now()); }
+      fireOn = ch === "date"; if (fireOn) nextRocket = performance.now() + 700;
+      const t = performance.now();
+      if (ch === "finale" && t - lastVolley > 12000){ lastVolley = t; volley = [{at: t + 500, x: W * .28, ty: H * .22, c: "#f8c76a"}, {at: t + 1200, x: W * .72, ty: H * .18, c: "#f29fb2"}, {at: t + 1900, x: W * .5, ty: H * .1, c: "#fff6e0"}]; }
+      wake();
+    }
+  };
+})();
 
 /* ---------- Charminar line drawing (shared by particles and the fallback) ---------- */
 const CHARMINAR = (() => {
@@ -848,6 +934,7 @@ function openInvite(){
   root.classList.add("opening");
   if (glReady && !RM){ const c = sealCenter(); burst(c.x, c.y); forced = "burst"; setTimeout(() => { forced = null; }, 900); } else forced = null;
   setTimeout(() => { root.classList.add("opened"); root.style.scrollBehavior = "auto"; scrollTo(0, 0); root.style.scrollBehavior = ""; activeSec = null; detect(); }, 700);
+  setTimeout(() => FX.petals(7000), 900);
   setTimeout(() => { $("#gate").hidden = true; }, 1500);
 }
 $("#openBtn").addEventListener("click", openInvite);
@@ -858,7 +945,7 @@ $("#replay").addEventListener("click", () => {
     root.style.scrollBehavior = "auto"; scrollTo(0, 0); root.style.scrollBehavior = "";
     if (!glReady || RM){ root.classList.remove("replay"); return; }
     sealCentered = true; forced = "seal";
-    setTimeout(() => { burst(0, 0); forced = "burst"; setTimeout(() => { forced = null; sealCentered = false; root.classList.remove("replay"); }, 900); }, 2600);
+    setTimeout(() => { burst(0, 0); forced = "burst"; FX.petals(6000); setTimeout(() => { forced = null; sealCentered = false; root.classList.remove("replay"); }, 900); }, 2600);
   }, 650);
 });
 
