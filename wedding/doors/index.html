@@ -1,0 +1,571 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wedding Door Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Eight door openings for Naveed and Sadia's invitation, each previewed full screen, with one chosen for the invitation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Tenor+Sans&display=swap">
+<style>
+/* Layout: the same screening room as the opening studio. Each card has a small drawing of its doors;
+   Preview plays the doors full screen exactly as a guest would see them, ending on the couple's names. */
+:root{
+  --sky:#05060f;
+  --card:#0d1022;
+  --gold:#ddb96c;
+  --gold-hi:#f8e7b8;
+  --text:#f4eddf;
+  --soft:#cfc6b3;
+  --line:rgba(221,185,108,.42);
+  --line-soft:rgba(221,185,108,.18);
+  --foil:linear-gradient(100deg,#ecd394 0%,#fff6dc 16%,#f3d89a 32%,#e6c47f 46%,#fff3d0 62%,#efd08e 78%,#fff7e2 90%,#ecd394 100%);
+  --jali:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='%23c9a664' stroke-width='.6'%3E%3Crect x='19' y='19' width='26' height='26'/%3E%3Crect x='19' y='19' width='26' height='26' transform='rotate(45 32 32)'/%3E%3Cpath d='M0 0L13.6 13.6M64 0L50.4 13.6M0 64L13.6 50.4M64 64L50.4 50.4'/%3E%3Ccircle cx='32' cy='32' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-body:"Spectral",Georgia,serif;
+  --f-ui:"Tenor Sans","Gill Sans","Helvetica Neue",Arial,sans-serif;
+  --f-ar:"Amiri","Scheherazade New","Traditional Arabic",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--sky);color:var(--text);font-family:var(--f-body);font-weight:300;font-size:1.08rem;line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(70% 40% at 10% 0%,rgba(122,28,58,.28),transparent 70%),radial-gradient(60% 45% at 95% 10%,rgba(36,44,120,.3),transparent 72%);background-attachment:fixed}
+body.locked{overflow:hidden}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+button{font:inherit;color:inherit}
+:focus-visible{outline:1px solid var(--gold-hi);outline-offset:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.label{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.amp{font-family:var(--f-display);font-style:normal}
+.nw{white-space:nowrap}
+@keyframes sheen{to{background-position:-250% 0}}
+
+header{padding-block:44px 28px;display:grid;gap:12px}
+h1{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 24;font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.05;color:var(--gold-hi)}
+.lead{max-width:62ch;font-size:1.12rem}
+main{padding-block:8px 130px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line-soft);display:grid;align-content:start;min-width:0;transition:border-color .3s,box-shadow .3s}
+.card.chosen{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset,0 18px 50px -24px rgba(221,185,108,.5)}
+.poster{display:block;width:100%;aspect-ratio:16/10;border:0;padding:0;cursor:pointer;background:radial-gradient(90% 90% at 50% 40%,#151a3a,#05060f);border-bottom:1px solid var(--line-soft)}
+.poster svg{width:100%;height:100%;display:block}
+.c-body{padding:18px 20px 20px;display:grid;gap:8px}
+.c-top{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:22px}
+.num{font-family:var(--f-ui);font-size:.8rem;letter-spacing:.14em;color:var(--gold)}
+.tag{font-family:var(--f-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.card h2{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 18;font-size:1.7rem;line-height:1.15;color:var(--gold-hi)}
+.desc{color:var(--text)}
+.c-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;padding:11px 15px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--gold-hi);transition:background .25s,color .25s}
+.btn.solid{background:var(--gold);color:#15100a;border-color:var(--gold)}
+.btn[aria-pressed="true"]{background:rgba(221,185,108,.16);border-color:var(--gold)}
+.tri{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.dot{width:12px;height:12px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center}
+[aria-pressed="true"] .dot::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:#05060f;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:6px 18px;padding-block:14px;flex-wrap:wrap}
+#chosenName{font-family:var(--f-display);font-style:italic;font-size:1.25rem;color:var(--gold-hi)}
+#saveState{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+
+/* ---------- preview overlay ---------- */
+.ov{position:fixed;inset:0;z-index:50;background:#04050c}
+.stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(70% 50% at 12% 0%,rgba(122,28,58,.34),transparent 70%),radial-gradient(60% 55% at 92% 22%,rgba(36,44,120,.34),transparent 72%),radial-gradient(80% 60% at 50% 115%,rgba(164,124,56,.24),transparent 70%),linear-gradient(180deg,#06071a,#04050c)}
+.op-c{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ov-close{position:absolute;z-index:8;top:calc(env(safe-area-inset-top,0px) + 14px);right:calc(env(safe-area-inset-right,0px) + 14px);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:10px 14px;background:rgba(5,6,15,.6);border:1px solid var(--line);color:var(--gold-hi);cursor:pointer}
+.ov-name{position:absolute;z-index:8;top:calc(env(safe-area-inset-top,0px) + 22px);left:calc(env(safe-area-inset-left,0px) + 18px);font-family:var(--f-ui);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);text-shadow:0 1px 8px #000}
+.ov-bar{position:absolute;z-index:8;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  padding:28px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,rgba(4,5,12,.9))}
+.ov-bar .btn{background:rgba(5,6,15,.7)}
+.ov-bar .btn.solid{background:var(--gold)}
+
+.rv{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);z-index:6;display:grid;justify-items:center;gap:clamp(10px,2.2vh,18px);text-align:center;padding:0 20px 40px;pointer-events:none;text-shadow:0 1px 18px rgba(0,0,0,.75)}
+.rv>*{opacity:0;transform:translateY(14px);transition:opacity 1s ease,transform 1.2s cubic-bezier(.2,.7,.1,1)}
+.rv.show>*{opacity:1;transform:none}
+.rv.show>*:nth-child(2){transition-delay:.18s}.rv.show>*:nth-child(3){transition-delay:.36s}.rv.show>*:nth-child(4){transition-delay:.6s}
+.rv-b{font-family:var(--f-ar);font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.6;color:var(--gold-hi);direction:rtl}
+.rv-l{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.rv-n{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 20;font-size:clamp(2rem,6.6vw,3.6rem);line-height:1.2;max-width:20ch;
+  background:var(--foil);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:sheen 10s linear infinite;filter:drop-shadow(0 1px 6px rgba(0,0,0,.6))}
+.rv-d{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text)}
+
+/* shared light flood */
+.fl{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 50%,rgba(255,244,214,.95),rgba(248,220,160,.45) 35%,rgba(5,6,15,0) 75%);opacity:0;transition:opacity 1.4s ease}
+.fl.warm{background:radial-gradient(55% 60% at 50% 55%,rgba(255,214,150,.95),rgba(230,140,60,.45) 40%,rgba(5,6,15,0) 78%)}
+.fl.dawn{background:radial-gradient(70% 70% at 50% 50%,#fff7ea,rgba(255,214,170,.8) 40%,rgba(5,6,15,0) 82%)}
+.fl.on{opacity:1}.fl.off{opacity:0;transition-duration:2.2s}
+
+/* 1. emerald jali */
+.pd{position:absolute;inset:0;z-index:2;display:flex;perspective:1700px}
+.pd-l,.pd-r{flex:1;position:relative;background-color:#10221f;background-image:radial-gradient(120% 80% at 50% 40%,rgba(201,166,100,.12),transparent 70%),var(--jali);background-size:auto,64px;
+  box-shadow:inset 0 0 120px rgba(0,0,0,.65);transition:transform 2.3s cubic-bezier(.6,.05,.25,1),opacity 2.3s ease}
+.pd-l{transform-origin:left center}.pd-r{transform-origin:right center}
+.pd-l::before,.pd-r::before{content:"";position:absolute;inset:18px;border:1px solid var(--line)}
+.pd i{position:absolute;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:2px solid #c9a664;box-shadow:0 0 0 4px rgba(11,23,25,.8),0 0 0 5px rgba(201,166,100,.5),0 6px 18px rgba(0,0,0,.6)}
+.pd-l i{right:min(12vw,110px)}.pd-r i{left:min(12vw,110px)}
+.pd-seam{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(transparent,#fff3cf,transparent);opacity:.25;transition:opacity 1s,box-shadow 1s}
+.pd.glow .pd-seam{opacity:1;box-shadow:0 0 34px 8px rgba(255,236,190,.55)}
+.pd.open .pd-l{transform:rotateY(-108deg);opacity:0}.pd.open .pd-r{transform:rotateY(108deg);opacity:0}
+.pd.open .pd-seam{opacity:0;transition-duration:.4s}
+.pd.fast .pd-l,.pd.fast .pd-r{transition-duration:1.5s}
+
+/* 2. Mughal arch gate */
+.mg{position:absolute;inset:0;z-index:2;transition:transform 1.7s cubic-bezier(.6,0,.35,1),opacity 1.5s ease}
+.mg.push{transform:scale(3.6);opacity:0}
+.mg-light{position:absolute;z-index:0;background:radial-gradient(70% 60% at 50% 62%,#fff8e4,#f3c877 40%,#8a5a20 100%)}
+.mg-doors{position:absolute;z-index:1;display:flex;perspective:1300px}
+.mg-l,.mg-r{flex:1;position:relative;background:radial-gradient(circle at 50% 50%,#e1bf78 0 2.3px,rgba(0,0,0,.35) 2.6px,transparent 3.4px) 0 0/34px 34px,linear-gradient(90deg,#3a2414,#5e3b20 50%,#3a2414);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.55);transition:transform 2.2s cubic-bezier(.6,.05,.25,1)}
+.mg-l{transform-origin:left center;border-right:2px solid #c9a15a}.mg-r{transform-origin:right center;border-left:2px solid #c9a15a}
+.mg-l::after,.mg-r::after{content:"";position:absolute;left:12%;right:12%;top:38%;height:1px;background:#c9a15a;box-shadow:0 120px 0 #c9a15a}
+.mg-seam{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:#fff3cf;opacity:0;transition:opacity .8s,box-shadow .8s}
+.mg.glow .mg-seam{opacity:1;box-shadow:0 0 30px 7px rgba(255,236,190,.6)}
+.mg.open .mg-l{transform:rotateY(100deg)}.mg.open .mg-r{transform:rotateY(-100deg)}
+.mg.open .mg-seam{opacity:0}
+.mg-frame{position:absolute;inset:0;z-index:2;width:100%;height:100%}
+
+/* 3. ruby lacquer */
+.rb{position:absolute;inset:0;z-index:2;display:flex;perspective:1600px;transition:transform 3s ease}
+.rb.open{transform:scale(1.06)}
+.rb-l,.rb-r{flex:1;position:relative;display:grid;grid-template-rows:1.25fr 1fr .7fr;gap:clamp(10px,2vh,22px);padding:clamp(22px,5vh,48px) clamp(14px,3vw,40px);
+  background:linear-gradient(90deg,#4a0812,#7a1426 45%,#4a0812);box-shadow:inset 0 0 0 3px #c9a15a,inset 0 0 0 7px #4a0812,inset 0 0 0 8px rgba(201,161,90,.6),inset 0 0 90px rgba(0,0,0,.5);
+  transition:transform 2.3s cubic-bezier(.6,.05,.25,1),opacity 2.3s ease;overflow:hidden}
+.rb-l{transform-origin:left center}.rb-r{transform-origin:right center}
+.rb.open .rb-l{transform:rotateY(-112deg);opacity:0}.rb.open .rb-r{transform:rotateY(112deg);opacity:0}
+.rb-p{border:2px solid #d6b06a;outline:1px solid rgba(214,176,106,.5);outline-offset:5px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(0,0,0,.18));min-height:0}
+.rb-p.top{border-radius:50% 50% 4px 4px / 22% 22% 4px 4px}
+.rb-p svg{width:min(58%,120px);height:auto}
+.rk{position:absolute;top:52%;width:42px;height:42px;border-radius:50%;border:3px solid #e2c27e;box-shadow:0 0 0 6px rgba(74,8,18,.9),0 0 0 8px #c9a15a,0 6px 16px rgba(0,0,0,.5)}
+.rb-l .rk{right:16px}.rb-r .rk{left:16px}
+.rb-l::after,.rb-r::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,236,190,.35) 50%,transparent 60%);background-size:250% 100%;background-position:150% 0;pointer-events:none}
+.rb.shine .rb-l::after,.rb.shine .rb-r::after{transition:background-position 1.3s ease;background-position:-50% 0}
+
+/* 4. ivory marble */
+.iv{position:absolute;inset:0;z-index:2;display:flex;perspective:1600px}
+.iv-l,.iv-r{flex:1;position:relative;display:grid;grid-template-rows:1.7fr 1fr;gap:clamp(10px,2vh,20px);padding:clamp(22px,5vh,46px) clamp(12px,3vw,36px);
+  background:linear-gradient(115deg,transparent 38%,rgba(150,138,118,.16) 39%,transparent 41.5%),linear-gradient(64deg,transparent 58%,rgba(150,138,118,.13) 59%,transparent 60.5%),linear-gradient(160deg,transparent 20%,rgba(150,138,118,.1) 21%,transparent 22%),linear-gradient(#f8f3ea,#e7decb);
+  box-shadow:inset 0 0 0 3px #c9a15a,inset 0 0 0 9px #f3ecdf,inset 0 0 0 10px rgba(201,161,90,.6),inset 0 0 80px rgba(120,100,70,.25);transition:transform 2.3s cubic-bezier(.6,.05,.25,1),opacity 2.3s ease;overflow:hidden}
+.iv-l{transform-origin:left center}.iv-r{transform-origin:right center}
+.iv.open .iv-l{transform:rotateY(-110deg);opacity:0}.iv.open .iv-r{transform:rotateY(110deg);opacity:0}
+.iv-a,.iv-s{border:2px solid #c9a15a;display:grid;place-items:center;min-height:0;padding:8px}
+.iv-a{border-radius:50% 50% 3px 3px / 24% 24% 3px 3px}
+.iv-a svg{height:86%;width:auto;max-width:90%}.iv-s svg{height:80%;width:auto;max-width:80%}
+.iv-k{position:absolute;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff2cc,#d4b06a 45%,#8f6a2c);box-shadow:0 3px 8px rgba(0,0,0,.35)}
+.iv-l .iv-k{right:14px}.iv-r .iv-k{left:14px}
+
+/* 5. sliding jali screens */
+.sj-light{position:absolute;inset:0;z-index:0;background:radial-gradient(60% 60% at 50% 50%,#fff6dc,#f2c46e 45%,#7a4c18 100%);transition:opacity 2.2s ease}
+.sj-light.off{opacity:0}
+.sj{position:absolute;inset:0;z-index:2;display:flex}
+.sj-l,.sj-r{flex:1;position:relative;transition:transform 2.5s cubic-bezier(.7,0,.25,1)}
+.sj-l{border-right:3px solid #c9a15a}.sj-r{border-left:3px solid #c9a15a}
+.sj-l svg,.sj-r svg{display:block;width:100%;height:100%}
+.sj.open .sj-l{transform:translateX(-102%)}.sj.open .sj-r{transform:translateX(102%)}
+.sj-rays{position:absolute;inset:-20%;pointer-events:none;background:repeating-linear-gradient(100deg,rgba(255,232,180,0) 0 46px,rgba(255,232,180,.1) 46px 80px);filter:blur(7px);mix-blend-mode:screen;opacity:0;transition:opacity 1.2s ease}
+.sj.lit .sj-rays{opacity:1}.sj.open .sj-rays{opacity:0;transition-duration:1.6s}
+
+/* 7. golden gates */
+.gt-garden{position:absolute;inset:0;z-index:0}
+.gt{position:absolute;inset:0;z-index:2;display:flex;perspective:1600px}
+.gt-l,.gt-r{flex:1;position:relative;transition:transform 2.3s cubic-bezier(.6,.05,.25,1),opacity 2.3s ease}
+.gt-l{transform-origin:left center}.gt-r{transform-origin:right center}
+.gt-l svg,.gt-r svg{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 4px rgba(248,214,140,.45))}
+.gt.open .gt-l{transform:rotateY(-110deg);opacity:0}.gt.open .gt-r{transform:rotateY(110deg);opacity:0}
+
+@media (max-width:560px){
+  .bar .wrap{padding-block:10px}
+  .ov-name{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important;transition-delay:0s!important}
+}
+</style>
+
+<header class="wrap">
+  <p class="label">For Naveed &amp; Sadia</p>
+  <h1>Wedding Door Studio</h1>
+  <p class="lead">Eight ways the invitation could open on doors. Tap <b>Preview</b> to watch each one full screen, exactly as a guest would see it. Choose your favourite and I'll put it on the invitation in place of the Golden Seal. Your choice saves straight away.</p>
+</header>
+
+<main class="wrap"><div class="grid" id="grid"></div></main>
+
+<div class="bar" role="status" aria-live="polite">
+  <div class="wrap">
+    <p>Chosen doors: <span id="chosenName">none yet</span></p>
+    <p id="saveState">Loading your choice</p>
+  </div>
+</div>
+
+<div class="ov" id="ov" hidden>
+  <div class="stage" id="stage"></div>
+  <p class="ov-name" id="ovName"></p>
+  <button type="button" class="ov-close" id="ovClose">Close</button>
+  <div class="ov-bar">
+    <button type="button" class="btn" id="ovReplay"><span class="tri" aria-hidden="true"></span>Replay</button>
+    <button type="button" class="btn solid" id="ovChoose" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="ct">Choose these doors</span></button>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = s => document.querySelector(s);
+const rnd = Math.random;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const REVEAL = `<div class="rv"><p class="rv-b" lang="ar">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><p class="rv-l">You are invited</p>
+  <p class="rv-n"><span class="nw">Syed Naveed Ahmed</span> <span class="amp">&amp;</span> <span class="nw">Sadia Ahmed</span></p>
+  <p class="rv-d">7 &amp; 9 January 2027 · Hyderabad</p></div>`;
+
+function kitFor(stage){
+  const timers = [], stops = [];
+  const k = {
+    after(ms, fn){ timers.push(setTimeout(fn, RM ? 0 : ms)); },
+    loop(fn){ let id = 0, last = performance.now(); const tick = now => { const dt = Math.min(.05, Math.max(.001, (now - last) / 1000)); last = now; fn(dt, now); id = requestAnimationFrame(tick); }; id = requestAnimationFrame(tick); stops.push(() => cancelAnimationFrame(id)); },
+    canvas(z){ const c = document.createElement("canvas"); c.className = "op-c"; c.style.zIndex = z; stage.appendChild(c); const x = c.getContext("2d"), pr = Math.min(window.devicePixelRatio || 1, 2);
+      c.width = Math.round(innerWidth * pr); c.height = Math.round(innerHeight * pr); x.setTransform(pr, 0, 0, pr, 0, 0); return x; },
+    el(html){ const d = document.createElement("div"); d.innerHTML = html.trim(); const n = d.firstElementChild; stage.appendChild(n); return n; },
+    reveal(){ const r = k.el(REVEAL); requestAnimationFrame(() => requestAnimationFrame(() => r.classList.add("show"))); return r; },
+    destroy(){ timers.forEach(clearTimeout); stops.forEach(f => f()); stage.innerHTML = ""; }
+  };
+  return k;
+}
+const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+/* gold dust that flies out of the doorway toward the viewer */
+function dustFX(k, z, colors = ["#ffffff", "#f8e7b8", "#ddb96c"]){
+  const x = k.canvas(z), W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2, P = [];
+  let on = false, spread = .8;
+  k.loop(dt => {
+    const f = dt * 60;
+    if (on) for (let n = 0; n < (W < 700 ? 6 : 12); n++) P.push({x: (rnd() - .5) * 40, y: (rnd() - .5) * H * spread, z: 1, vx: (rnd() - .5) * 2.4, vy: (rnd() - .5) * 1.6, vz: -(.006 + rnd() * .012), c: colors[(rnd() * colors.length) | 0]});
+    x.clearRect(0, 0, W, H); x.globalCompositeOperation = "lighter";
+    for (let i = P.length - 1; i >= 0; i--){
+      const p = P[i]; p.x += p.vx * f; p.y += p.vy * f; p.z += p.vz * f;
+      if (p.z < .12){ P.splice(i, 1); continue; }
+      const s = Math.min(7, 1.3 / p.z); x.globalAlpha = Math.min(1, (1 - p.z) * 1.6) * (p.z < .3 ? (p.z - .12) / .18 : 1); x.fillStyle = p.c;
+      x.beginPath(); x.arc(cx + p.x / p.z, cy + p.y / p.z, s / 2, 0, 6.283); x.fill();
+    }
+    x.globalAlpha = 1;
+  });
+  return {start(s = .8){ on = true; spread = s; }, stop(){ on = false; }};
+}
+/* warm embers that drift upward */
+function emberFX(k, z){
+  const x = k.canvas(z), W = innerWidth, H = innerHeight, P = [];
+  let on = false;
+  k.loop(dt => {
+    const f = dt * 60;
+    if (on) for (let n = 0; n < (W < 700 ? 3 : 6); n++) P.push({x: W * (.3 + rnd() * .4), y: H * (.55 + rnd() * .4), vx: (rnd() - .5) * 1.2, vy: -(.8 + rnd() * 2.2), life: 1, dec: .006 + rnd() * .01, s: 1 + rnd() * 2.4, c: rnd() < .5 ? "#ffcf7a" : rnd() < .6 ? "#ff9a4a" : "#fff1c8"});
+    x.clearRect(0, 0, W, H); x.globalCompositeOperation = "lighter";
+    for (let i = P.length - 1; i >= 0; i--){ const p = P[i]; p.x += (p.vx + Math.sin(p.y / 40) * .3) * f; p.y += p.vy * f; p.life -= p.dec * f; if (p.life <= 0){ P.splice(i, 1); continue; } x.globalAlpha = p.life; x.fillStyle = p.c; x.beginPath(); x.arc(p.x, p.y, p.s, 0, 6.283); x.fill(); }
+    x.globalAlpha = 1;
+  });
+  return {start(){ on = true; }, stop(){ on = false; }};
+}
+/* an ogee (Mughal) arch, in pixels */
+function ogee(x0, aw, ys, th, yb){
+  const X = v => (x0 + v / 400 * aw).toFixed(1), Y = v => (ys - (88 - v) / 90 * th).toFixed(1);
+  return `M${X(0)} ${yb.toFixed(1)}V${ys.toFixed(1)}C${X(0)} ${Y(46)} ${X(118)} ${Y(40)} ${X(172)} ${Y(16)}Q${X(200)} ${Y(-2)} ${X(228)} ${Y(16)}C${X(282)} ${Y(40)} ${X(400)} ${Y(46)} ${X(400)} ${ys.toFixed(1)}V${yb.toFixed(1)}`;
+}
+const ROSETTE = `<g fill="none" stroke="#e2c27e" stroke-width="1.4"><circle cx="20" cy="20" r="17"/><circle cx="20" cy="20" r="5"/>${Array.from({length: 8}, (_, i) => `<path transform="rotate(${i * 45} 20 20)" d="M20 15C23 11 23 6 20 3C17 6 17 11 20 15Z"/>`).join("")}</g>`;
+const INLAY = `<g stroke="#b8924a" stroke-width=".9" stroke-linejoin="round">
+  <path d="M50 104V40M50 80C40 74 32 68 30 60M50 80C60 74 68 68 70 60" fill="none" stroke="#5f7d55" stroke-width="1.6"/>
+  <path d="M50 94C40 88 34 82 32 74C40 76 46 82 50 94Z M50 94C60 88 66 82 68 74C60 76 54 82 50 94Z" fill="#5c8a63"/>
+  <path d="M50 18C58 22 62 34 56 44C54 40 52 38 50 38C48 38 46 40 44 44C38 34 42 22 50 18Z" fill="#b5482c"/>
+  <path d="M30 50C35 52 37 60 33 66C32 63 31 62 30 62C29 62 28 63 27 66C23 60 25 52 30 50Z M70 50C75 52 77 60 73 66C72 63 71 62 70 62C69 62 68 63 67 66C63 60 65 52 70 50Z" fill="#2f4f8f"/>
+  <path d="M38 150Q36 132 44 124Q32 116 36 104H64Q68 116 56 124Q64 132 62 150Z" fill="#d9c7a3"/>
+  <path d="M41 112H59M42 140H58" fill="none"/></g>`;
+
+/* ---------- 1. Emerald Jali ---------- */
+function runEmerald(st, k){
+  const fl = k.el(`<div class="fl"></div>`);
+  const d = k.el(`<div class="pd"><div class="pd-l"><i></i></div><div class="pd-r"><i></i></div><div class="pd-seam"></div></div>`);
+  const dust = dustFX(k, 3);
+  k.after(400, () => d.classList.add("glow"));
+  k.after(1500, () => { d.classList.add("open"); fl.classList.add("on"); dust.start(); });
+  k.after(2700, () => dust.stop()); k.after(3000, () => fl.classList.add("off")); k.after(3200, () => k.reveal());
+}
+
+/* ---------- 2. Mughal Arch Gate ---------- */
+function runMughal(st, k){
+  const W = innerWidth, H = innerHeight, aw = Math.min(W * .7, H * .5), th = aw * .55, yb = H * .9, ys = yb - Math.min(H * .78 - th, aw * 1.05), ya = ys - th, x0 = (W - aw) / 2, dh = yb - ya;
+  const box = `left:${x0}px;top:${ya}px;width:${aw}px;height:${dh}px`;
+  const ro = (cx, cy, r) => `<g transform="translate(${cx.toFixed(1)} ${cy.toFixed(1)})" fill="none" stroke="#c9a15a" stroke-width="1.2"><circle r="${r}"/><circle r="${(r * .35).toFixed(1)}"/>${Array.from({length: 8}, (_, i) => `<path transform="rotate(${i * 45})" d="M0 ${(-r * .4).toFixed(1)}C${(r * .22).toFixed(1)} ${(-r * .62).toFixed(1)} ${(r * .2).toFixed(1)} ${(-r * .85).toFixed(1)} 0 ${(-r * .95).toFixed(1)}C${(-r * .2).toFixed(1)} ${(-r * .85).toFixed(1)} ${(-r * .22).toFixed(1)} ${(-r * .62).toFixed(1)} 0 ${(-r * .4).toFixed(1)}Z"/>`).join("")}</g>`;
+  const g = k.el(`<div class="mg" style="transform-origin:${W / 2}px ${(ya + dh * .55).toFixed(0)}px">
+    <div class="mg-light" style="${box}"></div>
+    <div class="mg-doors" style="${box}"><div class="mg-l"></div><div class="mg-r"></div><div class="mg-seam"></div></div>
+    <svg class="mg-frame" viewBox="0 0 ${W} ${H}" aria-hidden="true">
+      <defs><linearGradient id="mgW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22170f"/><stop offset=".6" stop-color="#2e2015"/><stop offset="1" stop-color="#140d08"/></linearGradient></defs>
+      <path fill="url(#mgW)" fill-rule="evenodd" d="M0 0H${W}V${H}H0Z ${ogee(x0, aw, ys, th, yb)}Z"/>
+      <g fill="none" stroke="#e2c27e" stroke-linejoin="round">
+        <path d="${ogee(x0, aw, ys, th, yb)}" stroke-width="2.5"/>
+        <path d="${ogee(x0 - 16, aw + 32, ys, th + 20, yb)}" stroke-width="1.2" opacity=".85"/>
+        <path d="${ogee(x0 - 30, aw + 60, ys, th + 38, yb)}" stroke-width=".8" opacity=".5"/>
+        <path d="M0 ${yb}H${W}" stroke-width="1.5" opacity=".6"/><path d="M0 ${yb + 10}H${W}" stroke-width=".8" opacity=".35"/>
+      </g>
+      ${ro(x0 - aw * .05, ya + th * .2, Math.max(10, aw * .07))}${ro(x0 + aw * 1.05, ya + th * .2, Math.max(10, aw * .07))}
+    </svg></div>`);
+  k.after(500, () => g.classList.add("glow"));
+  k.after(1400, () => g.classList.add("open"));
+  k.after(3300, () => g.classList.add("push"));
+  k.after(4000, () => k.reveal());
+}
+
+/* ---------- 3. Ruby Lacquer ---------- */
+function runRuby(st, k){
+  const fl = k.el(`<div class="fl warm"></div>`);
+  const leaf = side => `<div class="rb-${side}"><div class="rb-p top"><svg viewBox="0 0 40 40">${ROSETTE}</svg></div><div class="rb-p"><svg viewBox="0 0 40 40">${ROSETTE}</svg></div><div class="rb-p"></div><i class="rk"></i></div>`;
+  const d = k.el(`<div class="rb">${leaf("l")}${leaf("r")}</div>`);
+  const em = emberFX(k, 3);
+  k.after(300, () => d.classList.add("shine"));
+  k.after(1500, () => { d.classList.add("open"); fl.classList.add("on"); em.start(); });
+  k.after(3000, () => fl.classList.add("off")); k.after(3600, () => em.stop());
+  k.after(3100, () => k.reveal());
+}
+
+/* ---------- 4. Ivory Marble ---------- */
+function runIvory(st, k){
+  const fl = k.el(`<div class="fl dawn"></div>`);
+  const leaf = side => `<div class="iv-${side}"><div class="iv-a"><svg viewBox="0 0 100 160">${INLAY}</svg></div><div class="iv-s"><svg viewBox="0 0 40 40">${ROSETTE.replaceAll("#e2c27e", "#b8924a")}</svg></div><i class="iv-k"></i></div>`;
+  const d = k.el(`<div class="iv">${leaf("l")}${leaf("r")}</div>`);
+  const dust = dustFX(k, 3, ["#ffffff", "#fff3d6", "#f2d48f"]);
+  k.after(1400, () => { d.classList.add("open"); fl.classList.add("on"); dust.start(.6); });
+  k.after(2600, () => dust.stop()); k.after(2900, () => fl.classList.add("off"));
+  k.after(3200, () => k.reveal());
+}
+
+/* ---------- 5. Sliding Jali Screens ---------- */
+function runSliding(st, k){
+  const T = innerWidth < 700 ? 44 : 56, c = T / 2;
+  const star = Array.from({length: 16}, (_, i) => { const a = i / 16 * Math.PI * 2 - Math.PI / 2, r = i % 2 ? T * .15 : T * .34; return `${(c + Math.cos(a) * r).toFixed(1)} ${(c + Math.sin(a) * r).toFixed(1)}`; });
+  const q = T * .14, corners = `M0 0L${q} 0L0 ${q}Z M${T} 0L${T - q} 0L${T} ${q}Z M0 ${T}L${q} ${T}L0 ${T - q}Z M${T} ${T}L${T - q} ${T}L${T} ${T - q}Z`;
+  const tile = `<path fill="#2b1a0f" fill-rule="evenodd" d="M0 0H${T}V${T}H0Z M${star.join("L")}Z ${corners}"/><path d="M${star.join("L")}Z" fill="none" stroke="#c9a15a" stroke-width=".8" opacity=".75"/>`;
+  const leaf = side => `<div class="sj-${side}"><svg aria-hidden="true"><defs><pattern id="jp-${side}" width="${T}" height="${T}" patternUnits="userSpaceOnUse">${tile}</pattern></defs><rect width="100%" height="100%" fill="url(#jp-${side})"/></svg></div>`;
+  const light = k.el(`<div class="sj-light"></div>`);
+  const d = k.el(`<div class="sj">${leaf("l")}${leaf("r")}<div class="sj-rays"></div></div>`);
+  const dust = dustFX(k, 4);
+  k.after(300, () => d.classList.add("lit"));
+  k.after(1700, () => { d.classList.add("open"); dust.start(.7); });
+  k.after(3000, () => { dust.stop(); light.classList.add("off"); });
+  k.after(3300, () => k.reveal());
+}
+
+/* ---------- 6. Corridor of Arches ---------- */
+function runCorridor(st, k){
+  const x = k.canvas(1), W = innerWidth, H = innerHeight, cx = W / 2, hy = H * .45;
+  const d = k.el(`<div class="pd fast"><div class="pd-l"><i></i></div><div class="pd-r"><i></i></div><div class="pd-seam"></div></div>`);
+  k.after(200, () => d.classList.add("glow"));
+  k.after(800, () => d.classList.add("open"));
+  const N = 8, gap = 1.6, F = Math.min(W, H) * .95, total = gap * (N - 1.6), dur = 3400;
+  let t0 = null, travel = 0;
+  k.after(1200, () => { t0 = performance.now(); });
+  let dim0 = null;
+  k.after(4500, () => { dim0 = performance.now(); k.reveal(); });
+  k.loop((dt, now) => {
+    if (t0 !== null) travel = total * ease(Math.min(1, (now - t0) / dur));
+    const dim = dim0 ? 1 - .5 * Math.min(1, (now - dim0) / 1500) : 1;
+    x.clearRect(0, 0, W, H);
+    const pr = travel / total, g = x.createRadialGradient(cx, hy, 0, cx, hy, Math.max(W, H) * .55);
+    g.addColorStop(0, `rgba(255,236,190,${((.2 + pr * .3) * dim).toFixed(3)})`); g.addColorStop(1, "rgba(255,236,190,0)"); x.fillStyle = g; x.fillRect(0, 0, W, H);
+    x.strokeStyle = "rgba(221,185,108,.22)"; x.lineWidth = 1;
+    for (let i = -7; i <= 7; i++){ x.beginPath(); x.moveTo(cx, hy); x.lineTo(cx + i * W * .22, H); x.stroke(); }
+    x.save(); x.shadowColor = "rgba(248,214,140,.9)"; x.shadowBlur = 12;
+    for (let i = N - 1; i >= 0; i--){
+      const z = 1.1 + i * gap - travel; if (z < .28) continue;
+      const s = F / z, a = Math.min(1, Math.max(0, (11 - z) / 2.5)) * Math.min(1, (z - .28) / .5);
+      if (a <= 0) continue;
+      const aw = 2 * s, yb = hy + .95 * s, ys = hy - .55 * s, th = .9 * s, x0 = cx - s;
+      x.globalAlpha = a; x.strokeStyle = "#f2d48f"; x.lineWidth = Math.max(1, s * .012);
+      x.stroke(new Path2D(ogee(x0, aw, ys, th, yb)));
+      x.lineWidth = Math.max(.6, s * .005); x.strokeStyle = "rgba(242,212,143,.6)";
+      x.stroke(new Path2D(ogee(x0 + s * .08, aw - s * .16, ys + s * .02, th - s * .06, yb)));
+      const ly = ys - th + s * .22; x.beginPath(); x.moveTo(cx, ys - th); x.lineTo(cx, ly); x.stroke();
+      x.fillStyle = "#ffd27a"; x.beginPath(); x.arc(cx, ly + s * .03, Math.max(1.5, s * .03), 0, 6.283); x.fill();
+    }
+    x.restore(); x.globalAlpha = 1;
+  });
+}
+
+/* ---------- 7. Golden Gates ---------- */
+function gateSVG(w, h, right){
+  const out = [], f = v => v.toFixed(1), bars = 6, bw = w / (bars + 1), railY = xx => h * (right ? .06 + .12 * (xx / w) : .18 - .12 * (xx / w));
+  out.push(`<rect x="5" y="${f(h * .03)}" width="${f(w - 10)}" height="${f(h * .95)}" rx="2"/>`);
+  out.push(`<path d="M5 ${f(railY(5))}Q${f(w / 2)} ${f(Math.min(railY(5), railY(w - 5)) - h * .05)} ${f(w - 5)} ${f(railY(w - 5))}"/>`);
+  [.32, .9].forEach(r => out.push(`<path d="M5 ${f(h * r)}H${f(w - 5)}"/>`));
+  for (let i = 1; i <= bars; i++){
+    const bx = i * bw, top = railY(bx) - h * .02;
+    out.push(`<path d="M${f(bx)} ${f(top)}V${f(h * .98)}"/><path d="M${f(bx)} ${f(top - 14)}L${f(bx + 5)} ${f(top - 5)}L${f(bx)} ${f(top)}L${f(bx - 5)} ${f(top - 5)}Z" fill="url(#gg)"/>`);
+  }
+  for (let i = 0; i <= bars; i++){
+    const x1 = i * bw + (i ? 0 : 5), x2 = (i + 1) * bw - (i === bars ? 5 : 0);
+    [.44, .62, .78].forEach(r => { const y = h * r, m = (x1 + x2) / 2;
+      out.push(`<path d="M${f(x1)} ${f(y - 12)}C${f(m)} ${f(y - 22)} ${f(m)} ${f(y + 22)} ${f(x2)} ${f(y + 12)}"/><circle cx="${f(x1 + 6)}" cy="${f(y - 10)}" r="3.5"/><circle cx="${f(x2 - 6)}" cy="${f(y + 10)}" r="3.5"/>`); });
+  }
+  const mx = right ? w * .22 : w * .78, my = h * .53, mr = Math.min(w * .16, 44);
+  out.push(`<circle cx="${f(mx)}" cy="${f(my)}" r="${f(mr)}" fill="#0b0d1e"/><circle cx="${f(mx)}" cy="${f(my)}" r="${f(mr * .82)}" stroke-width="1"/>`);
+  out.push(`<text x="${f(mx)}" y="${f(my + mr * .32)}" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="${f(mr * .95)}" fill="url(#gg)" stroke="none">${right ? "S" : "N"}</text>`);
+  return `<svg viewBox="0 0 ${f(w)} ${f(h)}" aria-hidden="true"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0c4"/><stop offset=".5" stop-color="#e2c27e"/><stop offset="1" stop-color="#a8823c"/></linearGradient></defs><g fill="none" stroke="url(#gg)" stroke-width="3" stroke-linecap="round">${out.join("")}</g></svg>`;
+}
+function runGates(st, k){
+  const W = innerWidth, H = innerHeight;
+  const garden = k.canvas(0);
+  const dust = dustFX(k, 3);
+  k.el(`<div class="gt-garden"></div>`);
+  const d = k.el(`<div class="gt"><div class="gt-l">${gateSVG(W / 2, H, false)}</div><div class="gt-r">${gateSVG(W / 2, H, true)}</div></div>`);
+  const cx = W / 2, hy = H * .5;
+  let open = 0, t0 = null;
+  k.after(1700, () => { d.classList.add("open"); dust.start(.5); t0 = performance.now(); });
+  k.after(2900, () => dust.stop());
+  let dim0 = null;
+  k.after(3300, () => { dim0 = performance.now(); k.reveal(); });
+  k.loop((dt, now) => {
+    if (t0 !== null) open = ease(Math.min(1, (now - t0) / 2200));
+    const dim = dim0 ? 1 - .5 * Math.min(1, (now - dim0) / 1500) : 1;
+    const x = garden; x.clearRect(0, 0, W, H);
+    const hz = x.createRadialGradient(cx, hy, 0, cx, hy, W * .7); hz.addColorStop(0, `rgba(255,232,180,${((.3 + open * .1) * dim).toFixed(3)})`); hz.addColorStop(1, "rgba(255,232,180,0)"); x.fillStyle = hz; x.fillRect(0, 0, W, H);
+    const pg = x.createLinearGradient(0, hy, 0, H); pg.addColorStop(0, `rgba(255,236,190,${(.7 * dim).toFixed(3)})`); pg.addColorStop(1, "rgba(221,185,108,.06)");
+    x.fillStyle = pg; x.beginPath(); x.moveTo(cx - W * .015, hy); x.lineTo(cx + W * .015, hy); x.lineTo(cx + W * .32, H); x.lineTo(cx - W * .32, H); x.closePath(); x.fill();
+    [[.12, .1], [.88, .1]].forEach(([lx, ly]) => { const px = W * lx, py = H * ly, fl = .9 + .1 * Math.sin(now / 130 + lx * 9);
+      const lg = x.createRadialGradient(px, py + 30, 0, px, py + 30, 90); lg.addColorStop(0, `rgba(255,196,100,${(.75 * fl).toFixed(3)})`); lg.addColorStop(1, "rgba(255,160,70,0)"); x.fillStyle = lg; x.fillRect(px - 90, py - 60, 180, 180);
+      x.strokeStyle = "#c9a15a"; x.lineWidth = 1; x.beginPath(); x.moveTo(px, 0); x.lineTo(px, py + 14); x.stroke(); x.fillStyle = "#ffcf7a"; x.fillRect(px - 9, py + 14, 18, 26); });
+  });
+}
+
+/* ---------- 8. Flower Curtain ---------- */
+function flowerSprite(kind){
+  const c = document.createElement("canvas"); c.width = c.height = 48; const x = c.getContext("2d"); x.translate(24, 24);
+  if (kind === "marigold" || kind === "yellow"){
+    const [o, i] = kind === "marigold" ? ["#e8891a", "#ffbe3d"] : ["#f0b82a", "#ffe58a"];
+    [[20, 16, o], [15, 14, i], [9, 10, o]].forEach(([r, n, col]) => { x.fillStyle = col; for (let k = 0; k < n; k++){ x.save(); x.rotate(k / n * Math.PI * 2 + r); x.beginPath(); x.ellipse(0, -r * .55, r * .32, r * .5, 0, 0, Math.PI * 2); x.fill(); x.restore(); } });
+    x.fillStyle = "#b5560e"; x.beginPath(); x.arc(0, 0, 3.5, 0, Math.PI * 2); x.fill();
+  } else if (kind === "rose"){
+    const g = x.createRadialGradient(-4, -4, 2, 0, 0, 20); g.addColorStop(0, "#e04a5f"); g.addColorStop(1, "#7d0c22"); x.fillStyle = g; x.beginPath(); x.arc(0, 0, 18, 0, Math.PI * 2); x.fill();
+    x.strokeStyle = "rgba(60,0,12,.55)"; x.lineWidth = 1.6; for (let r = 4; r < 17; r += 4){ x.beginPath(); x.arc(0, 0, r, r * .3, r * .3 + Math.PI * 1.4); x.stroke(); }
+  } else {
+    x.fillStyle = "#fbf7ec"; for (let k = 0; k < 6; k++){ x.save(); x.rotate(k / 6 * Math.PI * 2); x.beginPath(); x.ellipse(0, -7, 4.5, 7.5, 0, 0, Math.PI * 2); x.fill(); x.restore(); }
+    x.fillStyle = "#f2e2a0"; x.beginPath(); x.arc(0, 0, 3, 0, Math.PI * 2); x.fill();
+  }
+  return c;
+}
+function runFlowers(st, k){
+  const x = k.canvas(2), W = innerWidth, H = innerHeight, cx = W / 2;
+  const SPR = {m: flowerSprite("marigold"), y: flowerSprite("yellow"), r: flowerSprite("rose"), j: flowerSprite("jasmine")};
+  const SP = W < 700 ? 20 : 26, step = W < 700 ? 14 : 17, size = step * 1.25, margin = W * .1, strands = [];
+  const PATS = ["mmmrmmmj", "yyyryyyj", "mmjmmjmr", "yyjyyjyr"];
+  let n = 0;
+  for (let sx = SP / 2; sx < W; sx += SP, n++){
+    const pat = PATS[n % PATS.length], fl = []; for (let i = 0, y = -6; y < H + 20; i++, y += step) fl.push({y, t: pat[i % pat.length]});
+    strands.push({x: sx, side: sx < cx ? -1 : 1, u: Math.abs(sx - cx) / (W / 2), ph: rnd() * 6.28, fl});
+  }
+  const petals = [];
+  let p = 0, t0 = null;
+  k.after(1100, () => { t0 = performance.now(); for (let i = 0; i < (W < 700 ? 50 : 90); i++){ const s = strands[(rnd() * strands.length) | 0]; petals.push({x: s.x, y: rnd() * H * .8, vx: (rnd() - .5) * 1.5, vy: rnd() * 1, r: rnd() * 6.28, vr: (rnd() - .5) * .2, c: ["#e8891a", "#ffbe3d", "#b81f3f", "#fbf7ec"][(rnd() * 4) | 0]}); } });
+  k.after(3100, () => k.reveal());
+  const yt = H * .62;
+  k.loop((dt, now) => {
+    const f = dt * 60;
+    if (t0 !== null) p = ease(Math.min(1, (now - t0) / 2300));
+    x.clearRect(0, 0, W, H);
+    x.strokeStyle = "rgba(221,185,108,.55)"; x.lineWidth = 2; x.beginPath(); x.moveTo(0, 1); x.lineTo(W, 1); x.stroke();
+    for (const s of strands){
+      const disp = s.side * (1 - s.u) * (W / 2 - margin) * p;
+      for (const fl of s.fl){
+        const yy = fl.y, prof = yy <= yt ? Math.sin(Math.min(1, Math.max(0, yy) / yt) * Math.PI / 2) : 1 - .25 * (yy - yt) / (H - yt);
+        const sway = Math.sin(now / 900 + s.ph + yy / 160) * 2 * (yy / H);
+        x.drawImage(SPR[fl.t], s.x + disp * prof + sway - size / 2, yy - size / 2, size, size);
+      }
+    }
+    for (let i = petals.length - 1; i >= 0; i--){ const q = petals[i]; q.vy += .05 * f; q.x += q.vx * f; q.y += q.vy * f; q.r += q.vr * f; if (q.y > H + 20){ petals.splice(i, 1); continue; }
+      x.save(); x.translate(q.x, q.y); x.rotate(q.r); x.fillStyle = q.c; x.beginPath(); x.ellipse(0, 0, 3.5, 6, 0, 0, Math.PI * 2); x.fill(); x.restore(); }
+  });
+}
+
+/* ---------- catalogue ---------- */
+const DOORS = [
+  {id: "emerald", name: "Emerald Jali", run: runEmerald, tag: "Swings open · light flood", desc: "Emerald doors carved with gold jali and ring knockers swing toward you on a flood of light and gold dust.",
+    poster: `<rect x="30" y="12" width="49" height="78" fill="#10221f"/><rect x="81" y="12" width="49" height="78" fill="#10221f"/><g fill="none" stroke="#ddb96c" stroke-width=".8" opacity=".7">${Array.from({length: 6}, (_, r) => Array.from({length: 8}, (_, c) => `<path d="M${35 + c * 12} ${20 + r * 12}l4 4l-4 4l-4 -4z"/>`).join("")).join("")}</g><g fill="none" stroke="#ddb96c" stroke-width="1.2"><circle cx="70" cy="51" r="4"/><circle cx="90" cy="51" r="4"/></g><path d="M80 12V90" stroke="#fff3cf" stroke-width="1.5"/>`},
+  {id: "mughal", name: "Mughal Arch Gate", run: runMughal, tag: "Swings inward · walk through", desc: "Studded teak doors set in a carved Mughal arch open inward, then you pass through the archway into the light.",
+    poster: `<rect width="160" height="100" fill="#22170f"/><path d="${ogee(56, 48, 46, 26, 92)}Z" fill="#5e3b20"/><path d="M80 20V92" stroke="#c9a15a"/><path d="${ogee(56, 48, 46, 26, 92)}" fill="none" stroke="#e2c27e" stroke-width="1.6"/><path d="${ogee(48, 64, 46, 34, 92)}" fill="none" stroke="#e2c27e" stroke-width=".8" opacity=".7"/>`},
+  {id: "ruby", name: "Ruby Lacquer", run: runRuby, tag: "Swings open · candle glow", desc: "Ruby lacquered doors with raised gold panels and rosettes catch a glint of light, then open on warm candlelight and embers.",
+    poster: `<rect x="30" y="10" width="49" height="82" fill="#6e1222"/><rect x="81" y="10" width="49" height="82" fill="#6e1222"/><g fill="none" stroke="#d6b06a" stroke-width="1"><rect x="36" y="16" width="37" height="34" rx="8"/><rect x="87" y="16" width="37" height="34" rx="8"/><rect x="36" y="56" width="37" height="30"/><rect x="87" y="56" width="37" height="30"/><circle cx="54" cy="33" r="7"/><circle cx="105" cy="33" r="7"/></g>`},
+  {id: "ivory", name: "Ivory Marble", run: runIvory, tag: "Swings open · soft dawn", desc: "White marble doors inlaid with gold, carnelian, lapis and jade flowers, in the style of Mughal pietra dura, open on a soft dawn glow.",
+    poster: `<rect x="30" y="10" width="49" height="82" fill="#efe7d6"/><rect x="81" y="10" width="49" height="82" fill="#efe7d6"/><g transform="translate(42 16) scale(.26)">${INLAY}</g><g transform="translate(93 16) scale(.26)">${INLAY}</g><g fill="none" stroke="#c9a15a" stroke-width="1"><rect x="33" y="13" width="43" height="76"/><rect x="84" y="13" width="43" height="76"/></g>`},
+  {id: "sliding", name: "Sliding Jali Screens", run: runSliding, tag: "Slides apart · light through lattice", desc: "Golden light shines through carved jali screens in patterned rays, then the screens glide apart to the sides.",
+    poster: `<rect width="160" height="100" fill="#f2c46e"/><rect x="0" y="0" width="79" height="100" fill="#2b1a0f"/><rect x="81" y="0" width="79" height="100" fill="#2b1a0f"/>${Array.from({length: 5}, (_, r) => Array.from({length: 11}, (_, c) => `<path d="M${8 + c * 14 + (c > 5 ? 2 : 0)} ${10 + r * 18}l3 5l-3 5l-3 -5z" fill="#ffe7a8"/>`).join("")).join("")}<path d="M80 0V100" stroke="#c9a15a" stroke-width="2"/>`},
+  {id: "corridor", name: "Corridor of Arches", run: runCorridor, tag: "Opens · fly through", desc: "The doors open and you glide down a corridor of glowing Mughal arches and lanterns toward the light, arriving at your names.",
+    poster: [1, .7, .48, .33].map((s, i) => `<path d="${ogee(80 - 52 * s, 104 * s, 52 - 18 * s, 20 * s, 52 + 40 * s)}" fill="none" stroke="#f2d48f" stroke-width="${(1.6 * s + .4).toFixed(2)}" opacity="${(1 - i * .18).toFixed(2)}"/>`).join("") + `<circle cx="80" cy="44" r="9" fill="#fff3cf" opacity=".5"/>`},
+  {id: "gates", name: "Golden Gates", run: runGates, tag: "Swings open · night garden", desc: "Gold filigree gates with N and S medallions open onto a lantern-lit path of light through a night garden.",
+    poster: `<path d="M74 50L86 50L120 100H40Z" fill="#ffe7b0" opacity=".45"/><g fill="none" stroke="#e2c27e" stroke-width="1.1">${[34, 44, 54, 64, 74, 86, 96, 106, 116, 126].map(v => `<path d="M${v} ${v < 80 ? 24 - (v - 34) * .18 : 16 + (v - 86) * .18}V92"/>`).join("")}<path d="M30 92H130M30 40H130"/><circle cx="68" cy="56" r="7" fill="#0b0d1e"/><circle cx="92" cy="56" r="7" fill="#0b0d1e"/></g><text x="68" y="59" text-anchor="middle" font-size="8" fill="#f8e7b8" font-family="Bodoni Moda, serif">N</text><text x="92" y="59" text-anchor="middle" font-size="8" fill="#f8e7b8" font-family="Bodoni Moda, serif">S</text>`},
+  {id: "flowers", name: "Flower Curtain", run: runFlowers, tag: "Parts like a curtain · falling petals", desc: "A curtain of marigold, rose and jasmine strands, like a Hyderabadi wedding entrance, is drawn aside to frame your names.",
+    poster: Array.from({length: 14}, (_, i) => { const xx = 14 + i * 10, off = (i < 7 ? -1 : 1) * (7 - Math.abs(i - 6.5)) * 2.2; return Array.from({length: 9}, (_, j) => `<circle cx="${(xx + off * (j / 9)).toFixed(1)}" cy="${8 + j * 11}" r="4" fill="${j % 4 === 3 ? "#b81f3f" : j % 4 === 1 ? "#fbf7ec" : i % 2 ? "#f0b82a" : "#e8891a"}"/>`).join(""); }).join("")}
+];
+const BY = Object.fromEntries(DOORS.map(o => [o.id, o]));
+
+$("#grid").innerHTML = DOORS.map((o, i) => `
+  <article class="card" data-id="${o.id}">
+    <button type="button" class="poster" data-preview="${o.id}" aria-label="Preview ${esc(o.name)}"><svg viewBox="0 0 160 100" aria-hidden="true">${o.poster}</svg></button>
+    <div class="c-body">
+      <div class="c-top"><span class="num">${String(i + 1).padStart(2, "0")}</span><span class="tag">${esc(o.tag)}</span></div>
+      <h2>${esc(o.name)}</h2>
+      <p class="desc">${esc(o.desc)}</p>
+      <div class="c-act">
+        <button type="button" class="btn solid" id="pv-${o.id}" data-preview="${o.id}"><span class="tri" aria-hidden="true"></span>Preview</button>
+        <button type="button" class="btn" id="ch-${o.id}" data-choose="${o.id}" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="ct">Choose</span></button>
+      </div>
+    </div>
+  </article>`).join("");
+
+/* ---------- preview ---------- */
+const ov = $("#ov"), stage = $("#stage");
+let kit = null, showing = null, lastFocus = null;
+function play(id){
+  if (kit) kit.destroy();
+  showing = id; kit = kitFor(stage); $("#ovName").textContent = BY[id].name; chooseUI();
+  if (RM){ kit.reveal(); return; }
+  try { BY[id].run(stage, kit); } catch (e) { kit.reveal(); }
+}
+function openPreview(id){ lastFocus = document.activeElement; ov.hidden = false; document.body.classList.add("locked"); play(id); $("#ovClose").focus(); }
+function closePreview(){ if (kit) kit.destroy(); kit = null; showing = null; ov.hidden = true; document.body.classList.remove("locked"); if (lastFocus) lastFocus.focus(); }
+$("#ovClose").addEventListener("click", closePreview);
+$("#ovReplay").addEventListener("click", () => { if (showing) play(showing); });
+$("#ovChoose").addEventListener("click", () => { if (showing) choose(showing); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !ov.hidden) closePreview(); });
+document.addEventListener("click", e => {
+  const p = e.target.closest("[data-preview]"); if (p) openPreview(p.dataset.preview);
+  const c = e.target.closest("[data-choose]"); if (c) choose(c.dataset.choose);
+});
+
+/* ---------- the choice, saved to the artifact's database so Claude can read it ---------- */
+let chosen = null, db = null, saving = false, again = false, readOnly = false;
+const setState = t => { $("#saveState").textContent = t; };
+function chooseUI(){
+  document.querySelectorAll("[data-choose]").forEach(b => { const on = b.dataset.choose === chosen; b.setAttribute("aria-pressed", on ? "true" : "false"); b.querySelector(".ct").textContent = on ? "Chosen" : "Choose"; b.closest(".card").classList.toggle("chosen", on); });
+  $("#chosenName").textContent = chosen ? BY[chosen].name : "none yet";
+  const oc = $("#ovChoose"), on = showing && showing === chosen; oc.setAttribute("aria-pressed", on ? "true" : "false"); oc.querySelector(".ct").textContent = on ? "Chosen for the invitation" : "Choose these doors";
+}
+function choose(id){ if (readOnly || !BY[id]) return; chosen = id; chooseUI(); save(); }
+async function save(){
+  if (!db){ try { localStorage.setItem("wedding-doors", chosen); } catch (e) {} setState("Saved on this device. Tell Claude your choice"); return; }
+  if (saving){ again = true; return; }
+  saving = true; setState("Saving");
+  try { await db.doc("doors/choice").set({id: chosen, updatedAt: new Date().toISOString()}); setState("Saved. Claude can see your choice"); }
+  catch (e) { if (e && e.code === "invalid_argument"){ readOnly = true; setState("Only Naveed can change the choice"); } else setState("Couldn't save just now. Choose again to retry"); }
+  saving = false; if (again){ again = false; save(); }
+}
+try { const s = localStorage.getItem("wedding-doors"); if (s && BY[s]) chosen = s; } catch (e) {}
+chooseUI();
+(async () => {
+  const d = window.claude && window.claude.use ? await window.claude.use("db") : null;
+  if (!d){ setState("Saved on this device. Tell Claude your choice"); return; }
+  db = d;
+  const slow = setTimeout(() => setState("Can't reach your saved choice yet"), 10000);
+  db.doc("doors/choice").onSnapshot(snap => {
+    if (!snap.metadata.fromCache) clearTimeout(slow);
+    if (snap.exists && !saving){ const id = snap.data().id; if (BY[id]){ chosen = id; chooseUI(); } }
+    if (!snap.metadata.fromCache && !saving) setState(snap.exists ? "Saved. Claude can see your choice" : "Choose a door to save it");
+  }, () => { clearTimeout(slow); setState("Your choice can't be saved right now. Tell Claude in chat"); });
+})();
+if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('500 60px "Bodoni Moda"', "NS"), document.fonts.load('700 40px "Amiri"', "بسم")]).catch(() => {});
+})();
+</script>
+</html>
