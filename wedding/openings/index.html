@@ -1,0 +1,597 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wedding Opening Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Eight ways the invitation could open, each previewed full screen, with one chosen for Naveed and Sadia's invitation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Great+Vibes&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Tenor+Sans&display=swap">
+<style>
+/* Layout: a screening room in the invitation's night-and-gold. Cards with a small poster for each opening sit in a grid;
+   Preview plays the opening full screen exactly as a guest would see it, ending on the couple's names. */
+:root{
+  --sky:#05060f;
+  --card:#0d1022;
+  --gold:#ddb96c;
+  --gold-hi:#f8e7b8;
+  --text:#f4eddf;
+  --soft:#cfc6b3;
+  --line:rgba(221,185,108,.42);
+  --line-soft:rgba(221,185,108,.18);
+  --foil:linear-gradient(100deg,#ecd394 0%,#fff6dc 16%,#f3d89a 32%,#e6c47f 46%,#fff3d0 62%,#efd08e 78%,#fff7e2 90%,#ecd394 100%);
+  --jali:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='%23c9a664' stroke-width='.6'%3E%3Crect x='19' y='19' width='26' height='26'/%3E%3Crect x='19' y='19' width='26' height='26' transform='rotate(45 32 32)'/%3E%3Cpath d='M0 0L13.6 13.6M64 0L50.4 13.6M0 64L13.6 50.4M64 64L50.4 50.4'/%3E%3Ccircle cx='32' cy='32' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-script:"Great Vibes","Snell Roundhand",cursive;
+  --f-body:"Spectral",Georgia,serif;
+  --f-ui:"Tenor Sans","Gill Sans","Helvetica Neue",Arial,sans-serif;
+  --f-ar:"Amiri","Scheherazade New","Traditional Arabic",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--sky);color:var(--text);font-family:var(--f-body);font-weight:300;font-size:1.08rem;line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(70% 40% at 10% 0%,rgba(122,28,58,.28),transparent 70%),radial-gradient(60% 45% at 95% 10%,rgba(36,44,120,.3),transparent 72%);background-attachment:fixed}
+body.locked{overflow:hidden}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+button{font:inherit;color:inherit}
+:focus-visible{outline:1px solid var(--gold-hi);outline-offset:4px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.label{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.amp{font-family:var(--f-display);font-style:normal}
+.nw{white-space:nowrap}
+@keyframes sheen{to{background-position:-250% 0}}
+
+header{padding-block:44px 28px;display:grid;gap:12px}
+h1{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 24;font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.05;color:var(--gold-hi)}
+.lead{max-width:62ch;font-size:1.12rem}
+
+main{padding-block:8px 130px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line-soft);display:grid;align-content:start;min-width:0;transition:border-color .3s,box-shadow .3s}
+.card.chosen{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset,0 18px 50px -24px rgba(221,185,108,.5)}
+.poster{display:block;width:100%;aspect-ratio:16/10;border:0;padding:0;cursor:pointer;background:radial-gradient(90% 90% at 50% 40%,#151a3a,#05060f);border-bottom:1px solid var(--line-soft)}
+.poster svg{width:100%;height:100%;display:block}
+.c-body{padding:18px 20px 20px;display:grid;gap:8px}
+.c-top{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:22px}
+.num{font-family:var(--f-ui);font-size:.8rem;letter-spacing:.14em;color:var(--gold)}
+.badge{font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);background:var(--gold);padding:3px 8px}
+.card h2{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 18;font-size:1.7rem;line-height:1.15;color:var(--gold-hi)}
+.desc{color:var(--text)}
+.c-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-ui);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;padding:11px 15px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--gold-hi);transition:background .25s,color .25s}
+.btn.solid{background:var(--gold);color:#15100a;border-color:var(--gold)}
+.btn[aria-pressed="true"]{background:rgba(221,185,108,.16);border-color:var(--gold)}
+.tri{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.dot{width:12px;height:12px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center}
+[aria-pressed="true"] .dot::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:6;background:#05060f;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:6px 18px;padding-block:14px;flex-wrap:wrap}
+#chosenName{font-family:var(--f-display);font-style:italic;font-size:1.25rem;color:var(--gold-hi)}
+#saveState{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+
+/* ---------- preview overlay ---------- */
+.ov{position:fixed;inset:0;z-index:50;background:#04050c}
+.stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(70% 50% at 12% 0%,rgba(122,28,58,.34),transparent 70%),radial-gradient(60% 55% at 92% 22%,rgba(36,44,120,.34),transparent 72%),radial-gradient(80% 60% at 50% 115%,rgba(164,124,56,.24),transparent 70%),linear-gradient(180deg,#06071a,#04050c)}
+.op-c{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.ov-close{position:absolute;z-index:8;top:calc(env(safe-area-inset-top,0px) + 14px);right:calc(env(safe-area-inset-right,0px) + 14px);font-family:var(--f-ui);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:10px 14px;background:rgba(5,6,15,.6);border:1px solid var(--line);color:var(--gold-hi);cursor:pointer}
+.ov-name{position:absolute;z-index:8;top:calc(env(safe-area-inset-top,0px) + 22px);left:calc(env(safe-area-inset-left,0px) + 18px);font-family:var(--f-ui);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+.ov-bar{position:absolute;z-index:8;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+  padding:28px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,rgba(4,5,12,.9))}
+.ov-bar .btn{background:rgba(5,6,15,.7)}
+.ov-bar .btn.solid{background:var(--gold)}
+
+/* the reveal every opening ends on */
+.rv{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);z-index:4;display:grid;justify-items:center;gap:clamp(10px,2.2vh,18px);text-align:center;padding:0 20px 40px;pointer-events:none;text-shadow:0 1px 18px rgba(0,0,0,.75)}
+.rv.top{top:calc(env(safe-area-inset-top,0px) + max(70px,9vh));transform:none}
+.rv>*{opacity:0;transform:translateY(14px);transition:opacity 1s ease,transform 1.2s cubic-bezier(.2,.7,.1,1)}
+.rv.show>*{opacity:1;transform:none}
+.rv.show>*:nth-child(2){transition-delay:.18s}.rv.show>*:nth-child(3){transition-delay:.36s}.rv.show>*:nth-child(4){transition-delay:.6s}
+.rv-b{font-family:var(--f-ar);font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.6;color:var(--gold-hi);direction:rtl}
+.rv-l{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.rv-n{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 20;font-size:clamp(2rem,6.6vw,3.6rem);line-height:1.2;max-width:20ch;
+  background:var(--foil);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:sheen 10s linear infinite;filter:drop-shadow(0 1px 6px rgba(0,0,0,.6))}
+.rv.top .rv-n{font-size:clamp(1.8rem,5vw,2.8rem)}
+.rv-d{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text)}
+
+/* palace doors */
+.pd{position:absolute;inset:0;z-index:2;display:flex;perspective:1700px}
+.pd-l,.pd-r{flex:1;position:relative;background-color:#10221f;background-image:radial-gradient(120% 80% at 50% 40%,rgba(201,166,100,.12),transparent 70%),var(--jali);background-size:auto,64px;
+  box-shadow:inset 0 0 120px rgba(0,0,0,.65);transition:transform 2.3s cubic-bezier(.6,.05,.25,1),opacity 2.3s ease}
+.pd-l{transform-origin:left center}.pd-r{transform-origin:right center}
+.pd-l::before,.pd-r::before{content:"";position:absolute;inset:18px;border:1px solid var(--line)}
+.pd i{position:absolute;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:2px solid #c9a664;box-shadow:0 0 0 4px rgba(11,23,25,.8),0 0 0 5px rgba(201,166,100,.5),0 6px 18px rgba(0,0,0,.6)}
+.pd-l i{right:min(12vw,110px)}.pd-r i{left:min(12vw,110px)}
+.pd-seam{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(transparent,#fff3cf,transparent);opacity:.25;transition:opacity 1s,box-shadow 1s}
+.pd.glow .pd-seam{opacity:1;box-shadow:0 0 34px 8px rgba(255,236,190,.55)}
+.pd.open .pd-l{transform:rotateY(-108deg);opacity:0}.pd.open .pd-r{transform:rotateY(108deg);opacity:0}
+.pd.open .pd-seam{opacity:0;transition-duration:.4s}
+.pd-flood{position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 50% 50%,rgba(255,244,214,.95),rgba(248,220,160,.45) 35%,rgba(5,6,15,0) 75%);opacity:0;transition:opacity 1.4s ease}
+.pd-flood.on{opacity:1}.pd-flood.off{opacity:0;transition-duration:2.2s}
+
+/* velvet envelope */
+.ve{position:absolute;inset:0;z-index:2;display:grid;place-items:center;perspective:1400px;padding-bottom:40px}
+.ve-env{position:relative;width:min(420px,84vw);aspect-ratio:1.45}
+.ve-back,.ve-front,.ve-flap{transition:transform 1.3s cubic-bezier(.6,0,.4,1),opacity 1.1s ease}
+.ve-back{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,#7a1629,#45091a);box-shadow:0 40px 80px rgba(0,0,0,.6)}
+.ve-card{position:absolute;left:5%;right:5%;top:6%;height:88%;z-index:1;display:grid;align-content:center;justify-items:center;gap:4px;text-align:center;
+  background:linear-gradient(#fbf6ec,#efe3cb);box-shadow:0 0 0 1px rgba(168,131,63,.6) inset,0 0 0 7px #fbf6ec inset,0 0 0 8px rgba(168,131,63,.5) inset;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity 1s ease}
+.ve-cb{font-family:var(--f-ar);font-weight:700;font-size:clamp(1rem,3.6vw,1.35rem);color:#7e5a1c;direction:rtl;line-height:1.6}
+.ve-cm{font-family:var(--f-display);font-size:clamp(2.2rem,9vw,3.3rem);line-height:1;color:#6c1325}
+.ve-cn{font-family:var(--f-display);font-style:italic;font-size:clamp(.95rem,3.4vw,1.15rem);color:#4f3b30}
+.ve-front{position:absolute;inset:0;z-index:2;background:linear-gradient(170deg,#8a1a2f,#560d1d);clip-path:polygon(0 0,50% 61%,100% 0,100% 100%,0 100%)}
+.ve-flap{position:absolute;left:0;right:0;top:0;height:62%;z-index:3;background:linear-gradient(180deg,#931e35,#5e0e1f);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center}
+.ve-seal{position:absolute;left:50%;top:62%;width:76px;height:76px;margin:-38px 0 0 -38px;z-index:4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:1.45rem;color:#4b3310;
+  background:radial-gradient(circle at 35% 30%,#f9e7b7,#d4b06a 32%,#a07a35 64%,#5f4317);box-shadow:0 8px 18px rgba(0,0,0,.45),inset 0 2px 4px rgba(255,255,255,.5);transition:transform .7s ease,opacity .7s ease}
+@keyframes glint{50%{filter:brightness(1.35)}}
+.ve.s1 .ve-seal{animation:glint .6s ease}
+.ve.s2 .ve-seal{transform:scale(1.35);opacity:0}
+.ve.s3 .ve-flap{transform:rotateX(180deg)}
+.ve.s4 .ve-flap{z-index:0}
+.ve.s5 .ve-card{transform:translateY(-62%)}
+.ve.s6 .ve-back,.ve.s6 .ve-front{transform:translateY(75vh);opacity:0}
+.ve.s6 .ve-flap{transform:translateY(75vh) rotateX(180deg);opacity:0}
+.ve.s6 .ve-card{transform:translateY(-62%) scale(2.4);opacity:0;transition-duration:1.4s}
+
+/* Charminar lights */
+.cm{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + max(86px,11vh));width:min(92vw,520px,56vh);height:auto;transform:translateX(-50%);z-index:2;overflow:visible}
+.cm-l{filter:drop-shadow(0 0 3px rgba(248,214,140,.55))}
+.cm-l path{fill:none;stroke:#f2d48f;stroke-width:1.1;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.5s cubic-bezier(.4,.1,.3,1) forwards;animation-delay:var(--d)}
+@keyframes draw{to{stroke-dashoffset:0}}
+.cm-f path{fill:url(#cmLight);opacity:0;animation:light .9s ease forwards;animation-delay:var(--d)}
+@keyframes light{to{opacity:.85}}
+
+/* golden calligraphy */
+.cg{position:absolute;inset:0;z-index:2;display:grid;align-content:center;justify-items:center;gap:clamp(8px,2.2vh,20px);text-align:center;padding:0 16px 70px}
+.cg-b span,.cg-w{display:inline-block;background:var(--foil);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 10s linear infinite;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:220% 100%;mask-size:220% 100%}
+.cg-b span{font-family:var(--f-ar);font-weight:700;font-size:clamp(2rem,8vw,4.6rem);line-height:1.7;padding:0 .2em;direction:rtl;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0 45%,#000 55% 100%);mask-image:linear-gradient(90deg,transparent 0 45%,#000 55% 100%);-webkit-mask-position:0 0;mask-position:0 0}
+.cg-b span.go{transition:-webkit-mask-position 2s cubic-bezier(.45,.05,.35,1),mask-position 2s cubic-bezier(.45,.05,.35,1);-webkit-mask-position:100% 0;mask-position:100% 0}
+.cg-n{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;column-gap:.25em;font-size:clamp(3.4rem,14vw,7.4rem);line-height:1.25}
+.cg-w{font-family:var(--f-script);padding:.08em .35em .12em;
+  -webkit-mask-image:linear-gradient(90deg,#000 0 45%,transparent 55% 100%);mask-image:linear-gradient(90deg,#000 0 45%,transparent 55% 100%);-webkit-mask-position:100% 0;mask-position:100% 0}
+.cg-w.go{transition:-webkit-mask-position 1.3s cubic-bezier(.45,.05,.35,1),mask-position 1.3s cubic-bezier(.45,.05,.35,1);-webkit-mask-position:0 0;mask-position:0 0}
+.cg-amp{font-size:.5em;color:var(--gold-hi);opacity:0;transition:opacity .8s ease}
+.cg-l,.cg-d{opacity:0;transform:translateY(10px);transition:opacity 1s ease,transform 1s ease}
+.cg-l{font-family:var(--f-ui);font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.cg-d{font-family:var(--f-ui);font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text)}
+.cg.l .cg-l,.cg.d .cg-d{opacity:1;transform:none}
+.cg.a .cg-amp{opacity:1}
+
+/* mehndi bloom */
+.md{position:absolute;left:50%;top:50%;width:min(94vw,86vh,720px);height:auto;transform:translate(-50%,-52%);z-index:1;transition:transform 2.4s ease,opacity 2.4s ease}
+.md path{fill:none;stroke:#e9c987;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s cubic-bezier(.4,.1,.3,1) forwards;animation-delay:var(--d)}
+.md.rest{transform:translate(-50%,-52%) scale(1.16) rotate(8deg);opacity:.3}
+
+@media (max-width:560px){
+  .cg-n{flex-direction:column;line-height:1.05}
+  .bar .wrap{padding-block:10px}
+  .ov-name{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important;transition-delay:0s!important}
+}
+</style>
+
+<header class="wrap">
+  <p class="label">For Naveed &amp; Sadia</p>
+  <h1>Wedding Opening Studio</h1>
+  <p class="lead">These are eight ways the invitation could open. Tap <b>Preview</b> to watch one full screen, exactly as a guest would see it. Then choose your favourite; it saves straight away. The Golden Seal is on the invitation now.</p>
+</header>
+
+<main class="wrap"><div class="grid" id="grid"></div></main>
+
+<div class="bar" role="status" aria-live="polite">
+  <div class="wrap">
+    <p>Chosen opening: <span id="chosenName">Golden Seal</span></p>
+    <p id="saveState">Loading your choice</p>
+  </div>
+</div>
+
+<div class="ov" id="ov" hidden>
+  <div class="stage" id="stage"></div>
+  <p class="ov-name" id="ovName"></p>
+  <button type="button" class="ov-close" id="ovClose">Close</button>
+  <div class="ov-bar">
+    <button type="button" class="btn" id="ovReplay"><span class="tri" aria-hidden="true"></span>Replay</button>
+    <button type="button" class="btn solid" id="ovChoose" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="ct">Choose this opening</span></button>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = s => document.querySelector(s);
+const rnd = Math.random;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const BISM = "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ";
+const REVEAL = `<div class="rv"><p class="rv-b" lang="ar">${BISM}</p><p class="rv-l">You are invited</p>
+  <p class="rv-n"><span class="nw">Syed Naveed Ahmed</span> <span class="amp">&amp;</span> <span class="nw">Sadia Ahmed</span></p>
+  <p class="rv-d">7 &amp; 9 January 2027 · Hyderabad</p></div>`;
+
+/* ---------- a small kit each opening uses, so closing a preview cleans everything up ---------- */
+function kitFor(stage){
+  const timers = [], stops = [];
+  const k = {
+    after(ms, fn){ timers.push(setTimeout(fn, RM ? 0 : ms)); },
+    loop(fn){ let id = 0, last = performance.now(); const tick = now => { const dt = Math.min(.05, Math.max(.001, (now - last) / 1000)); last = now; fn(dt, now); id = requestAnimationFrame(tick); }; id = requestAnimationFrame(tick); stops.push(() => cancelAnimationFrame(id)); },
+    canvas(z){ const c = document.createElement("canvas"); c.className = "op-c"; c.style.zIndex = z; stage.appendChild(c); const x = c.getContext("2d"), pr = Math.min(window.devicePixelRatio || 1, 2);
+      c.width = Math.round(innerWidth * pr); c.height = Math.round(innerHeight * pr); x.setTransform(pr, 0, 0, pr, 0, 0); return x; },
+    el(html){ const d = document.createElement("div"); d.innerHTML = html.trim(); const n = d.firstElementChild; stage.appendChild(n); return n; },
+    on(t, ev, fn){ t.addEventListener(ev, fn, {passive: true}); stops.push(() => t.removeEventListener(ev, fn)); },
+    reveal(o = {}){ const r = k.el(REVEAL); if (o.top) r.classList.add("top"); requestAnimationFrame(() => requestAnimationFrame(() => r.classList.add("show"))); return r; },
+    destroy(){ timers.forEach(clearTimeout); stops.forEach(f => f()); stage.innerHTML = ""; }
+  };
+  return k;
+}
+
+/* ---------- shared drawings ---------- */
+const CM = (() => {
+  const lines = [], lights = [];
+  const arch = (x1, x2, yb, yt) => { const m = (x1 + x2) / 2, w = x2 - x1; return `M${x1} ${yb}V${yt + w * .45}Q${x1} ${yt + w * .1} ${m} ${yt}Q${x2} ${yt + w * .1} ${x2} ${yt + w * .45}V${yb}`; };
+  const lit = (x1, x2, yb, yt) => { const d = arch(x1, x2, yb, yt); lines.push(d); lights.push(d + "Z"); };
+  const rect = (x, y, w, h) => `M${x} ${y}H${x + w}V${y + h}H${x}Z`;
+  lines.push("M14 246H286", "M24 238H276V246M24 238V232H276V238", rect(62, 120, 176, 112));
+  lit(119, 181, 232, 139); lines.push(arch(112, 188, 232, 128));
+  lit(72, 100, 232, 176); lit(200, 228, 232, 176); lit(77, 95, 168, 148); lit(205, 223, 168, 148);
+  lines.push(rect(62, 98, 176, 22));
+  for (let i = 0; i < 9; i++){ const x = 68 + i * 19; lit(x, x + 12, 118, 102); }
+  lines.push("M58 98H242");
+  for (let i = 0; i < 12; i++){ const x = 62 + i * 15.2; lines.push(`M${x} 98V92H${x + 8}V98`); }
+  lines.push(rect(96, 70, 108, 23));
+  for (let i = 0; i < 6; i++){ const x = 101 + i * 17; lit(x, x + 11, 93, 75); }
+  lines.push("M134 70C134 58 144 54 150 46C156 54 166 58 166 70", "M150 46V36");
+  [44, 256].forEach(cx => {
+    lines.push(`M${cx - 9} 232V58M${cx + 9} 232V58`);
+    [172, 124, 84].forEach(y => lines.push(rect(cx - 14, y, 28, 5)));
+    [192, 144, 100].forEach(y => lit(cx - 4, cx + 4, y + 16, y));
+    lines.push(`M${cx - 11} 58H${cx + 11}`, `M${cx - 10} 58C${cx - 13} 44 ${cx - 4} 38 ${cx} 24C${cx + 4} 38 ${cx + 13} 44 ${cx + 10} 58`, `M${cx} 24V13`);
+  });
+  return {lines, lights};
+})();
+function shuffled(n){ const a = new Uint32Array(n); for (let i = 0; i < n; i++) a[i] = i; for (let i = n - 1; i > 0; i--){ const j = (rnd() * (i + 1)) | 0, t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function samplePx(w, h, draw){
+  w = Math.round(w); h = Math.round(h);
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const x = c.getContext("2d", {willReadFrequently: true}); x.fillStyle = x.strokeStyle = "#fff"; x.lineCap = "round";
+  draw(x, w, h);
+  const d = x.getImageData(0, 0, w, h).data, L = [];
+  for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) if (d[(yy * w + xx) * 4 + 3] > 120) L.push(xx - w / 2, yy - h / 2);
+  return L;
+}
+function arcText(x, str, cx, cy, r, size){
+  x.font = `${size}px "Tenor Sans", sans-serif`; x.textAlign = "center"; x.textBaseline = "middle";
+  const ch = [...str], ws = ch.map(c => x.measureText(c).width), total = ws.reduce((a, b) => a + b, 0), gap = Math.max(0, (2 * Math.PI * r - total) / ch.length);
+  let a = -Math.PI / 2;
+  ch.forEach((c, i) => { const mid = a + (ws[i] / 2) / r; x.save(); x.translate(cx + Math.cos(mid) * r, cy + Math.sin(mid) * r); x.rotate(mid + Math.PI / 2); x.fillText(c, 0, 0); x.restore(); a += (ws[i] + gap) / r; });
+}
+function drawSeal(x, w, h){
+  const cx = w / 2, cy = h / 2, R = Math.min(w, h) * .47;
+  const circ = (r, lw) => { x.lineWidth = lw; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.stroke(); };
+  circ(R, Math.max(1.6, R * .02)); circ(R * .9, Math.max(1, R * .008)); circ(R * .6, Math.max(1, R * .008));
+  for (let i = 0; i < 90; i++){ const a = i / 90 * Math.PI * 2; x.beginPath(); x.arc(cx + Math.cos(a) * R * .953, cy + Math.sin(a) * R * .953, Math.max(.9, R * .008), 0, Math.PI * 2); x.fill(); }
+  arcText(x, "NAVEED  ·  SADIA  ·  07 · 01 · 2027  ·  HYDERABAD  ·  ", cx, cy, R * .75, Math.max(9, R * .085));
+  x.font = `500 ${Math.round(R * .52)}px "Bodoni Moda", Didot, Georgia, serif`; x.textAlign = "center"; x.textBaseline = "middle";
+  x.lineWidth = Math.max(1.4, R * .014); x.strokeText("N&S", cx, cy + R * .03); x.fillText("N&S", cx, cy + R * .03);
+}
+
+/* ---------- 1. Golden Seal ---------- */
+function runSeal(st, k){
+  const x = k.canvas(1), W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2 - 20;
+  const small = W < 700, N = small ? 3000 : 5600, S = Math.min(W * .86, H * .6, 520);
+  const L = samplePx(S, S, drawSeal), M = Math.max(1, L.length >> 1), idx = shuffled(M);
+  const px = new Float32Array(N), py = new Float32Array(N), vx = new Float32Array(N), vy = new Float32Array(N), tx = new Float32Array(N), ty = new Float32Array(N), kk = new Float32Array(N);
+  const B = [[], [], [], []];
+  for (let i = 0; i < N; i++){
+    const m = idx[i % M], dup = i >= M;
+    tx[i] = cx + (L[m * 2] || 0) + (dup ? rnd() - .5 : 0); ty[i] = cy + (L[m * 2 + 1] || 0) + (dup ? rnd() - .5 : 0);
+    const a = rnd() * Math.PI * 2, r = Math.max(W, H) * (.6 + rnd() * .8); px[i] = cx + Math.cos(a) * r; py[i] = cy + Math.sin(a) * r;
+    kk[i] = .012 + rnd() * .03; B[rnd() < .07 ? 3 : (rnd() * 3) | 0].push(i);
+  }
+  const COL = ["#fff2cf", "#ecd18f", "#d2a95e", "#ffffff"], SZ = small ? [1.4, 1.5, 1.6, 2.4] : [1.6, 1.7, 1.8, 2.8];
+  let burst = false, fade = 1, pulse = 0;
+  k.after(2500, () => { pulse = .001; });
+  k.after(2950, () => { burst = true; for (let i = 0; i < N; i++){ const dx = px[i] - cx, dy = py[i] - cy, d = Math.hypot(dx, dy) + 1e-3, q = 3 + rnd() * 9; vx[i] += dx / d * q; vy[i] += dy / d * q; } });
+  k.after(3300, () => k.reveal());
+  k.loop(dt => {
+    const f = dt * 60, damp = Math.pow(.86, f), drag = Math.pow(.975, f);
+    if (pulse && !burst) pulse = Math.min(1, pulse + dt * 2.2);
+    const sc = pulse && !burst ? 1 + Math.sin(pulse * Math.PI) * .04 : 1;
+    if (burst) fade = Math.max(.28, fade - dt * .4);
+    for (let i = 0; i < N; i++){
+      if (!burst){ const gx = cx + (tx[i] - cx) * sc, gy = cy + (ty[i] - cy) * sc; vx[i] = (vx[i] + (gx - px[i]) * kk[i] * f) * damp; vy[i] = (vy[i] + (gy - py[i]) * kk[i] * f) * damp; }
+      else { vx[i] *= drag; vy[i] *= drag; }
+      px[i] += vx[i] * f; py[i] += vy[i] * f;
+    }
+    x.clearRect(0, 0, W, H); x.globalCompositeOperation = "lighter";
+    for (let b = 0; b < 4; b++){ x.fillStyle = COL[b]; x.globalAlpha = (b === 3 ? .6 : .85) * fade; const s = SZ[b], arr = B[b]; for (let j = 0; j < arr.length; j++){ const i = arr[j]; x.fillRect(px[i] - s / 2, py[i] - s / 2, s, s); } }
+    x.globalAlpha = 1;
+  });
+}
+
+/* ---------- 2. Palace Doors ---------- */
+function runDoors(st, k){
+  const flood = k.el(`<div class="pd-flood"></div>`);
+  const d = k.el(`<div class="pd"><div class="pd-l"><i></i></div><div class="pd-r"><i></i></div><div class="pd-seam"></div></div>`);
+  const x = k.canvas(3), W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2, P = [];
+  let emit = false;
+  k.after(400, () => d.classList.add("glow"));
+  k.after(1500, () => { d.classList.add("open"); flood.classList.add("on"); emit = true; });
+  k.after(2700, () => { emit = false; });
+  k.after(3000, () => flood.classList.add("off"));
+  k.after(3200, () => k.reveal());
+  const C = ["#ffffff", "#f8e7b8", "#ddb96c"];
+  k.loop(dt => {
+    const f = dt * 60;
+    if (emit) for (let n = 0; n < (W < 700 ? 6 : 12); n++) P.push({x: (rnd() - .5) * 40, y: (rnd() - .5) * H * .8, z: 1, vx: (rnd() - .5) * 2.4, vy: (rnd() - .5) * 1.6, vz: -(.006 + rnd() * .012), c: C[rnd() < .15 ? 0 : rnd() < .55 ? 1 : 2]});
+    x.clearRect(0, 0, W, H); x.globalCompositeOperation = "lighter";
+    for (let i = P.length - 1; i >= 0; i--){
+      const p = P[i]; p.x += p.vx * f; p.y += p.vy * f; p.z += p.vz * f;
+      if (p.z < .12){ P.splice(i, 1); continue; }
+      const sx = cx + p.x / p.z, sy = cy + p.y / p.z, s = Math.min(7, 1.3 / p.z);
+      x.globalAlpha = Math.min(1, (1 - p.z) * 1.6) * (p.z < .3 ? (p.z - .12) / .18 : 1); x.fillStyle = p.c;
+      x.beginPath(); x.arc(sx, sy, s / 2, 0, 6.283); x.fill();
+    }
+    x.globalAlpha = 1;
+  });
+}
+
+/* ---------- 3. Velvet Envelope ---------- */
+function runEnvelope(st, k){
+  const e = k.el(`<div class="ve"><div class="ve-env">
+    <div class="ve-back"></div>
+    <div class="ve-card"><p class="ve-cb" lang="ar">بِسْمِ ٱللَّٰهِ</p><p class="ve-cm">N<span class="amp">&amp;</span>S</p><p class="ve-cn">Naveed &amp; Sadia</p></div>
+    <div class="ve-front"></div><div class="ve-flap"></div><div class="ve-seal">N<span class="amp">&amp;</span>S</div>
+  </div></div>`);
+  [["s1", 700], ["s2", 1200], ["s3", 1500], ["s4", 2050], ["s5", 2250], ["s6", 3600]].forEach(([c, t]) => k.after(t, () => e.classList.add(c)));
+  k.after(4200, () => k.reveal());
+}
+
+/* ---------- 4. Charminar Lights ---------- */
+function runCharminar(st, k){
+  const x = k.canvas(1), W = innerWidth, H = innerHeight;
+  const stars = Array.from({length: W < 700 ? 90 : 160}, () => ({x: rnd() * W, y: rnd() * H * .75, s: rnd() * 1.3 + .3, p: rnd() * 6.28}));
+  k.el(`<svg class="cm" viewBox="0 0 300 250" aria-hidden="true"><defs><radialGradient id="cmLight" cx="50%" cy="70%" r="70%"><stop offset="0" stop-color="#fff1c4"/><stop offset=".6" stop-color="#f0b860"/><stop offset="1" stop-color="#b9772a"/></radialGradient></defs>
+    <g class="cm-f">${CM.lights.map((d, i) => `<path d="${d}" style="--d:${(2.1 + i * .06).toFixed(2)}s"/>`).join("")}</g>
+    <g class="cm-l">${CM.lines.map((d, i) => `<path d="${d}" pathLength="1" style="--d:${(i * .035).toFixed(2)}s"/>`).join("")}</g></svg>`);
+  const rockets = [], sparks = [], PAL = ["#ffe7a8", "#f8c76a", "#fff6e0", "#f29fb2", "#ddb96c"];
+  let fw = false, next = 0;
+  k.after(2500, () => { fw = true; });
+  k.after(3300, () => k.reveal({top: true}));
+  k.loop((dt, now) => {
+    const f = dt * 60; x.clearRect(0, 0, W, H);
+    x.globalCompositeOperation = "source-over"; x.fillStyle = "#fff";
+    for (const s of stars){ x.globalAlpha = .35 + .35 * Math.sin(now / 700 + s.p); x.fillRect(s.x, s.y, s.s, s.s); }
+    x.globalCompositeOperation = "lighter";
+    if (fw && now > next){ next = now + 450 + rnd() * 800; rockets.push({x: W * (.2 + rnd() * .6), y: H * .9, vy: -(H * .012 + rnd() * H * .006), ty: H * (.1 + rnd() * .32), c: PAL[(rnd() * PAL.length) | 0]}); }
+    for (let i = rockets.length - 1; i >= 0; i--){
+      const r = rockets[i]; r.y += r.vy * f; x.globalAlpha = .9; x.fillStyle = "#ffe9b8"; x.fillRect(r.x - 1, r.y, 2, 6);
+      if (r.y <= r.ty){ rockets.splice(i, 1); const n = W < 700 ? 60 : 95; for (let j = 0; j < n; j++){ const a = rnd() * 6.283, sp = 1.6 + rnd() * 2.8; sparks.push({x: r.x, y: r.y, px: r.x, py: r.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, dec: .008 + rnd() * .008, c: rnd() < .7 ? r.c : "#fff6e0"}); } }
+    }
+    x.lineWidth = 1.6; x.lineCap = "round";
+    for (let i = sparks.length - 1; i >= 0; i--){
+      const s = sparks[i]; s.px = s.x; s.py = s.y; s.vx *= Math.pow(.985, f); s.vy = s.vy * Math.pow(.985, f) + .04 * f; s.x += s.vx * f; s.y += s.vy * f; s.life -= s.dec * f;
+      if (s.life <= 0){ sparks.splice(i, 1); continue; }
+      x.globalAlpha = s.life; x.strokeStyle = s.c; x.beginPath(); x.moveTo(s.px, s.py); x.lineTo(s.x, s.y); x.stroke();
+    }
+    x.globalAlpha = 1;
+  });
+}
+
+/* ---------- 5. Rose Petals ---------- */
+function petalSprite([base, light, dark]){
+  const c = document.createElement("canvas"); c.width = c.height = 64; const x = c.getContext("2d"); x.translate(32, 32);
+  const g = x.createRadialGradient(-6, -10, 2, 0, 0, 34); g.addColorStop(0, light); g.addColorStop(.65, base); g.addColorStop(1, dark);
+  x.fillStyle = g; x.beginPath(); x.moveTo(0, -20);
+  x.bezierCurveTo(12, -30, 28, -16, 22, 4); x.bezierCurveTo(16, 22, 4, 28, 0, 30); x.bezierCurveTo(-4, 28, -16, 22, -22, 4); x.bezierCurveTo(-28, -16, -12, -30, 0, -20); x.fill();
+  x.strokeStyle = "rgba(255,255,255,.16)"; x.lineWidth = 1; x.beginPath(); x.moveTo(0, -14); x.quadraticCurveTo(3, 6, 0, 24); x.stroke();
+  return c;
+}
+function runPetals(st, k){
+  const x = k.canvas(2), W = innerWidth, H = innerHeight, cx = W / 2, cy = H / 2;
+  const SP = [["#9e1534", "#d4485f", "#5e0a1f"], ["#b81f3f", "#ea6b7c", "#6d0d22"], ["#c73a55", "#f19aa6", "#7d1428"], ["#e8a1aa", "#fbd9dc", "#b8646f"], ["#f3e3d3", "#fffaf2", "#cdb59c"]].map(petalSprite);
+  const N = W < 700 ? 90 : 170, P = [];
+  const mk = y0 => ({x: rnd() * W, y: y0, z: .45 + rnd() * .75, r: rnd() * 6.28, vr: (rnd() - .5) * .04, fl: rnd() * 6.28, vfl: .03 + rnd() * .05, sw: rnd() * 6.28, vy: .6 + rnd() * 1.1, vx: 0, vy2: 0, sp: (rnd() * SP.length) | 0, s: 14 + rnd() * 18});
+  for (let i = 0; i < N; i++) P.push(mk(i < N * .35 ? rnd() * H * .45 - 30 : -rnd() * H * 1.1 - 20));
+  let clear = false, ptr = null;
+  k.on(st, "pointermove", e => { ptr = {x: e.clientX, y: e.clientY}; });
+  k.after(1900, () => { for (const p of P) if (p.y > -20){ const dx = p.x - cx, dy = p.y - cy, d = Math.hypot(dx, dy) + 1, q = 6 + rnd() * 6; p.vx += dx / d * q; p.vy2 += dy / d * q; } clear = true; });
+  k.after(2200, () => k.reveal());
+  k.loop(dt => {
+    const f = dt * 60; x.clearRect(0, 0, W, H);
+    for (const p of P){
+      p.sw += .02 * f; p.fl += p.vfl * f; p.r += p.vr * f;
+      let ax = Math.sin(p.sw) * .25 * p.z;
+      if (clear){ const ex = (p.x - cx) / (W * .4), ey = (p.y - cy) / (H * .24), e2 = ex * ex + ey * ey; if (e2 < 1){ const d = Math.sqrt(e2) + .05; ax += ex / d * .35 * (1 - e2); p.vy2 += ey / d * .2 * (1 - e2); } }
+      if (ptr){ const dx = p.x - ptr.x, dy = p.y - ptr.y, d2 = dx * dx + dy * dy; if (d2 < 9000){ const d = Math.sqrt(d2) + 1; p.vx += dx / d * .6; p.vy2 += dy / d * .6; } }
+      p.vx = (p.vx + ax * f) * Math.pow(.96, f); p.vy2 *= Math.pow(.94, f);
+      p.x += p.vx * f; p.y += (p.vy * p.z + p.vy2) * f;
+      if (p.y > H + 30 || p.x < -60 || p.x > W + 60) Object.assign(p, mk(-30 - rnd() * 60));
+      const sc = p.s * p.z / 32;
+      x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.scale(Math.cos(p.fl) * sc, sc); x.globalAlpha = .55 + .45 * Math.min(1, p.z); x.drawImage(SP[p.sp], -32, -32); x.restore();
+    }
+  });
+}
+
+/* ---------- 6. Golden Calligraphy ---------- */
+function runCalligraphy(st, k){
+  const x = k.canvas(3), W = innerWidth, H = innerHeight;
+  const box = k.el(`<div class="cg">
+    <p class="cg-b" lang="ar"><span>${BISM}</span></p>
+    <p class="cg-l">You are invited</p>
+    <p class="cg-n"><span class="cg-w w1">Naveed</span><span class="cg-amp amp">&amp;</span><span class="cg-w w2">Sadia</span></p>
+    <p class="cg-d">7 &amp; 9 January 2027 · Hyderabad</p></div>`);
+  const pens = [];
+  const write = (sel, at, dur, rtl) => k.after(at, () => { const el = box.querySelector(sel); el.classList.add("go"); pens.push({el, t0: performance.now(), dur, rtl}); });
+  write(".cg-b span", 300, 2000, true); write(".w1", 2700, 1300, false); write(".w2", 4200, 1300, false);
+  k.after(2400, () => box.classList.add("l")); k.after(4000, () => box.classList.add("a")); k.after(5600, () => box.classList.add("d"));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2, S = [];
+  k.loop((dt, now) => {
+    const f = dt * 60;
+    for (const p of pens){
+      const t = (now - p.t0) / p.dur; if (t < 0 || t > 1) continue;
+      const r = p.el.getBoundingClientRect(), e = ease(t), ex = p.rtl ? r.right - r.width * e : r.left + r.width * e;
+      for (let n = 0; n < 4; n++) S.push({x: ex + (rnd() - .5) * 8, y: r.top + r.height * (.25 + rnd() * .55), vx: (rnd() - .5) * 1.4, vy: -rnd() * 1.4, life: 1, dec: .02 + rnd() * .03});
+    }
+    x.clearRect(0, 0, W, H); x.globalCompositeOperation = "lighter";
+    for (let i = S.length - 1; i >= 0; i--){ const s = S[i]; s.x += s.vx * f; s.y += s.vy * f; s.vy += .03 * f; s.life -= s.dec * f; if (s.life <= 0){ S.splice(i, 1); continue; } x.globalAlpha = s.life; x.fillStyle = s.life > .6 ? "#fff6dc" : "#ddb96c"; x.fillRect(s.x, s.y, 2, 2); }
+    x.globalAlpha = 1;
+  });
+}
+
+/* ---------- 7. Floating Lanterns ---------- */
+function lanternSprite(){
+  const c = document.createElement("canvas"); c.width = 64; c.height = 90; const x = c.getContext("2d");
+  const body = new Path2D("M14 10H50Q58 45 54 78H10Q6 45 14 10Z");
+  const g = x.createLinearGradient(0, 10, 0, 78); g.addColorStop(0, "#ffd88a"); g.addColorStop(.55, "#ffb04a"); g.addColorStop(1, "#e47a26");
+  x.fillStyle = g; x.fill(body);
+  const core = x.createRadialGradient(32, 62, 2, 32, 58, 26); core.addColorStop(0, "rgba(255,250,225,.95)"); core.addColorStop(1, "rgba(255,200,110,0)");
+  x.fillStyle = core; x.fill(body);
+  x.fillStyle = "#7a3b12"; x.fillRect(13, 8, 38, 4); x.fillRect(9, 77, 46, 4);
+  x.strokeStyle = "rgba(122,59,18,.35)"; x.lineWidth = 1; [24, 32, 40].forEach(v => { x.beginPath(); x.moveTo(v, 12); x.lineTo(v + (v - 32) * .25, 77); x.stroke(); });
+  return c;
+}
+function glowSprite(){ const c = document.createElement("canvas"); c.width = c.height = 128; const x = c.getContext("2d"); const g = x.createRadialGradient(64, 64, 0, 64, 64, 64); g.addColorStop(0, "rgba(255,196,100,.85)"); g.addColorStop(.35, "rgba(255,160,70,.35)"); g.addColorStop(1, "rgba(255,140,60,0)"); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return c; }
+function runLanterns(st, k){
+  const x = k.canvas(1), W = innerWidth, H = innerHeight, spr = lanternSprite(), glow = glowSprite();
+  const stars = Array.from({length: W < 700 ? 80 : 140}, () => ({x: rnd() * W, y: rnd() * H, s: rnd() * 1.2 + .3, p: rnd() * 6.28}));
+  const N = W < 700 ? 26 : 44, t0 = performance.now();
+  const mk = delay => ({x: W * (.04 + rnd() * .92), y: H + 40 + rnd() * 80, z: .35 + rnd() * .65, sw: rnd() * 6.28, fl: rnd() * 6.28, delay});
+  const L = Array.from({length: N}, (_, i) => { const p = mk(i * 80 + rnd() * 200); if (i < 5){ p.y = H * (.72 + rnd() * .25); p.delay = 0; } return p; }).sort((a, b) => a.z - b.z);
+  k.after(2500, () => k.reveal());
+  k.loop((dt, now) => {
+    const f = dt * 60, el = now - t0; x.clearRect(0, 0, W, H);
+    x.globalCompositeOperation = "source-over"; x.fillStyle = "#fff";
+    for (const s of stars){ x.globalAlpha = .3 + .3 * Math.sin(now / 800 + s.p); x.fillRect(s.x, s.y, s.s, s.s); }
+    for (const p of L){
+      if (el < p.delay) continue;
+      p.sw += .012 * f; p.fl += .2 * f; p.y -= (.35 + p.z * .75) * f; p.x += Math.sin(p.sw) * .25 * f * p.z;
+      if (p.y < -90){ Object.assign(p, mk(0)); }
+      const s = 26 + p.z * 44, fk = .85 + .15 * Math.sin(p.fl) * Math.sin(p.fl * .37);
+      x.globalCompositeOperation = "lighter"; x.globalAlpha = .55 * fk * p.z; x.drawImage(glow, p.x - s * 1.6, p.y - s * 1.6, s * 3.2, s * 3.2);
+      x.globalCompositeOperation = "source-over"; x.globalAlpha = .55 + .45 * p.z; x.drawImage(spr, p.x - s * .32, p.y - s * .45, s * .64, s * .9);
+    }
+    x.globalAlpha = 1;
+  });
+}
+
+/* ---------- 8. Mehndi Bloom ---------- */
+function mandala(){
+  const out = [], f1 = v => v.toFixed(1);
+  const add = (d, ring) => out.push(`<path d="${d}" pathLength="1" style="--d:${(ring * .32).toFixed(2)}s"/>`);
+  const circ = r => `M${r} 0A${r} ${r} 0 1 1 ${-r} 0A${r} ${r} 0 1 1 ${r} 0`;
+  const rot = (d, a) => { const c = Math.cos(a), s = Math.sin(a); return d.replace(/(-?[\d.]+) (-?[\d.]+)/g, (_, X, Y) => { const xx = +X, yy = +Y; return `${f1(xx * c - yy * s)} ${f1(xx * s + yy * c)}`; }); };
+  const ring = (n, d, r, off = 0) => { for (let i = 0; i < n; i++) add(rot(d, i / n * Math.PI * 2 + off), r); };
+  add(circ(8), 0); ring(8, "M6 0C18 -14 38 -12 48 0C38 12 18 14 6 0Z", 0); add(circ(56), 0);
+  for (let i = 0; i < 24; i++){ const a = i / 24 * Math.PI * 2, cx = Math.cos(a) * 66, cy = Math.sin(a) * 66; add(`M${f1(cx + 2.5)} ${f1(cy)}A2.5 2.5 0 1 1 ${f1(cx - 2.5)} ${f1(cy)}A2.5 2.5 0 1 1 ${f1(cx + 2.5)} ${f1(cy)}`, 1); }
+  ring(12, "M78 0C100 -26 150 -22 168 0C150 22 100 26 78 0Z", 2); ring(12, "M92 0L152 0", 2); add(circ(176), 2);
+  for (let i = 0; i < 24; i++){ const a1 = i / 24 * Math.PI * 2, a2 = (i + 1) / 24 * Math.PI * 2, am = (a1 + a2) / 2;
+    add(`M${f1(Math.cos(a1) * 176)} ${f1(Math.sin(a1) * 176)}Q${f1(Math.cos(am) * 210)} ${f1(Math.sin(am) * 210)} ${f1(Math.cos(a2) * 176)} ${f1(Math.sin(a2) * 176)}`, 3); }
+  ring(16, "M212 0C216 -30 270 -34 286 -6C292 6 276 16 264 8C254 2 262 -10 272 -6C270 18 232 26 212 0Z", 4, Math.PI / 16);
+  add(circ(300), 5); ring(48, "M306 0C314 -7 328 -7 336 0C328 7 314 7 306 0Z", 5);
+  for (let i = 0; i < 36; i++){ const a1 = i / 36 * Math.PI * 2, a2 = (i + 1) / 36 * Math.PI * 2, am = (a1 + a2) / 2;
+    add(`M${f1(Math.cos(a1) * 342)} ${f1(Math.sin(a1) * 342)}Q${f1(Math.cos(am) * 372)} ${f1(Math.sin(am) * 372)} ${f1(Math.cos(a2) * 342)} ${f1(Math.sin(a2) * 342)}`, 6);
+    const cx = Math.cos(am) * 384, cy = Math.sin(am) * 384; add(`M${f1(cx + 2)} ${f1(cy)}A2 2 0 1 1 ${f1(cx - 2)} ${f1(cy)}A2 2 0 1 1 ${f1(cx + 2)} ${f1(cy)}`, 6); }
+  return out.join("");
+}
+function runMehndi(st, k){
+  const svg = k.el(`<svg class="md" viewBox="-400 -400 800 800" aria-hidden="true">${mandala()}</svg>`);
+  k.after(3500, () => svg.classList.add("rest"));
+  k.after(3700, () => k.reveal());
+}
+
+/* ---------- catalogue ---------- */
+const G = 'fill="none" stroke="#ddb96c" stroke-width="1.2"';
+const OPENINGS = [
+  {id: "seal", name: "Golden Seal", run: runSeal, desc: "Thousands of gold particles gather into a wax seal stamped N & S, then burst into stardust.",
+    poster: `<g ${G}><circle cx="80" cy="50" r="34"/><circle cx="80" cy="50" r="30" stroke-dasharray="1 3"/><circle cx="80" cy="50" r="20"/></g><text x="80" y="57" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="19" fill="#f8e7b8">N&amp;S</text>`},
+  {id: "doors", name: "Palace Doors", run: runDoors, desc: "Carved jali doors with gold knockers swing open on a flood of light and gold dust.",
+    poster: `<defs><pattern id="pj" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 5L5 0L10 5L5 10Z" fill="none" stroke="#ddb96c" stroke-width=".5" opacity=".6"/></pattern></defs><rect x="30" y="12" width="49" height="78" fill="#10221f"/><rect x="81" y="12" width="49" height="78" fill="#10221f"/><rect x="30" y="12" width="49" height="78" fill="url(#pj)"/><rect x="81" y="12" width="49" height="78" fill="url(#pj)"/><g ${G}><rect x="33" y="15" width="43" height="72"/><rect x="84" y="15" width="43" height="72"/><circle cx="70" cy="51" r="4"/><circle cx="90" cy="51" r="4"/></g><path d="M80 12V90" stroke="#fff3cf" stroke-width="1.5"/>`},
+  {id: "envelope", name: "Velvet Envelope", run: runEnvelope, desc: "A ruby envelope loses its gold wax seal, the flap lifts and an ivory card rises out to meet you.",
+    poster: `<rect x="34" y="34" width="92" height="56" fill="#6e1730"/><rect x="42" y="14" width="76" height="48" fill="#f4ead6"/><text x="80" y="44" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="15" fill="#6c1325">N&amp;S</text><path d="M34 52L80 76L126 52V90H34Z" fill="#8a1a2f"/><circle cx="80" cy="74" r="8" fill="#d4b06a"/>`},
+  {id: "charminar", name: "Charminar Lights", run: runCharminar, desc: "The Charminar draws itself in gold, its arches light up one by one, and fireworks open above it.",
+    poster: `<g transform="translate(43 14) scale(.25)" fill="none" stroke="#f2d48f" stroke-width="4">${CM.lines.map(d => `<path d="${d}"/>`).join("")}</g><circle cx="40" cy="22" r="7" fill="none" stroke="#f8c76a" stroke-dasharray="1 2"/><circle cx="122" cy="18" r="9" fill="none" stroke="#f29fb2" stroke-dasharray="1 2"/>`},
+  {id: "petals", name: "Rose Petals", run: runPetals, desc: "A shower of crimson, blush and white rose petals tumbles down and parts around your names.",
+    poster: [[40, 30, 20, "#b81f3f"], [64, 62, -30, "#c73a55"], [96, 24, 50, "#e8a1aa"], [118, 58, 10, "#9e1534"], [84, 80, 70, "#f3e3d3"], [30, 70, -60, "#c73a55"]].map(([px, py, a, c]) => `<path transform="translate(${px} ${py}) rotate(${a}) scale(.32)" d="M0 -20C12 -30 28 -16 22 4C16 22 4 28 0 30C-4 28 -16 22 -22 4C-28 -16 -12 -30 0 -20Z" fill="${c}"/>`).join("")},
+  {id: "calligraphy", name: "Golden Calligraphy", run: runCalligraphy, desc: "The Bismillah, then your names, are written across the screen in gold ink with a sparkling pen.",
+    poster: `<text x="80" y="46" text-anchor="middle" font-family="Amiri, serif" font-weight="700" font-size="21" fill="#f3d89a">بِسْمِ ٱللَّٰهِ</text><text x="80" y="80" text-anchor="middle" font-family="Great Vibes, cursive" font-size="20" fill="#f8e7b8">Naveed &amp; Sadia</text>`},
+  {id: "lanterns", name: "Floating Lanterns", run: runLanterns, desc: "Warm paper lanterns drift up into the night sky, one after another, until it glows.",
+    poster: [[44, 60, 1], [70, 34, .8], [98, 54, 1.1], [120, 26, .7], [56, 18, .6]].map(([px, py, s]) => `<circle cx="${px}" cy="${py}" r="${14 * s}" fill="#ffb04a" opacity=".22"/><path transform="translate(${px - 6 * s} ${py - 8 * s}) scale(${s * .19})" d="M14 10H50Q58 45 54 78H10Q6 45 14 10Z" fill="#ffc062"/>`).join("")},
+  {id: "mehndi", name: "Mehndi Bloom", run: runMehndi, desc: "A henna-style mandala blooms outward from the centre in fine gold lines, then settles behind your names.",
+    poster: `<g transform="translate(80 50) scale(.12)" fill="none" stroke="#e9c987" stroke-width="9">${mandala().replace(/ pathLength="1" style="[^"]*"/g, "")}</g>`}
+];
+const BY = Object.fromEntries(OPENINGS.map(o => [o.id, o]));
+const CURRENT = "seal";
+
+$("#grid").innerHTML = OPENINGS.map((o, i) => `
+  <article class="card" data-id="${o.id}">
+    <button type="button" class="poster" data-preview="${o.id}" aria-label="Preview ${esc(o.name)}"><svg viewBox="0 0 160 100" aria-hidden="true">${o.poster}</svg></button>
+    <div class="c-body">
+      <div class="c-top"><span class="num">${String(i + 1).padStart(2, "0")}</span>${o.id === CURRENT ? '<span class="badge">On the invitation now</span>' : ""}</div>
+      <h2>${esc(o.name)}</h2>
+      <p class="desc">${esc(o.desc)}</p>
+      <div class="c-act">
+        <button type="button" class="btn solid" id="pv-${o.id}" data-preview="${o.id}"><span class="tri" aria-hidden="true"></span>Preview</button>
+        <button type="button" class="btn" id="ch-${o.id}" data-choose="${o.id}" aria-pressed="false"><span class="dot" aria-hidden="true"></span><span class="ct">Choose</span></button>
+      </div>
+    </div>
+  </article>`).join("");
+
+/* ---------- preview ---------- */
+const ov = $("#ov"), stage = $("#stage");
+let kit = null, showing = null, lastFocus = null;
+function play(id){
+  if (kit) kit.destroy();
+  showing = id; kit = kitFor(stage); $("#ovName").textContent = BY[id].name; chooseUI();
+  if (RM){ kit.reveal(); return; }
+  try { BY[id].run(stage, kit); } catch (e) { kit.reveal(); }
+}
+function openPreview(id){ lastFocus = document.activeElement; ov.hidden = false; document.body.classList.add("locked"); play(id); $("#ovClose").focus(); }
+function closePreview(){ if (kit) kit.destroy(); kit = null; showing = null; ov.hidden = true; document.body.classList.remove("locked"); if (lastFocus) lastFocus.focus(); }
+$("#ovClose").addEventListener("click", closePreview);
+$("#ovReplay").addEventListener("click", () => { if (showing) play(showing); });
+$("#ovChoose").addEventListener("click", () => { if (showing) choose(showing); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !ov.hidden) closePreview(); });
+document.addEventListener("click", e => {
+  const p = e.target.closest("[data-preview]"); if (p) openPreview(p.dataset.preview);
+  const c = e.target.closest("[data-choose]"); if (c) choose(c.dataset.choose);
+});
+
+/* ---------- the choice, saved to the artifact's database so Claude can read it ---------- */
+let chosen = CURRENT, db = null, saving = false, again = false, readOnly = false;
+const setState = t => { $("#saveState").textContent = t; };
+function chooseUI(){
+  document.querySelectorAll("[data-choose]").forEach(b => { const on = b.dataset.choose === chosen; b.setAttribute("aria-pressed", on ? "true" : "false"); b.querySelector(".ct").textContent = on ? "Chosen" : "Choose"; b.closest(".card").classList.toggle("chosen", on); });
+  $("#chosenName").textContent = BY[chosen].name;
+  const oc = $("#ovChoose"), on = showing === chosen; oc.setAttribute("aria-pressed", on ? "true" : "false"); oc.querySelector(".ct").textContent = on ? "Chosen for the invitation" : "Choose this opening";
+}
+function choose(id){ if (readOnly || !BY[id]) return; chosen = id; chooseUI(); save(); }
+async function save(){
+  if (!db){ try { localStorage.setItem("wedding-opening", chosen); } catch (e) {} setState("Saved on this device. Tell Claude your choice"); return; }
+  if (saving){ again = true; return; }
+  saving = true; setState("Saving");
+  try { await db.doc("openings/choice").set({id: chosen, updatedAt: new Date().toISOString()}); setState("Saved. Claude can see your choice"); }
+  catch (e) { if (e && e.code === "invalid_argument"){ readOnly = true; setState("Only Naveed can change the choice"); } else setState("Couldn't save just now. Choose again to retry"); }
+  saving = false; if (again){ again = false; save(); }
+}
+try { const s = localStorage.getItem("wedding-opening"); if (s && BY[s]) chosen = s; } catch (e) {}
+chooseUI();
+(async () => {
+  const d = window.claude && window.claude.use ? await window.claude.use("db") : null;
+  if (!d){ setState("Saved on this device. Tell Claude your choice"); return; }
+  db = d;
+  const slow = setTimeout(() => setState("Can't reach your saved choice yet"), 10000);
+  db.doc("openings/choice").onSnapshot(snap => {
+    if (!snap.metadata.fromCache) clearTimeout(slow);
+    if (snap.exists && !saving){ const id = snap.data().id; if (BY[id]){ chosen = id; chooseUI(); } }
+    if (!snap.metadata.fromCache && !saving) setState(snap.exists ? "Saved. Claude can see your choice" : "Choose an opening to save it");
+  }, () => { clearTimeout(slow); setState("Your choice can't be saved right now. Tell Claude in chat"); });
+})();
+
+/* fonts are drawn onto canvases, so load them before the first preview */
+if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('500 60px "Bodoni Moda"', "N&S"), document.fonts.load('20px "Tenor Sans"', "N"), document.fonts.load('700 40px "Amiri"', "بسم"), document.fonts.load('60px "Great Vibes"', "Naveed")]).catch(() => {});
+})();
+</script>
+</html>
