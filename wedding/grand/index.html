@@ -771,8 +771,10 @@ function ringsWorld(Rr){
     let x, y, z;
     if (rnd() < .66){
       const u = rnd() * Math.PI * 2, v = rnd() * Math.PI * 2, rr = Rr + rt * Math.cos(v);
-      if (i & 1){ x = -Rr * .5 + rr * Math.cos(u); y = rr * Math.sin(u); z = rt * Math.sin(v); }
-      else { x = Rr * .5 + rr * Math.cos(u); y = rt * Math.sin(v); z = rr * Math.sin(u); }
+      const sg = i & 1 ? -1 : 1, th = sg * .5, ph = sg * .22;   /* each ring turns toward the other and leans a little, so they link */
+      const x0 = rr * Math.cos(u), y0 = rr * Math.sin(u), z0 = rt * Math.sin(v);
+      const x1 = x0 * Math.cos(th) + z0 * Math.sin(th), z1 = -x0 * Math.sin(th) + z0 * Math.cos(th);
+      x = sg * Rr * .55 + x1; y = y0 * Math.cos(ph) - z1 * Math.sin(ph); z = y0 * Math.sin(ph) + z1 * Math.cos(ph);
     } else { const r = Rr * (1.2 + Math.abs(gauss()) * .9), th = rnd() * Math.PI * 2, ph = Math.acos(2 * rnd() - 1); x = r * Math.sin(ph) * Math.cos(th); y = r * Math.cos(ph) * .7; z = r * Math.sin(ph) * Math.sin(th) * .6; }
     out[i * 3] = x; out[i * 3 + 1] = y; out[i * 3 + 2] = z;
   }
@@ -814,7 +816,7 @@ function buildAll(){
   b = stageBox("dial", 320, 320); const R = Math.min(b.w, b.h) * .48;
   mkForm("dial", fromPx(dialPts(R), .04), {el: b.el, alpha: .7, twinkle: .3, comet: Math.round(N * .06), cometR: R * .955 * wpp});
   b = stageBox("rings", 320, 260);
-  mkForm("rings", ringsWorld(Math.min(b.w * .2, b.h * .34) * wpp), {el: b.el, alpha: .6, size: 1.05, sparkle: .8, spinY: .32, tiltX: .45, wobble: .004});
+  mkForm("rings", ringsWorld(Math.min(b.w * .2, b.h * .34) * wpp), {el: b.el, alpha: .6, size: 1.05, sparkle: .8, sway: [.36, .5], tiltX: .2, wobble: .004});
   b = stageBox("medallion", 320, 320); S = Math.min(b.w, b.h);
   mkForm("medallion", fromPx(sampleCanvas(S, S, drawMedallion), .04), {el: b.el, alpha: .85, twinkle: .3});
 }
@@ -840,7 +842,7 @@ function frame(now){
   let ddx = 0, ddy = 0;
   if (name === lastName){ ddx = cx - lastCx; ddy = cy - lastCy; }
   lastName = name; lastCx = cx; lastCy = cy;
-  if (!RM){ Fm.ay += Fm.spinY * dt; Fm.az += Fm.spinZ * dt; }
+  if (!RM){ if (Fm.sway) Fm.ay = Math.sin(T * Fm.sway[1]) * Fm.sway[0]; else Fm.ay += Fm.spinY * dt; Fm.az += Fm.spinZ * dt; }
   const cA = Math.cos(Fm.ay), sA = Math.sin(Fm.ay), cT = Math.cos(Fm.tiltX), sT = Math.sin(Fm.tiltX), cZ = Math.cos(Fm.az), sZ = Math.sin(Fm.az);
   const P = Fm.pts, sw = Fm.swirl, damp = Math.pow(.885, f);
   const PRAD = 120 * wpp, PRAD2 = PRAD * PRAD, ps = ptr.s;
@@ -850,7 +852,7 @@ function frame(now){
     if (i < cn){ const a = th - (i / cn) * 1.2, rr = Fm.cometR * (1 + (rnd() - .5) * .012); x = Math.sin(a) * rr; y = Math.cos(a) * rr; z = 0; }
     else {
       x = P[j]; y = P[j + 1]; z = P[j + 2];
-      if (Fm.spinY){ const x2 = x * cA + z * sA; z = -x * sA + z * cA; x = x2; }
+      if (Fm.spinY || Fm.sway){ const x2 = x * cA + z * sA; z = -x * sA + z * cA; x = x2; }
       if (Fm.tiltX){ const y2 = y * cT - z * sT; z = y * sT + z * cT; y = y2; }
       if (Fm.spinZ){ const x2 = x * cZ - y * sZ; y = x * sZ + y * cZ; x = x2; }
     }
