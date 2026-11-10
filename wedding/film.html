@@ -1,0 +1,986 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Naveed &amp; Sadia Film</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="An invitation to the Shaadi and Valima of Syed Naveed Ahmed and Sadia Ahmed, Hyderabad, January 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Tenor+Sans&display=swap">
+<style>
+/* Layout: "A Night in Hyderabad". One living field of gold particles sits behind the whole page and redraws
+   itself for each chapter: a wax seal, the Bismillah, a rosette behind the couple, the Charminar, a clock dial,
+   a slow galaxy behind the celebrations, two linked rings for the verse, and a closing medallion.
+   The HTML carries every word; the particles only draw. */
+:root{
+  --sky:#04050c;          /* night */
+  --glass:rgba(8,10,24,.76);
+  --gold:#ddb96c;         /* labels, lines */
+  --gold-hi:#f8e7b8;      /* highlights */
+  --text:#f4eddf;         /* body text */
+  --soft:#cfc6b3;         /* secondary text */
+  --line:rgba(221,185,108,.5);
+  --line-soft:rgba(221,185,108,.22);
+  --foil:linear-gradient(100deg,#ecd394 0%,#fff6dc 16%,#f3d89a 32%,#e6c47f 46%,#fff3d0 62%,#efd08e 78%,#fff7e2 90%,#ecd394 100%);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-body:"Spectral",Georgia,"Times New Roman",serif;
+  --f-ui:"Tenor Sans","Gill Sans","Helvetica Neue",Arial,sans-serif;
+  --f-ar:"Amiri","Scheherazade New","Traditional Arabic",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+html:not(.opened) body{overflow:hidden}
+body{margin:0;background:var(--sky);color:var(--text);font-family:var(--f-body);font-weight:300;font-size:1.14rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--gold-hi);outline-offset:5px}
+
+/* ---------- sky layers ---------- */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(70% 50% at 12% 0%,rgba(122,28,58,.34),transparent 70%),
+    radial-gradient(60% 55% at 92% 22%,rgba(36,44,120,.34),transparent 72%),
+    radial-gradient(80% 60% at 50% 115%,rgba(164,124,56,.24),transparent 70%),
+    linear-gradient(180deg,#06071a 0%,#05060f 55%,#04050c 100%)}
+.rays{position:fixed;left:50%;top:calc(20vh - 75vmax);width:150vmax;height:150vmax;margin-left:-75vmax;z-index:0;pointer-events:none;opacity:0;transition:opacity 2.4s ease;will-change:transform;
+  background:repeating-conic-gradient(from 0deg,rgba(248,231,184,0) 0deg,rgba(248,231,184,.08) 1.6deg,rgba(248,231,184,0) 4.5deg,rgba(248,231,184,0) 10deg);
+  -webkit-mask-image:radial-gradient(closest-side,#000 0%,rgba(0,0,0,.45) 35%,transparent 72%);mask-image:radial-gradient(closest-side,#000 0%,rgba(0,0,0,.45) 35%,transparent 72%);
+  animation:spin 240s linear infinite}
+html[data-ch="gate"] .rays,html[data-ch="bismillah"] .rays{opacity:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+#fx,#gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.vig{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(130% 95% at 50% 45%,transparent 50%,rgba(0,0,0,.62) 100%)}
+body::after{content:"";position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.06;background-image:var(--grain);mix-blend-mode:overlay}
+.shoot{position:fixed;z-index:1;width:150px;height:1px;pointer-events:none;border-radius:1px;
+  background:linear-gradient(90deg,rgba(248,231,184,0),rgba(248,231,184,.95));transform:rotate(var(--r));animation:shoot 1.3s cubic-bezier(.2,.6,.3,1) forwards}
+@keyframes shoot{0%{opacity:0;transform:rotate(var(--r)) translateX(0)}12%{opacity:1}100%{opacity:0;transform:rotate(var(--r)) translateX(var(--len))}}
+
+/* ---------- shared type ---------- */
+.label{font-family:var(--f-ui);font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-right:-.28em}
+.foil{background:var(--foil);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:sheen 10s linear infinite;filter:drop-shadow(0 1px 5px rgba(0,0,0,.55)) drop-shadow(0 0 22px rgba(248,231,184,.16))}
+.h2,.bd-num,.and,.ev h3{font-variation-settings:"opsz" 24}
+@keyframes sheen{to{background-position:-250% 0}}
+.amp{font-family:var(--f-display);font-style:normal}
+.h2{font-family:var(--f-display);font-style:italic;font-size:clamp(2.4rem,6.4vw,4.4rem);line-height:1.08}
+.rule{width:min(240px,60%);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);position:relative;margin-block:10px}
+.rule i{position:absolute;left:50%;top:50%;width:7px;height:7px;background:var(--gold);transform:translate(-50%,-50%) rotate(45deg)}
+
+.btn-gold,.btn-line{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-ui);font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;padding:15px 26px;cursor:pointer;position:relative;overflow:hidden;transition:transform .4s ease,box-shadow .4s ease,background .4s ease}
+.btn-gold{color:#15100a;background:linear-gradient(180deg,#f5e0a6,#d8b468 55%,#b8924a);border:0;box-shadow:0 0 0 1px rgba(255,240,200,.45) inset,0 12px 34px -12px rgba(221,185,108,.75)}
+.btn-gold::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%,60%{left:-60%}100%{left:130%}}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,240,200,.6) inset,0 18px 40px -12px rgba(221,185,108,.9)}
+.btn-line{color:var(--gold-hi);background:rgba(8,10,24,.45);border:1px solid var(--line)}
+.btn-line:hover{background:rgba(221,185,108,.14);transform:translateY(-2px)}
+
+/* ---------- gate ---------- */
+.gate{position:fixed;inset:0;z-index:10;display:grid;place-items:center;text-align:center;text-shadow:0 1px 18px rgba(0,0,0,.75);
+  padding:max(22px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(22px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.gate-in{display:grid;justify-items:center;gap:clamp(10px,2.1vh,20px)}
+.gate-in>*{transition:opacity .7s ease,transform .7s ease}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.gate-in>*{animation:rise 1.2s cubic-bezier(.2,.7,.1,1) both}
+.gate-in>*:nth-child(1){animation-delay:.2s}.gate-in>*:nth-child(2){animation-delay:.45s}.gate-in>*:nth-child(3){animation-delay:.6s}
+.gate-in>*:nth-child(4){animation-delay:1.4s}.gate-in>*:nth-child(5){animation-delay:1.6s}.gate-in>*:nth-child(6){animation-delay:1.8s}
+html.opening .gate{pointer-events:none}
+html.opening .gate-in>*{opacity:0!important;transform:translateY(-10px)!important;animation:none}
+.g-bism{font-family:var(--f-ar);font-size:clamp(1.5rem,4.8vw,2.1rem);color:var(--gold-hi);direction:rtl;line-height:1.6}
+.st-seal{width:clamp(210px,46vmin,380px);aspect-ratio:1}
+.g-names{font-family:var(--f-display);font-style:italic;font-size:clamp(1.5rem,5.4vw,2.3rem);line-height:1.25}
+.nw{white-space:nowrap}
+.g-when{font-family:var(--f-ui);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-right:-.22em}
+.g-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+
+.coin{display:none}
+.nogl .coin{display:flex;align-items:center;justify-content:center;gap:.08em;width:100%;height:100%;border-radius:50%;color:#3d2a0c;font-family:var(--f-display);font-size:clamp(2.4rem,8vmin,4rem);
+  background:radial-gradient(circle at 35% 30%,#fff3cf,#d9b86f 35%,#a47c38 70%,#6d4f1f);box-shadow:0 20px 50px rgba(0,0,0,.5),inset 0 2px 6px rgba(255,255,255,.4)}
+
+/* ---------- chapters ---------- */
+main{position:relative;z-index:4;transition:opacity 1.4s ease .2s}
+html:not(.opened) main,html.replay main{opacity:0;pointer-events:none}
+.ch{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(90px,13vh,150px);text-align:center;text-shadow:0 1px 18px rgba(0,0,0,.7)}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:grid;justify-items:center;gap:18px}
+
+/* I. Bismillah */
+.st-bism{width:min(100%,920px);height:clamp(130px,24vh,240px);display:grid;place-items:center}
+.ar{font-family:var(--f-ar);font-weight:700;font-size:clamp(2.2rem,8vw,5rem);color:var(--gold-hi);direction:rtl;line-height:1.4}
+.gl .ar{opacity:0}
+.trans{font-style:italic;font-size:clamp(1.15rem,2.6vw,1.45rem);color:var(--text)}
+.blessed{font-family:var(--f-display);font-style:italic;font-size:clamp(1.45rem,3.6vw,2.1rem);color:var(--text)}
+.cue{position:absolute;left:50%;bottom:max(26px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:10px;color:var(--soft);text-decoration:none;font-family:var(--f-ui);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase}
+.cue i{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* II. The couple */
+.couple{position:relative;display:grid;justify-items:center;gap:22px;width:100%;padding-block:20px}
+.lead{font-style:italic;font-size:clamp(1.2rem,2.8vw,1.5rem);color:var(--text);max-width:28ch}
+.names{display:grid;justify-items:center;gap:6px}
+.who{display:grid;justify-items:center;gap:12px}
+.pre{font-family:var(--f-ui);font-size:.95rem;letter-spacing:.6em;color:var(--gold);margin-right:-.6em}
+.nm{display:block;font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 20;font-size:clamp(3.4rem,15vw,8.2rem);line-height:1;padding:0 .1em .08em}
+.cred{font-family:var(--f-ui);font-size:.84rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi);line-height:1.9;margin-right:-.2em}
+.par{font-style:italic;font-size:1.2rem;color:var(--text)}
+.and{display:block;font-size:clamp(3rem,9vw,5rem);line-height:1;margin-block:14px 6px}
+
+/* III. The date */
+.bigdate{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(14px,4vw,40px);width:min(100%,760px)}
+.bd-side{font-family:var(--f-ui);font-size:.84rem;letter-spacing:.26em;text-transform:uppercase;color:var(--text);padding-block:10px;border-block:1px solid var(--line)}
+.bd-num{font-family:var(--f-display);font-size:clamp(5rem,18vw,10rem);line-height:1.02;padding:0 .06em}
+.bd-num .amp{font-size:.5em;margin-inline:.1em;vertical-align:.25em}
+.bd-month{font-family:var(--f-ui);font-size:.95rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-right:-.5em}
+.city{font-family:var(--f-display);font-style:italic;font-size:clamp(1.6rem,4vw,2.3rem)}
+.st-char{width:min(100%,680px);height:clamp(250px,48vh,480px);margin-top:6px}
+.st-char svg{width:100%;height:100%}
+
+/* IV. Countdown */
+.st-dial{--d:min(86vw,62vh,540px);width:var(--d);height:var(--d);margin-top:16px;display:grid;place-items:center}
+.dial-in{display:grid;justify-items:center;gap:4px}
+.dial-in b{font-family:var(--f-display);font-weight:400;font-size:calc(var(--d) * .23);line-height:1;color:var(--text);font-variant-numeric:lining-nums tabular-nums}
+.dl{font-family:var(--f-ui);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-right:-.26em}
+.hms{display:grid;grid-template-columns:repeat(3,calc(var(--d) * .2));margin-top:calc(var(--d) * .04)}
+.hms p{display:grid;justify-items:center;gap:2px;border-left:1px solid var(--line-soft)}
+.hms p:first-child{border-left:0}
+.hms span{font-family:var(--f-display);font-size:calc(var(--d) * .085);line-height:1.15;font-variant-numeric:lining-nums tabular-nums;color:var(--text)}
+.hms small{font-family:var(--f-ui);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-right:-.16em}
+
+/* V. Celebrations */
+.events{justify-self:stretch;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(48px,5vw,60px);margin-top:clamp(56px,8vw,90px)}
+.ev{position:relative}
+.ev::before{content:"";position:absolute;left:50%;top:-14px;width:9px;height:9px;transform:translateX(-50%) rotate(45deg);background:var(--gold-hi);box-shadow:0 0 16px var(--gold)}
+.ev-top{display:block;width:100%;height:auto;overflow:visible}
+.ev-top .f{fill:var(--glass)}
+.ev-top .o{fill:none;stroke:var(--gold);stroke-width:1;vector-effect:non-scaling-stroke}
+.ev-top .i{fill:none;stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.ev-body{position:relative;margin-top:-1px;background:var(--glass);border:1px solid var(--gold);border-top:0;padding:0 clamp(20px,4vw,40px) 42px;display:grid;gap:12px;text-align:center}
+.ev-body::before{content:"";position:absolute;left:2.25%;right:2.25%;top:0;bottom:8px;border:1px solid var(--line);border-top:0;pointer-events:none}
+.ev-body>:first-child{margin-top:-12%}
+.hijri{font-size:1.02rem;font-style:italic;color:var(--soft);margin-top:-6px}
+.ev h3{font-family:var(--f-display);font-style:italic;font-size:clamp(2.7rem,6vw,3.7rem);line-height:1.12;padding:0 .08em}
+.time{font-family:var(--f-ui);font-size:.95rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text);margin-right:-.22em}
+.venue{margin-top:6px;padding-top:20px;border-top:1px solid var(--line-soft);display:grid;gap:4px}
+.venue strong{font-family:var(--f-display);font-weight:400;font-size:1.6rem;color:var(--gold-hi)}
+.venue span{color:var(--soft);font-size:1.02rem}
+.links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px;position:relative}
+
+/* VI. Verse */
+.st-rings{width:min(100%,560px);height:clamp(200px,34vh,360px)}
+.verse{margin:0;max-width:22ch;font-family:var(--f-display);font-style:italic;font-size:clamp(2rem,5.2vw,3.4rem);line-height:1.2;color:var(--text);text-wrap:balance}
+.nogl .st-rings{display:none}
+
+/* VII. Details */
+.details{justify-self:stretch;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(22px,4vw,40px);margin-top:clamp(40px,6vw,70px);text-align:left}
+.panel{position:relative;background:var(--glass);border:1px solid var(--line);outline:1px solid var(--line-soft);outline-offset:-9px;padding:clamp(34px,5vw,56px);display:grid;gap:16px;align-content:start;min-width:0}
+.panel::before,.panel::after{content:"";position:absolute;width:9px;height:9px;background:var(--gold);transform:rotate(45deg)}
+.panel::before{top:-5px;left:-5px}.panel::after{bottom:-5px;right:-5px}
+.panel h3{font-family:var(--f-display);font-style:italic;font-size:clamp(2rem,4.2vw,2.9rem);line-height:1.1;color:var(--gold-hi)}
+.panel p{font-size:1.16rem;color:var(--text)}
+.panel .sig{font-family:var(--f-display);font-style:italic;font-size:1.3rem;color:var(--gold-hi);padding-top:16px;border-top:1px solid var(--line-soft)}
+.gifts{text-align:center;align-content:center}
+
+/* VIII. Finale */
+.st-medal{width:clamp(220px,40vmin,380px);aspect-ratio:1}
+.fin-names{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 20;font-size:clamp(3rem,10vw,6rem);line-height:1.15;padding:0 .1em}
+.compl{font-style:italic;font-size:1.15rem;color:var(--text)}
+#replay{margin-top:18px}
+
+/* ---------- chrome ---------- */
+.dots{position:fixed;right:max(24px,calc(env(safe-area-inset-right,0px) + 24px));top:50%;transform:translateY(-50%);z-index:9;display:grid;gap:18px;opacity:0;pointer-events:none;transition:opacity 1s}
+html.opened .dots{opacity:1;pointer-events:auto}
+.dots button{width:11px;height:11px;padding:0;border:1px solid var(--gold);background:transparent;transform:rotate(45deg);cursor:pointer;transition:background .4s,box-shadow .4s}
+.dots button[aria-current="true"]{background:var(--gold-hi);box-shadow:0 0 14px var(--gold)}
+@media (max-height:700px){.st-seal{width:clamp(160px,30vh,280px)}.gate-in{gap:9px}}
+@media (max-width:860px){
+  .events,.details{grid-template-columns:1fr}
+  .dots{display:none}
+}
+@media (max-width:520px){
+  .bigdate{grid-template-columns:1fr 1fr;grid-template-areas:"num num" "l r";row-gap:12px}
+  .bd-num{grid-area:num}
+  .bigdate .bd-side:first-child{grid-area:l}
+  .bigdate .bd-side:last-child{grid-area:r}
+  .bd-side{letter-spacing:.2em}
+  .btn-gold,.btn-line{padding:14px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- film: one idea per scene, sized for a phone held upright (540 x 960 design) ---------- */
+.film{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.st{position:absolute;margin:0}
+.st-bism{left:20px;right:20px;top:118px;width:auto;height:290px}
+.st-seal{left:calc(50% - 185px);top:330px;width:370px;height:370px}
+.st-rose{left:calc(50% - 260px);top:215px;width:520px;height:520px}
+.st-char{left:22px;right:22px;top:468px;width:auto;height:410px;margin:0}
+.st-rings{left:0;right:0;top:150px;width:auto;height:330px}
+.st-medal{left:calc(50% - 165px);top:186px;width:330px;height:330px}
+.flash{position:absolute;left:50%;top:515px;width:1100px;height:1100px;margin:-550px 0 0 -550px;border-radius:50%;opacity:0;transform:scale(.15);
+  background:radial-gradient(closest-side,rgba(255,246,220,.95),rgba(248,220,160,.5) 30%,rgba(248,220,160,0) 70%)}
+.flash.go{animation:flash 1.3s cubic-bezier(.2,.6,.3,1) forwards}
+@keyframes flash{0%{opacity:0;transform:scale(.15)}15%{opacity:.9}100%{opacity:0;transform:scale(1.2)}}
+
+.sc{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;justify-items:center;gap:20px;text-align:center;padding:60px 30px;
+  text-shadow:0 2px 22px rgba(0,0,0,.95),0 0 3px rgba(0,0,0,.6);transition:transform 12s linear}
+.sc.on{transform:scale(1.04)}
+.sc.out{transform:scale(1.06)}
+.sc>*,.sc .card-in>*{opacity:0;transform:translateY(24px);filter:blur(7px);transition:opacity 1.3s ease,transform 1.7s cubic-bezier(.2,.7,.1,1),filter 1.3s ease}
+.sc>.foil,.sc .card-in>.foil{filter:blur(7px) drop-shadow(0 2px 10px rgba(0,0,0,0))}
+.sc.on>*,.sc.on .card-in>*{opacity:1;transform:none;filter:blur(0px)}
+.sc.on>.foil,.sc.on .card-in>.foil{filter:blur(0px) drop-shadow(0 2px 10px rgba(0,0,0,.85))}
+.sc.on>*:nth-child(2),.sc.on .card-in>*:nth-child(2){transition-delay:.5s}
+.sc.on>*:nth-child(3),.sc.on .card-in>*:nth-child(3){transition-delay:1s}
+.sc.on>*:nth-child(4),.sc.on .card-in>*:nth-child(4){transition-delay:1.5s}
+.sc.on .card-in>*:nth-child(5){transition-delay:1.9s}.sc.on .card-in>*:nth-child(6){transition-delay:2.3s}.sc.on .card-in>*:nth-child(7){transition-delay:2.7s}
+.sc.out>*,.sc.out .card-in>*{opacity:0;transform:translateY(-16px);filter:blur(5px);transition:opacity 1s ease,transform 1.1s ease,filter 1s ease}
+.sc.out>.foil,.sc.out .card-in>.foil{filter:blur(5px) drop-shadow(0 2px 10px rgba(0,0,0,0))}
+
+.sc .lbl{font-family:var(--f-ui);font-size:21px;line-height:1.5;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-right:-.24em}
+.sc .lbl.big{font-size:26px;letter-spacing:.34em;margin-right:-.34em}
+.sc .lbl.tight{font-size:20px;letter-spacing:.11em;margin-right:-.11em;color:var(--text)}
+.sc .tr{font-family:var(--f-body);font-style:italic;font-weight:400;font-size:27px;line-height:1.45;color:var(--text)}
+.sc .bless{font-family:var(--f-display);font-style:italic;font-variation-settings:"opsz" 14;font-size:41px;line-height:1.2;color:var(--text)}
+.sc .rule{width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);position:relative;margin-block:6px}
+.sc .rule i{position:absolute;left:50%;top:50%;width:8px;height:8px;background:var(--gold);transform:translate(-50%,-50%) rotate(45deg)}
+.sc .pre{font-family:var(--f-ui);font-size:22px;line-height:1.4;letter-spacing:.6em;color:var(--gold);margin-right:-.6em}
+.sc .nm{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 22;font-size:106px;line-height:1.02;padding:0 .1em .06em}
+.sc .cred{font-family:var(--f-ui);font-size:20px;letter-spacing:.08em;line-height:1.7;text-transform:uppercase;color:var(--gold-hi);margin-right:-.08em}
+.sc .par{font-family:var(--f-body);font-style:italic;font-weight:400;font-size:29px;line-height:1.4;color:var(--text)}
+.sc .amp-big{font-size:96px;line-height:1;margin-bottom:-8px}
+.sc .dd{font-family:var(--f-display);font-variation-settings:"opsz" 30;font-size:176px;line-height:1.05}
+.sc .dd .amp{font-size:.5em;margin-inline:.1em;vertical-align:.25em}
+.sc .mo{font-family:var(--f-ui);font-size:23px;line-height:1.5;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-right:-.42em}
+.sc .city{font-family:var(--f-display);font-style:italic;font-variation-settings:"opsz" 14;font-size:40px;line-height:1.3;color:var(--text)}
+.sc .verse{font-family:var(--f-display);font-style:italic;font-variation-settings:"opsz" 14;font-size:45px;line-height:1.24;color:var(--text);max-width:none}
+.sc .fn{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 22;font-size:60px;line-height:1.15;white-space:nowrap;padding:0 .1em}
+.cover{display:grid;justify-items:center;gap:12px}
+#s1{align-content:space-between;padding:428px 30px 150px}
+#s2{align-content:start;padding-top:246px}
+#s6{align-content:start;padding-top:70px;gap:12px}
+#s9{align-content:start;padding-top:508px;gap:24px}
+#s10{align-content:start;padding-top:556px;gap:20px}
+
+.card{position:relative;width:480px;height:720px}
+.card-a{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.card-a .f{fill:rgba(8,10,24,.78)}
+.card-a .o{fill:none;stroke:var(--gold);stroke-width:2}
+.card-a .i{fill:none;stroke:var(--line);stroke-width:1}
+.card-in{position:absolute;left:30px;right:30px;top:150px;bottom:44px;display:grid;grid-template-columns:minmax(0,1fr);align-content:center;justify-items:center;gap:13px}
+.card-in .evn{font-family:var(--f-display);font-style:italic;font-weight:500;font-variation-settings:"opsz" 22;font-size:76px;line-height:1.1;padding:0 .08em;white-space:nowrap}
+.card-in .dt{font-family:var(--f-display);font-variation-settings:"opsz" 14;font-size:31px;line-height:1.3;color:var(--text);white-space:nowrap}
+.card-in .hij{font-family:var(--f-body);font-style:italic;font-weight:400;font-size:24px;line-height:1.3;color:var(--soft)}
+.card-in .tm{font-family:var(--f-ui);font-size:26px;line-height:1.3;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi);margin:6px -.2em 0 0}
+.card-in .ven{font-family:var(--f-display);font-variation-settings:"opsz" 14;font-size:41px;line-height:1.2;color:var(--gold-hi);white-space:nowrap}
+.card-in .adr{font-family:var(--f-body);font-weight:400;font-size:27px;line-height:1.4;color:var(--text)}
+</style>
+<noscript><style>main{opacity:1!important;pointer-events:auto!important}.gate{display:none}html body{overflow:auto!important}</style></noscript>
+
+<div class="sky" aria-hidden="true"></div>
+<div class="rays" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="vig" aria-hidden="true"></div>
+
+<div class="film" aria-hidden="true">
+  <div class="st st-bism" data-stage="bismillah"></div>
+  <div class="st st-seal" data-stage="seal"></div>
+  <div class="st st-rose" data-stage="rosette"></div>
+  <div class="st st-char" data-stage="charminar"></div>
+  <div class="st st-rings" data-stage="rings"></div>
+  <div class="st st-medal" data-stage="medallion"></div>
+  <div class="flash" id="flash"></div>
+
+  <section class="sc" id="s1">
+    <p class="tr">In the name of Allah,<br>the Most Gracious, the Most Merciful</p>
+    <div class="cover"><p class="lbl">Wedding Invitation</p><p class="fn foil">Naveed <span class="amp">&amp;</span> Sadia</p><p class="lbl tight">7 &amp; 9 January 2027 · Hyderabad</p></div>
+  </section>
+  <section class="sc" id="s2"><p class="lbl big">You are invited</p></section>
+  <section class="sc" id="s3"><p class="lbl">With the blessings of</p><p class="bless">Late Mrs. &amp; Mr.<br>Syed Chand Sahab</p><p class="rule"><i></i></p><p class="tr">request the pleasure<br>of your company<br>at the wedding of</p></section>
+  <section class="sc" id="s4"><p class="pre">SYED</p><p class="nm foil">Naveed<br>Ahmed</p><p class="cred">MBA (Cloud Computing)<br>Dublin, Ireland</p><p class="par">Son of Mrs. &amp; Mr.<br>Syed Arif Ahmed</p></section>
+  <section class="sc" id="s5"><p class="amp-big foil amp">&amp;</p><p class="nm foil">Sadia<br>Ahmed</p><p class="cred">MA Social Sciences (Psychology)<br>Hyderabad, India</p><p class="par">Daughter of Mrs. &amp; Mr.<br>Basheer Ahmed</p></section>
+  <section class="sc" id="s6"><p class="lbl">In Sha Allah</p><p class="dd foil">7<span class="amp">&amp;</span>9</p><p class="mo">January 2027</p><p class="city">Hyderabad, India</p></section>
+  <section class="sc" id="s7"><div class="card"><svg class="card-a" viewBox="0 0 480 720" aria-hidden="true"><path class="f" d="M8.0 712.0V176.0C8.0 101.3 144.9 90.7 207.5 48.0Q240.0 16.0 272.5 48.0C335.1 90.7 472.0 101.3 472.0 176.0V712.0Z"/><path class="o" d="M8.0 712.0V176.0C8.0 101.3 144.9 90.7 207.5 48.0Q240.0 16.0 272.5 48.0C335.1 90.7 472.0 101.3 472.0 176.0V712.0Z"/><path class="i" d="M22.0 698.0V184.0C22.0 115.9 150.6 106.1 209.5 67.2Q240.0 38.0 270.5 67.2C329.4 106.1 458.0 115.9 458.0 184.0V698.0Z"/></svg><div class="card-in"><p class="evn foil">The Shaadi</p><p class="dt">Thursday · 7 January 2027</p><p class="hij">28th Rajab, 1448 Hijri</p><p class="tm">Dinner · 9:00 pm</p><p class="rule"><i></i></p><p class="ven">The Vintage Palace</p><p class="adr">Beside Mahboob Pride Palace,<br>Karwan, Hyderabad</p></div></div></section>
+  <section class="sc" id="s8"><div class="card"><svg class="card-a" viewBox="0 0 480 720" aria-hidden="true"><path class="f" d="M8.0 712.0V176.0C8.0 101.3 144.9 90.7 207.5 48.0Q240.0 16.0 272.5 48.0C335.1 90.7 472.0 101.3 472.0 176.0V712.0Z"/><path class="o" d="M8.0 712.0V176.0C8.0 101.3 144.9 90.7 207.5 48.0Q240.0 16.0 272.5 48.0C335.1 90.7 472.0 101.3 472.0 176.0V712.0Z"/><path class="i" d="M22.0 698.0V184.0C22.0 115.9 150.6 106.1 209.5 67.2Q240.0 38.0 270.5 67.2C329.4 106.1 458.0 115.9 458.0 184.0V698.0Z"/></svg><div class="card-in"><p class="evn foil">The Valima</p><p class="dt">Saturday · 9 January 2027</p><p class="hij">30th Rajab, 1448 Hijri</p><p class="tm">Dinner · 9:00 pm</p><p class="rule"><i></i></p><p class="ven">K.N. Convention</p><p class="adr">Opp. National Police Academy,<br>Shivarampally, Hyderabad</p></div></div></section>
+  <section class="sc" id="s9"><p class="verse">“And He placed<br>between you<br>affection and mercy.”</p><p class="lbl">Surah Ar-Rum · 30:21</p></section>
+  <section class="sc" id="s10"><p class="fn foil">Naveed <span class="amp">&amp;</span> Sadia</p><p class="lbl">#NaveedWedsSadia</p><p class="tr">With best compliments<br>from Near &amp; Dear</p></section>
+</div>
+<div hidden><div id="gate"><button id="openBtn" type="button"></button></div><div id="events"></div><b id="cdD"></b><span id="cdH"></span><span id="cdM"></span><span id="cdS"></span><button id="replay" type="button"></button></div>
+
+
+<nav class="dots" id="dots" aria-label="Chapters"></nav>
+
+
+<script>
+(() => {
+"use strict";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const root = document.documentElement;
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+root.dataset.ch = "gate";
+
+/* ============ EDIT YOUR DETAILS HERE ============ */
+const WEDDING = {
+  tz: "+05:30",
+  events: [
+    { name: "The Shaadi", date: "Thursday · 7 January 2027", hijri: "28th Rajab, 1448 Hijri",
+      start: "2027-01-07T21:00", end: "2027-01-07T23:59", time: "Dinner · 9:00 pm",
+      desc: "The Nikah ceremony and wedding celebration with family and friends.",
+      venue: "The Vintage Palace", address: "Beside Mahboob Pride Palace, Karwan, Hyderabad",
+      map: "https://share.google/gVLL5j5gt2xB3vRKx" },
+    { name: "The Valima", date: "Saturday · 9 January 2027", hijri: "30th Rajab, 1448 Hijri",
+      start: "2027-01-09T21:00", end: "2027-01-09T23:59", time: "Dinner · 9:00 pm",
+      desc: "An evening reception and dinner hosted by the groom's family to celebrate the new couple.",
+      venue: "K.N. Convention", address: "Opp. National Police Academy, Shivarampally, Hyderabad",
+      map: "https://share.google/c2ymMuRyftisjTpzt" }
+  ]
+};
+/* ================================================ */
+
+/* ---------- celebrations ---------- */
+const gcal = e => {
+  const f = s => s.replace(/[-:]/g, "") + "00";
+  const p = new URLSearchParams({action: "TEMPLATE", text: e.name + " · Naveed & Sadia", dates: f(e.start) + "/" + f(e.end), ctz: "Asia/Kolkata",
+    location: e.venue + ", " + e.address, details: e.desc + "\n\nLocation: " + e.map});
+  return "https://calendar.google.com/calendar/render?" + p.toString();
+};
+const ARCH = `<svg class="ev-top" viewBox="0 0 400 118" aria-hidden="true">
+  <path class="f" d="M0 118V80C0 41 116 35 170 13Q200 -3 230 13C284 35 400 41 400 80V118Z"/>
+  <path class="o" d="M.5 118V80C.5 41 116 35 170 13Q200 -3 230 13C284 35 399.5 41 399.5 80V118"/>
+  <path class="i" d="M9 118V82C9 48 120 42 173 21Q200 7 227 21C280 42 391 48 391 82V118"/></svg>`;
+$("#events").innerHTML = WEDDING.events.map(e => `
+  <article class="ev">${ARCH}
+    <div class="ev-body">
+      <p class="label">${esc(e.date)}</p>
+      <p class="hijri">${esc(e.hijri)}</p>
+      <h3 class="foil">${esc(e.name)}</h3>
+      <p class="time">${esc(e.time)}</p>
+      <div class="venue"><strong>${esc(e.venue)}</strong><span>${esc(e.address)}</span></div>
+      <div class="links">
+        <a class="btn-gold" href="${esc(e.map)}" target="_blank" rel="noopener">Directions</a>
+        <a class="btn-line" href="${esc(gcal(e))}" target="_blank" rel="noopener">Save the date</a>
+      </div>
+    </div>
+  </article>`).join("");
+
+/* ---------- countdown ---------- */
+const target = new Date(WEDDING.events[0].start + ":00" + WEDDING.tz);
+const pad = (n, l = 2) => String(n).padStart(l, "0");
+function tick(){
+  const s = Math.floor(Math.max(0, target - Date.now()) / 1000);
+  $("#cdD").textContent = pad(Math.floor(s / 86400), 3);
+  $("#cdH").textContent = pad(Math.floor(s % 86400 / 3600));
+  $("#cdM").textContent = pad(Math.floor(s % 3600 / 60));
+  $("#cdS").textContent = pad(s % 60);
+}
+tick(); setInterval(tick, 1000);
+
+/* ---------- chapters + dots ---------- */
+const chapters = $$("section[data-ch]");
+const dots = $("#dots");
+chapters.forEach((sec, i) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.id = "dot-" + i; b.title = sec.dataset.title; b.setAttribute("aria-label", "Go to " + sec.dataset.title);
+  b.addEventListener("click", () => sec.scrollIntoView({behavior: RM ? "auto" : "smooth"}));
+  dots.appendChild(b);
+});
+let activeSec = null;
+function detect(){
+  const mid = innerHeight * .5; let best = chapters[0], bd = Infinity;
+  for (const s of chapters){
+    const r = s.getBoundingClientRect();
+    if (r.top <= mid && r.bottom >= mid){ best = s; break; }
+    const d = Math.min(Math.abs(r.top - mid), Math.abs(r.bottom - mid));
+    if (d < bd){ bd = d; best = s; }
+  }
+  if (best !== activeSec){
+    activeSec = best;
+    if (root.classList.contains("opened")){ root.dataset.ch = best.dataset.ch; FX.chapter(best.dataset.ch); }
+    [...dots.children].forEach((b, i) => b.setAttribute("aria-current", chapters[i] === best ? "true" : "false"));
+  }
+  return best;
+}
+
+/* ---------- rose petals, lanterns and fireworks: a few, at chosen moments only ----------
+   Petals fall for a few seconds after the invitation opens. Fireworks rise over the Charminar while
+   the date is on screen, with a short volley at the finale. Lanterns drift up behind the verse and the
+   details. Everything sits behind the text, and the loop stops itself whenever nothing is showing. */
+const FX = (() => {
+  const R = Math.random, cv = $("#fx");
+  if (RM || !cv || !cv.getContext) return {chapter(){}, petals(){}};
+  const x = cv.getContext("2d");
+  let W = 0, H = 0, run = false, last = 0;
+  const fit = () => { const pr = Math.min(window.devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = Math.round(W * pr); cv.height = Math.round(H * pr); x.setTransform(pr, 0, 0, pr, 0, 0); };
+  fit(); addEventListener("resize", fit);
+  const small = () => W < 700;
+  const sprite = (w, h, draw) => { const c = document.createElement("canvas"); c.width = w; c.height = h; draw(c.getContext("2d")); return c; };
+  const PETALS = [["#9e1534", "#d4485f", "#5e0a1f"], ["#b81f3f", "#ea6b7c", "#6d0d22"], ["#c73a55", "#f19aa6", "#7d1428"], ["#e8a1aa", "#fbd9dc", "#b8646f"], ["#f3e3d3", "#fffaf2", "#cdb59c"]].map(([base, light, dark]) => sprite(64, 64, p => {
+    p.translate(32, 32); const g = p.createRadialGradient(-6, -10, 2, 0, 0, 34); g.addColorStop(0, light); g.addColorStop(.65, base); g.addColorStop(1, dark);
+    p.fillStyle = g; p.beginPath(); p.moveTo(0, -20); p.bezierCurveTo(12, -30, 28, -16, 22, 4); p.bezierCurveTo(16, 22, 4, 28, 0, 30); p.bezierCurveTo(-4, 28, -16, 22, -22, 4); p.bezierCurveTo(-28, -16, -12, -30, 0, -20); p.fill();
+    p.strokeStyle = "rgba(255,255,255,.16)"; p.lineWidth = 1; p.beginPath(); p.moveTo(0, -14); p.quadraticCurveTo(3, 6, 0, 24); p.stroke();
+  }));
+  const LANTERN = sprite(64, 90, p => {
+    const body = new Path2D("M14 10H50Q58 45 54 78H10Q6 45 14 10Z"), g = p.createLinearGradient(0, 10, 0, 78);
+    g.addColorStop(0, "#ffd88a"); g.addColorStop(.55, "#ffb04a"); g.addColorStop(1, "#e47a26"); p.fillStyle = g; p.fill(body);
+    const core = p.createRadialGradient(32, 62, 2, 32, 58, 26); core.addColorStop(0, "rgba(255,250,225,.95)"); core.addColorStop(1, "rgba(255,200,110,0)"); p.fillStyle = core; p.fill(body);
+    p.fillStyle = "#7a3b12"; p.fillRect(13, 8, 38, 4); p.fillRect(9, 77, 46, 4);
+  });
+  const GLOW = sprite(128, 128, p => { const g = p.createRadialGradient(64, 64, 0, 64, 64, 64); g.addColorStop(0, "rgba(255,196,100,.85)"); g.addColorStop(.35, "rgba(255,160,70,.35)"); g.addColorStop(1, "rgba(255,140,60,0)"); p.fillStyle = g; p.fillRect(0, 0, 128, 128); });
+  const PAL = ["#ffe7a8", "#f8c76a", "#fff6e0", "#f29fb2", "#ddb96c"];
+
+  const petals = [], lanterns = [], rockets = [], sparks = [], flashes = [];
+  let petalUntil = 0, petalFade = Infinity, petalAcc = 0, lanternsOn = false, fireOn = false, nextRocket = 0, volley = [], lastVolley = -1e9;
+  const launch = (x0, y0, ty, c) => rockets.push({x: x0, y: y0, vy: -(H * .011 + R() * H * .004), ty, c});
+  function charminar(){ const el = document.querySelector('[data-stage="charminar"]'); if (!el) return null; const r = el.getBoundingClientRect(); return r.bottom < 0 || r.top > H ? null : r; }
+
+  function tick(now){
+    if (!run) return;
+    const dt = Math.min(.05, Math.max(.001, (now - last) / 1000)); last = now; const f = dt * 60;
+    if (now < petalUntil){ petalAcc += dt * 2.2; while (petalAcc >= 1){ petalAcc -= 1; petals.push({x: W * (R() < .65 ? (R() < .5 ? R() * .2 : .8 + R() * .2) : R()), y: -30 - R() * 40, z: .5 + R() * .6, r: R() * 6.28, vr: (R() - .5) * .04, fl: R() * 6.28, vfl: .03 + R() * .05, sw: R() * 6.28, vy: 1.2 + R() * 1.1, sp: (R() * PETALS.length) | 0, s: 16 + R() * 18}); } }
+    if (lanternsOn && lanterns.length < 8 && R() < dt * 1.5) lanterns.push({x: W * (lanterns.length % 2 ? .05 + R() * .15 : .8 + R() * .15), y: H + 60, z: .35 + R() * .65, sw: R() * 6.28, fl: R() * 6.28, a: 0});
+    if (fireOn && now > nextRocket){ const r = charminar(); if (r){ nextRocket = now + 1700 + R() * 1300; const side = R() < .5 ? .05 + R() * .2 : .75 + R() * .2; launch(r.left + r.width * side, r.bottom, r.top + r.height * (.04 + R() * .22), PAL[(R() * PAL.length) | 0]); } }
+    while (volley.length && now >= volley[0].at){ const v = volley.shift(); launch(v.x, H * .95, v.ty, v.c); }
+
+    x.clearRect(0, 0, W, H);
+    for (let i = lanterns.length - 1; i >= 0; i--){
+      const p = lanterns[i]; p.sw += .012 * f; p.fl += .2 * f; p.y -= (1 + p.z * 1.3) * f; p.x += Math.sin(p.sw) * .2 * f * p.z; p.a = lanternsOn ? Math.min(1, p.a + dt * .8) : p.a - dt * .5;
+      if (p.y < -100 || p.a <= 0){ lanterns.splice(i, 1); continue; }
+      const s = 30 + p.z * 44, fk = .85 + .15 * Math.sin(p.fl) * Math.sin(p.fl * .37), fade = Math.max(0, Math.min(1, p.y / (H * .25))) * p.a;
+      x.globalCompositeOperation = "lighter"; x.globalAlpha = .5 * fk * p.z * fade; x.drawImage(GLOW, p.x - s * 1.6, p.y - s * 1.6, s * 3.2, s * 3.2);
+      x.globalCompositeOperation = "source-over"; x.globalAlpha = (.5 + .45 * p.z) * fade; x.drawImage(LANTERN, p.x - s * .32, p.y - s * .45, s * .64, s * .9);
+    }
+    x.globalCompositeOperation = "lighter";
+    for (let i = rockets.length - 1; i >= 0; i--){
+      const r = rockets[i]; r.y += r.vy * f; x.globalAlpha = .85; x.fillStyle = "#ffe9b8"; x.fillRect(r.x - 1, r.y, 2, 6);
+      if (r.y <= r.ty){ rockets.splice(i, 1); flashes.push({x: r.x, y: r.y, life: 1}); const n = 120; for (let j = 0; j < n; j++){ const a = R() * 6.283, sp = R() < .6 ? 2.8 + R() * .7 : .8 + R() * 2; sparks.push({x: r.x, y: r.y, px: r.x, py: r.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, life: 1, dec: .009 + R() * .008, c: R() < .7 ? r.c : "#fff6e0"}); } }
+    }
+    for (let i = flashes.length - 1; i >= 0; i--){ const q = flashes[i]; q.life -= .07 * f; if (q.life <= 0){ flashes.splice(i, 1); continue; } const fs = 150 + 170 * (1 - q.life); x.globalAlpha = q.life * .75; x.drawImage(GLOW, q.x - fs / 2, q.y - fs / 2, fs, fs); }
+    x.lineWidth = 2; x.lineCap = "round";
+    for (let i = sparks.length - 1; i >= 0; i--){
+      const s = sparks[i]; s.px = s.x; s.py = s.y; s.vx *= Math.pow(.985, f); s.vy = s.vy * Math.pow(.985, f) + .04 * f; s.x += s.vx * f; s.y += s.vy * f; s.life -= s.dec * f;
+      if (s.life <= 0){ sparks.splice(i, 1); continue; }
+      x.globalAlpha = s.life; x.strokeStyle = s.c; x.beginPath(); x.moveTo(s.px, s.py); x.lineTo(s.x, s.y); x.stroke();
+    }
+    x.globalCompositeOperation = "source-over";
+    const pf = Math.max(0, Math.min(1, 1 - (now - Math.min(petalFade, petalUntil + 3000)) / 1800));
+    if (pf <= 0 && now > petalUntil) petals.length = 0;
+    for (let i = petals.length - 1; i >= 0; i--){
+      const p = petals[i]; p.sw += .02 * f; p.fl += p.vfl * f; p.r += p.vr * f; p.x += Math.sin(p.sw) * .4 * p.z * f; p.y += p.vy * p.z * f;
+      if (p.y > H + 40){ petals.splice(i, 1); continue; }
+      const sc = p.s * p.z / 32; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.scale(Math.cos(p.fl) * sc, sc); x.globalAlpha = .8 * pf; x.drawImage(PETALS[p.sp], -32, -32); x.restore();
+    }
+    x.globalAlpha = 1;
+    if (now < petalUntil || petals.length || lanterns.length || lanternsOn || fireOn || rockets.length || sparks.length || volley.length) requestAnimationFrame(tick);
+    else { run = false; x.clearRect(0, 0, W, H); }
+  }
+  const wake = () => { if (!run){ run = true; last = performance.now(); requestAnimationFrame(tick); } };
+  return {
+    petals(ms){ petalUntil = performance.now() + ms; petalFade = Infinity; wake(); },
+    rocket(x0, ty, c){ launch(x0, H * .95, ty, c); wake(); },
+    chapter(ch){
+      lanternsOn = ch === "verse" || ch === "details";
+      if (ch !== "bismillah" && ch !== "couple"){ petalFade = Math.min(petalFade, performance.now()); petalUntil = Math.min(petalUntil, performance.now()); }
+      fireOn = ch === "date"; if (fireOn) nextRocket = performance.now() + 700;
+      const t = performance.now();
+      if (ch === "finale" && t - lastVolley > 12000){ lastVolley = t; volley = [{at: t + 500, x: W * .28, ty: H * .22, c: "#f8c76a"}, {at: t + 1200, x: W * .72, ty: H * .18, c: "#f29fb2"}, {at: t + 1900, x: W * .5, ty: H * .1, c: "#fff6e0"}]; }
+      wake();
+    }
+  };
+})();
+
+/* ---------- Charminar line drawing (shared by particles and the fallback) ---------- */
+const CHARMINAR = (() => {
+  const P = [];
+  const arch = (x1, x2, yb, yt) => { const m = (x1 + x2) / 2, w = x2 - x1; return `M${x1} ${yb}V${yt + w * .45}Q${x1} ${yt + w * .1} ${m} ${yt}Q${x2} ${yt + w * .1} ${x2} ${yt + w * .45}V${yb}`; };
+  const rect = (x, y, w, h) => `M${x} ${y}H${x + w}V${y + h}H${x}Z`;
+  P.push("M14 246H286", "M24 238H276V246M24 238V232H276V238");
+  P.push(rect(62, 120, 176, 112));
+  P.push(arch(112, 188, 232, 128), arch(119, 181, 232, 139));
+  P.push(arch(72, 100, 232, 176), arch(200, 228, 232, 176));
+  P.push(arch(77, 95, 168, 148), arch(205, 223, 168, 148));
+  P.push(rect(62, 98, 176, 22));
+  for (let i = 0; i < 9; i++){ const x = 68 + i * 19; P.push(arch(x, x + 12, 118, 102)); }
+  P.push("M58 98H242");
+  for (let i = 0; i < 12; i++){ const x = 62 + i * 15.2; P.push(`M${x} 98V92H${x + 8}V98`); }
+  P.push(rect(96, 70, 108, 23));
+  for (let i = 0; i < 6; i++){ const x = 101 + i * 17; P.push(arch(x, x + 11, 93, 75)); }
+  P.push("M134 70C134 58 144 54 150 46C156 54 166 58 166 70", "M150 46V36");
+  [44, 256].forEach(cx => {
+    P.push(`M${cx - 9} 232V58M${cx + 9} 232V58`);
+    [172, 124, 84].forEach(y => P.push(rect(cx - 14, y, 28, 5)));
+    [192, 144, 100].forEach(y => P.push(arch(cx - 4, cx + 4, y + 16, y)));
+    P.push(`M${cx - 11} 58H${cx + 11}`);
+    P.push(`M${cx - 10} 58C${cx - 13} 44 ${cx - 4} 38 ${cx} 24C${cx + 4} 38 ${cx + 13} 44 ${cx + 10} 58`);
+    P.push(`M${cx} 24V13`, `M${cx - 2.2} 11a2.2 2.2 0 1 0 4.4 0a2.2 2.2 0 1 0 -4.4 0`);
+  });
+  return P;
+})();
+
+/* ---------- particle field ---------- */
+const canvas = $("#gl");
+let gl = null;
+try { gl = canvas.getContext("webgl", {alpha: true, premultipliedAlpha: true, antialias: false, depth: false, stencil: false, powerPreference: "high-performance"}); } catch (e) { gl = null; }
+
+const FOV = 45 * Math.PI / 180, UF = 1 / Math.tan(FOV / 2), CAMZ = 10;
+let vw = innerWidth, vh = innerHeight, PR = 1, aspect = 1, visH = 1, visW = 1, wpp = 1;
+const SMALL = false;
+const N = SMALL ? 9000 : 16000, SN = SMALL ? 650 : 1100;
+const pos = new Float32Array(N * 3), vel = new Float32Array(N * 3), col = new Float32Array(N * 3), meta = new Float32Array(N * 2), kk = new Float32Array(N);
+const spos = new Float32Array(SN * 3), scol = new Float32Array(SN * 3), smeta = new Float32Array(SN * 2);
+const forms = {};
+const rnd = Math.random;
+const gauss = () => { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+let starH = 40, prog = null; const loc = {}, bufs = {};
+
+function measure(){
+  vw = innerWidth; vh = innerHeight; PR = Math.min(window.devicePixelRatio || 1, 2);
+  aspect = vw / vh; visH = 2 * CAMZ / UF; visW = visH * aspect; wpp = visH / vh;
+  if (gl){ canvas.width = Math.round(vw * PR); canvas.height = Math.round(vh * PR); gl.viewport(0, 0, canvas.width, canvas.height); }
+}
+
+const VS = `
+attribute vec3 aPos; attribute vec3 aCol; attribute vec2 aMeta;
+uniform vec3 uCam; uniform float uF; uniform float uAspect; uniform float uPR; uniform float uTime;
+uniform float uSize; uniform float uAlpha; uniform float uWobble; uniform float uTwinkle; uniform float uShift; uniform float uWrap; uniform float uSparkle;
+varying vec3 vCol; varying float vA;
+void main(){
+  float s = aMeta.y;
+  vec3 p = aPos;
+  if (uWrap > 0.0) p.y = mod(p.y + uShift + uWrap * 0.5, uWrap) - uWrap * 0.5;
+  p.x += sin(uTime * 0.6 + s * 61.0) * uWobble;
+  p.y += cos(uTime * 0.8 + s * 37.0) * uWobble;
+  vec3 v = p - uCam;
+  float z = -v.z;
+  vCol = aCol;
+  if (z < 0.1){ gl_Position = vec4(0.0, 0.0, 2.0, 1.0); gl_PointSize = 0.0; vA = 0.0; return; }
+  gl_Position = vec4(v.x * uF / uAspect, v.y * uF, 0.0, z);
+  float sz = aMeta.x > 3.0 ? mix(2.2, aMeta.x, uSparkle) : aMeta.x;
+  gl_PointSize = max(1.0, sz * uSize * uPR * (${CAMZ.toFixed(1)} / z));
+  float tw = 1.0 - uTwinkle * (0.5 + 0.5 * sin(uTime * (1.1 + s * 3.3) + s * 97.0));
+  vA = uAlpha * tw;
+}`;
+const FS = `
+precision mediump float;
+varying vec3 vCol; varying float vA;
+void main(){
+  vec2 c = gl_PointCoord - 0.5;
+  float d = length(c);
+  if (d > 0.5) discard;
+  float a = smoothstep(0.5, 0.12, d);
+  float core = smoothstep(0.22, 0.0, d);
+  gl_FragColor = vec4(vCol + core * 0.4, a * vA);
+}`;
+
+function initGL(){
+  const sh = (t, src) => { const s = gl.createShader(t); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+  prog = gl.createProgram();
+  gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+  gl.useProgram(prog);
+  ["aPos", "aCol", "aMeta"].forEach(n => loc[n] = gl.getAttribLocation(prog, n));
+  ["uCam", "uF", "uAspect", "uPR", "uTime", "uSize", "uAlpha", "uWobble", "uTwinkle", "uShift", "uWrap", "uSparkle"].forEach(n => loc[n] = gl.getUniformLocation(prog, n));
+  const mk = (data, usage) => { const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, data, usage); return b; };
+  bufs.p = mk(pos, gl.DYNAMIC_DRAW); bufs.c = mk(col, gl.STATIC_DRAW); bufs.m = mk(meta, gl.STATIC_DRAW);
+  bufs.sp = mk(spos, gl.STATIC_DRAW); bufs.sc = mk(scol, gl.STATIC_DRAW); bufs.sm = mk(smeta, gl.STATIC_DRAW);
+  gl.enable(gl.BLEND); gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE); gl.disable(gl.DEPTH_TEST);
+  gl.clearColor(0, 0, 0, 0);
+}
+function bindSet(p, c, m){
+  gl.bindBuffer(gl.ARRAY_BUFFER, p); gl.enableVertexAttribArray(loc.aPos); gl.vertexAttribPointer(loc.aPos, 3, gl.FLOAT, false, 0, 0);
+  gl.bindBuffer(gl.ARRAY_BUFFER, c); gl.enableVertexAttribArray(loc.aCol); gl.vertexAttribPointer(loc.aCol, 3, gl.FLOAT, false, 0, 0);
+  gl.bindBuffer(gl.ARRAY_BUFFER, m); gl.enableVertexAttribArray(loc.aMeta); gl.vertexAttribPointer(loc.aMeta, 2, gl.FLOAT, false, 0, 0);
+}
+
+function initParticles(){
+  const PAL = [[.98, .91, .72], [.93, .8, .54], [.87, .72, .43], [.8, .61, .31], [1, .96, .87], [.95, .72, .62]];
+  const R0 = visH * 1.6;
+  for (let i = 0; i < N; i++){
+    const r = rnd(); const c = PAL[r < .22 ? 0 : r < .5 ? 1 : r < .75 ? 2 : r < .88 ? 3 : r < .97 ? 4 : 5];
+    const sparkle = rnd() < .07, b = (.9 + rnd() * .2) * (sparkle ? .55 : 1);
+    col[i * 3] = c[0] * b; col[i * 3 + 1] = c[1] * b; col[i * 3 + 2] = c[2] * b;
+    meta[i * 2] = sparkle ? 3.6 + rnd() * 3 : 1.5 + rnd() * 1.1; meta[i * 2 + 1] = rnd();
+    kk[i] = .004 + rnd() * .011;
+    const th = rnd() * Math.PI * 2, ph = Math.acos(2 * rnd() - 1), rr = R0 * Math.cbrt(rnd());
+    pos[i * 3] = rr * Math.sin(ph) * Math.cos(th); pos[i * 3 + 1] = rr * Math.sin(ph) * Math.sin(th); pos[i * 3 + 2] = -Math.abs(rr * Math.cos(ph)) * .8;
+  }
+}
+function makeStars(){
+  starH = 2 * 50 / UF * 1.15;
+  for (let i = 0; i < SN; i++){
+    const d = 14 + rnd() * 36, hw = d / UF * aspect * 1.1;
+    spos[i * 3] = (rnd() * 2 - 1) * hw; spos[i * 3 + 1] = (rnd() - .5) * starH; spos[i * 3 + 2] = CAMZ - d;
+    const w = rnd(), c = w < .6 ? [.82, .86, 1] : w < .85 ? [1, .9, .72] : [1, 1, 1], b = .35 + rnd() * .55;
+    scol[i * 3] = c[0] * b; scol[i * 3 + 1] = c[1] * b; scol[i * 3 + 2] = c[2] * b;
+    smeta[i * 2] = ((rnd() < .08 ? 2.4 : .9) + rnd() * 1.2) * d / CAMZ; smeta[i * 2 + 1] = rnd();
+  }
+  if (gl && bufs.sp){
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufs.sp); gl.bufferData(gl.ARRAY_BUFFER, spos, gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufs.sc); gl.bufferData(gl.ARRAY_BUFFER, scol, gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, bufs.sm); gl.bufferData(gl.ARRAY_BUFFER, smeta, gl.STATIC_DRAW);
+  }
+}
+
+/* ---- formation builders: canvas drawings are sampled pixel by pixel, maths shapes are generated directly ---- */
+function sampleCanvas(w, h, draw){
+  w = Math.max(10, Math.round(w)); h = Math.max(10, Math.round(h));
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const x = c.getContext("2d", {willReadFrequently: true});
+  x.fillStyle = x.strokeStyle = "#fff"; x.lineCap = "round"; x.lineJoin = "round";
+  draw(x, w, h);
+  const d = x.getImageData(0, 0, w, h).data, L = [];
+  for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) if (d[(yy * w + xx) * 4 + 3] > 120) L.push(xx - w / 2 + rnd() - .5, yy - h / 2 + rnd() - .5);
+  return L;
+}
+function fromPx(L, zj){
+  const M = L.length >> 1; if (!M) return galaxyWorld();
+  const out = new Float32Array(N * 3), idx = new Uint32Array(M);
+  for (let i = 0; i < M; i++) idx[i] = i;
+  for (let i = M - 1; i > 0; i--){ const j = (rnd() * (i + 1)) | 0, t = idx[i]; idx[i] = idx[j]; idx[j] = t; }
+  for (let i = 0; i < N; i++){
+    const m = idx[i % M], dup = i >= M;
+    out[i * 3] = (L[m * 2] + (dup ? (rnd() - .5) * 1.2 : 0)) * wpp;
+    out[i * 3 + 1] = -(L[m * 2 + 1] + (dup ? (rnd() - .5) * 1.2 : 0)) * wpp;
+    out[i * 3 + 2] = (rnd() - .5) * zj;
+  }
+  return out;
+}
+function arcText(x, str, cx, cy, r, size){
+  x.font = `${size}px "Tenor Sans", "Gill Sans", sans-serif`; x.textAlign = "center"; x.textBaseline = "middle";
+  const ch = [...str], ws = ch.map(c => x.measureText(c).width), total = ws.reduce((a, b) => a + b, 0);
+  const gap = Math.max(0, (2 * Math.PI * r - total) / ch.length);
+  let a = -Math.PI / 2;
+  ch.forEach((c, i) => { const mid = a + (ws[i] / 2) / r; x.save(); x.translate(cx + Math.cos(mid) * r, cy + Math.sin(mid) * r); x.rotate(mid + Math.PI / 2); x.fillText(c, 0, 0); x.restore(); a += (ws[i] + gap) / r; });
+}
+function drawSeal(x, w, h){
+  const cx = w / 2, cy = h / 2, R = Math.min(w, h) * .47;
+  const circ = (r, lw) => { x.lineWidth = lw; x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.stroke(); };
+  circ(R, Math.max(1.6, R * .02)); circ(R * .9, Math.max(1, R * .008)); circ(R * .6, Math.max(1, R * .008));
+  for (let i = 0; i < 90; i++){ const a = i / 90 * Math.PI * 2; x.beginPath(); x.arc(cx + Math.cos(a) * R * .953, cy + Math.sin(a) * R * .953, Math.max(.9, R * .008), 0, Math.PI * 2); x.fill(); }
+  arcText(x, "NAVEED  ·  SADIA  ·  07 · 01 · 2027  ·  HYDERABAD  ·  ", cx, cy, R * .75, Math.max(9, R * .085));
+  x.font = `500 ${Math.round(R * .52)}px "Bodoni Moda", Didot, Georgia, serif`; x.textAlign = "center"; x.textBaseline = "middle";
+  x.lineWidth = Math.max(1.4, R * .014); x.strokeText("N&S", cx, cy + R * .03); x.fillText("N&S", cx, cy + R * .03);
+}
+const BISM = "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", BISM_A = "بِسْمِ ٱللَّٰهِ", BISM_B = "ٱلرَّحْمَٰنِ ٱلرَّحِيمِ";
+function drawBism(x, w, h){
+  x.direction = "rtl"; x.textAlign = "center"; x.textBaseline = "middle";
+  const font = fs => `700 ${fs}px Amiri, "Scheherazade New", "Traditional Arabic", serif`;
+  if (w < 560){
+    let fs = h * .36; x.font = font(fs);
+    const m = Math.max(x.measureText(BISM_A).width, x.measureText(BISM_B).width);
+    if (m > w * .94){ fs *= w * .94 / m; x.font = font(fs); }
+    x.fillText(BISM_A, w / 2, h * .3); x.fillText(BISM_B, w / 2, h * .74);
+  } else {
+    let fs = h * .6; x.font = font(fs);
+    const m = x.measureText(BISM).width;
+    if (m > w * .94){ fs *= w * .94 / m; x.font = font(fs); }
+    x.fillText(BISM, w / 2, h * .55);
+  }
+}
+function drawCharminar(x, w, h){
+  const s = Math.min(w / 300, h / 250) * .96;
+  x.save(); x.translate(w / 2 - 150 * s, h / 2 - 125 * s); x.scale(s, s);
+  x.lineWidth = Math.max(1.25, 1.1 * s) / s;
+  CHARMINAR.forEach(d => x.stroke(new Path2D(d)));
+  x.restore();
+}
+function drawMedallion(x, w, h){
+  const cx = w / 2, cy = h / 2, R = Math.min(w, h) * .355;
+  x.lineWidth = Math.max(1, R * .01);
+  for (let i = 0; i < 72; i++){
+    const a = i / 72 * Math.PI * 2, r1 = R * 1.08, r2 = R * (i % 2 ? 1.2 : 1.33);
+    x.beginPath(); x.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1); x.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2); x.stroke();
+  }
+  x.lineWidth = Math.max(1.6, R * .022); x.beginPath(); x.arc(cx, cy, R, 0, Math.PI * 2); x.stroke();
+  x.lineWidth = Math.max(1, R * .008); x.beginPath(); x.arc(cx, cy, R * .92, 0, Math.PI * 2); x.stroke();
+  x.font = `500 ${Math.round(R * .74)}px "Bodoni Moda", Didot, Georgia, serif`; x.textAlign = "center"; x.textBaseline = "middle";
+  x.lineWidth = Math.max(1.4, R * .016); x.strokeText("N&S", cx, cy + R * .04); x.fillText("N&S", cx, cy + R * .04);
+}
+function rosettePts(R){
+  const L = [];
+  const ring = (r, st = 1.1) => { const n = Math.ceil(2 * Math.PI * r / st); for (let i = 0; i < n; i++){ const a = i / n * Math.PI * 2; L.push(Math.cos(a) * r, Math.sin(a) * r); } };
+  const line = (x1, y1, x2, y2, st = 1.1) => { const n = Math.ceil(Math.hypot(x2 - x1, y2 - y1) / st); for (let i = 0; i <= n; i++){ const t = i / n; L.push(x1 + (x2 - x1) * t, y1 + (y2 - y1) * t); } };
+  ring(R); ring(R * .965); ring(R * .64); ring(R * .22);
+  const n = 12, v = [];
+  for (let i = 0; i < n; i++){ const a = i / n * Math.PI * 2 - Math.PI / 2; v.push([Math.cos(a) * R * .94, Math.sin(a) * R * .94]); }
+  for (let i = 0; i < n; i++){ const a = v[i], b = v[(i + 5) % n]; line(a[0], a[1], b[0], b[1]); }
+  for (let i = 0; i < n; i++){
+    const th = i / n * Math.PI * 2 + Math.PI / n, m = Math.ceil(R * .5);
+    for (const sgn of [-1, 1]) for (let j = 0; j <= m; j++){ const t = j / m, r = R * .22 + t * R * .42, w = Math.sin(Math.PI * t) * R * .075, a = th + sgn * w / r; L.push(Math.cos(a) * r, Math.sin(a) * r); }
+  }
+  for (let i = 0; i < 24; i++){ const a = i / 24 * Math.PI * 2, cx = Math.cos(a) * R * .8, cy = Math.sin(a) * R * .8; for (let j = 0; j < 12; j++){ const aa = rnd() * Math.PI * 2, rr = rnd() * R * .014; L.push(cx + Math.cos(aa) * rr, cy + Math.sin(aa) * rr); } }
+  return L;
+}
+function dialPts(R){
+  const L = [];
+  const ring = (r, st) => { const n = Math.ceil(2 * Math.PI * r / st); for (let i = 0; i < n; i++){ const a = i / n * Math.PI * 2; L.push(Math.cos(a) * r, Math.sin(a) * r); } };
+  ring(R, .8); ring(R * .99, 1.4); ring(R * .91, 2.2);
+  for (let i = 0; i < 60; i++){
+    const a = i / 60 * Math.PI * 2, big = i % 5 === 0, r1 = R * (big ? .8 : .85), r2 = R * .9, n = Math.ceil((r2 - r1) / .7);
+    for (let j = 0; j <= n; j++){ const r = r1 + (r2 - r1) * j / n; L.push(Math.cos(a) * r, Math.sin(a) * r); if (big) L.push(Math.cos(a) * r - Math.sin(a) * 1.2, Math.sin(a) * r + Math.cos(a) * 1.2); }
+  }
+  return L;
+}
+function galaxyWorld(){
+  const out = new Float32Array(N * 3), R = Math.max(visW, visH) * .62;
+  for (let i = 0; i < N; i++){
+    let x, y, z;
+    if (rnd() < .14){ const r = Math.abs(gauss()) * R * .09, th = rnd() * Math.PI * 2, ph = Math.acos(2 * rnd() - 1); x = r * Math.sin(ph) * Math.cos(th); y = r * Math.cos(ph) * .6; z = r * Math.sin(ph) * Math.sin(th); }
+    else { const arm = i % 3, r = R * (.06 + .94 * Math.pow(rnd(), .7)), a = arm * Math.PI * 2 / 3 + (r / R) * 3.6 + gauss() * .22 * (1 - r / R * .4); x = Math.cos(a) * r; z = Math.sin(a) * r; y = gauss() * R * .022; }
+    out[i * 3] = x; out[i * 3 + 1] = y; out[i * 3 + 2] = z;
+  }
+  return out;
+}
+function ringsWorld(Rr){
+  const out = new Float32Array(N * 3), rt = Rr * .075;
+  for (let i = 0; i < N; i++){
+    let x, y, z;
+    if (rnd() < .66){
+      const u = rnd() * Math.PI * 2, v = rnd() * Math.PI * 2, rr = Rr + rt * Math.cos(v);
+      const sg = i & 1 ? -1 : 1, th = sg * .5, ph = sg * .22;   /* each ring turns toward the other and leans a little, so they link */
+      const x0 = rr * Math.cos(u), y0 = rr * Math.sin(u), z0 = rt * Math.sin(v);
+      const x1 = x0 * Math.cos(th) + z0 * Math.sin(th), z1 = -x0 * Math.sin(th) + z0 * Math.cos(th);
+      x = sg * Rr * .55 + x1; y = y0 * Math.cos(ph) - z1 * Math.sin(ph); z = y0 * Math.sin(ph) + z1 * Math.cos(ph);
+    } else { const r = Rr * (1.2 + Math.abs(gauss()) * .9), th = rnd() * Math.PI * 2, ph = Math.acos(2 * rnd() - 1); x = r * Math.sin(ph) * Math.cos(th); y = r * Math.cos(ph) * .7; z = r * Math.sin(ph) * Math.sin(th) * .6; }
+    out[i * 3] = x; out[i * 3 + 1] = y; out[i * 3 + 2] = z;
+  }
+  return out;
+}
+function burstWorld(){
+  const out = new Float32Array(N * 3), R = Math.max(visW, visH) * .7;
+  for (let i = 0; i < N; i++){
+    const th = rnd() * Math.PI * 2, ph = Math.acos(2 * rnd() - 1), r = R * (.35 + .65 * Math.cbrt(rnd()));
+    out[i * 3] = r * Math.sin(ph) * Math.cos(th); out[i * 3 + 1] = r * Math.sin(ph) * Math.sin(th) * .8; out[i * 3 + 2] = r * Math.cos(ph) * .4;
+  }
+  return out;
+}
+
+let builtW = 0, builtH = 0;
+function stageBox(name, fw, fh){
+  const el = document.querySelector(`[data-stage="${name}"]`); let w = 0, h = 0;
+  if (el){ const r = el.getBoundingClientRect(); w = r.width; h = r.height; }
+  if (w < 20 || h < 20){ w = fw; h = fh; }
+  return {el, w, h};
+}
+function mkForm(name, pts, o){
+  const prev = forms[name];
+  forms[name] = Object.assign({pts, el: null, alpha: .85, size: 1, sparkle: .35, wobble: .003, twinkle: .25, spinY: 0, spinZ: 0, tiltX: 0, swirl: .6, comet: 0, cometR: 0,
+    ay: prev ? prev.ay : 0, az: prev ? prev.az : 0}, o);
+}
+function buildAll(){
+  builtW = vw; builtH = vh;
+  mkForm("galaxy", galaxyWorld(), {alpha: .5, size: 1.35, sparkle: 1, wobble: .012, twinkle: .5, spinY: .04, tiltX: 1.08, swirl: .25});
+  mkForm("burst", burstWorld(), {alpha: .75, size: 1.25, sparkle: 1, wobble: .01, twinkle: .4, swirl: .1});
+  let b = stageBox("seal", 300, 300), S = Math.min(b.w, b.h);
+  mkForm("seal", fromPx(sampleCanvas(S, S, drawSeal), .03), {el: b.el, alpha: .85, twinkle: .3, swirl: .9});
+  b = stageBox("bismillah", Math.min(vw * .9, 900), 200);
+  mkForm("bismillah", fromPx(sampleCanvas(b.w, b.h, drawBism), .03), {el: b.el, alpha: .85, twinkle: .25});
+  b = stageBox("rosette", vw, vh);
+  mkForm("rosette", fromPx(rosettePts(Math.min(b.w * .5, vh * .44, 440)), .5), {el: b.el, alpha: .3, size: 1.05, sparkle: .6, wobble: .006, twinkle: .45, spinZ: .03});
+  b = stageBox("charminar", Math.min(vw * .9, 680), vh * .48);
+  mkForm("charminar", fromPx(sampleCanvas(b.w, b.h, drawCharminar), .04), {el: b.el, alpha: .85, twinkle: .35});
+  b = stageBox("dial", 320, 320); const R = Math.min(b.w, b.h) * .48;
+  mkForm("dial", fromPx(dialPts(R), .04), {el: b.el, alpha: .7, twinkle: .3, comet: Math.round(N * .06), cometR: R * .955 * wpp});
+  b = stageBox("rings", 320, 260);
+  mkForm("rings", ringsWorld(Math.min(b.w * .2, b.h * .34) * wpp), {el: b.el, alpha: .6, size: 1.05, sparkle: .8, sway: [.36, .5], tiltX: .2, wobble: .004});
+  b = stageBox("medallion", 320, 320); S = Math.min(b.w, b.h);
+  mkForm("medallion", fromPx(sampleCanvas(S, S, drawMedallion), .04), {el: b.el, alpha: .85, twinkle: .3});
+}
+
+/* ---- simulation ---- */
+let forced = "seal", sealCentered = false, lastName = "", lastCx = 0, lastCy = 0, T = 0, lastT = performance.now();
+const U = {alpha: 0, size: 1, sparkle: .35, wobble: .003, twinkle: .3};
+const cam = {x: 0, y: 0, tx: 0, ty: 0};
+const ptr = {x: 0, y: 0, s: 0};
+function frame(now){
+  requestAnimationFrame(frame);
+  const dt = Math.min(.05, Math.max(.001, (now - lastT) / 1000)); lastT = now; T += dt;
+  const f = dt * 60;
+  const sec = detect();
+  const name = forced || (sec && sec.dataset.form) || "galaxy";
+  const Fm = forms[name] || forms.galaxy; if (!Fm) return;
+  const e = 1 - Math.exp(-dt * 2.4);
+  U.alpha += (Fm.alpha - U.alpha) * e; U.size += (Fm.size - U.size) * e; U.sparkle += (Fm.sparkle - U.sparkle) * e;
+  U.wobble += (Fm.wobble - U.wobble) * e; U.twinkle += ((RM ? 0 : Fm.twinkle) - U.twinkle) * e;
+  let cx = 0, cy = 0;
+  const el = (name === "seal" && sealCentered) ? null : Fm.el;
+  if (el){ const r = el.getBoundingClientRect(); if (r.width > 1){ cx = (r.left + r.width / 2 - vw / 2) * wpp; cy = -(r.top + r.height / 2 - vh / 2) * wpp; } }
+  let ddx = 0, ddy = 0;
+  if (name === lastName){ ddx = cx - lastCx; ddy = cy - lastCy; }
+  lastName = name; lastCx = cx; lastCy = cy;
+  if (!RM){ if (Fm.sway) Fm.ay = Math.sin(T * Fm.sway[1]) * Fm.sway[0]; else Fm.ay += Fm.spinY * dt; Fm.az += Fm.spinZ * dt; }
+  const cA = Math.cos(Fm.ay), sA = Math.sin(Fm.ay), cT = Math.cos(Fm.tiltX), sT = Math.sin(Fm.tiltX), cZ = Math.cos(Fm.az), sZ = Math.sin(Fm.az);
+  const P = Fm.pts, sw = Fm.swirl, damp = Math.pow(.885, f);
+  const PRAD = 120 * wpp, PRAD2 = PRAD * PRAD, ps = ptr.s;
+  const cn = Fm.comet; const th = cn ? ((Date.now() / 1000) % 60) / 60 * Math.PI * 2 : 0;
+  for (let i = 0; i < N; i++){
+    const j = i * 3; let x, y, z;
+    if (i < cn){ const a = th - (i / cn) * 1.2, rr = Fm.cometR * (1 + (rnd() - .5) * .012); x = Math.sin(a) * rr; y = Math.cos(a) * rr; z = 0; }
+    else {
+      x = P[j]; y = P[j + 1]; z = P[j + 2];
+      if (Fm.spinY || Fm.sway){ const x2 = x * cA + z * sA; z = -x * sA + z * cA; x = x2; }
+      if (Fm.tiltX){ const y2 = y * cT - z * sT; z = y * sT + z * cT; y = y2; }
+      if (Fm.spinZ){ const x2 = x * cZ - y * sZ; y = x * sZ + y * cZ; x = x2; }
+    }
+    x += cx; y += cy;
+    if (RM){ pos[j] = x; pos[j + 1] = y; pos[j + 2] = z; continue; }
+    const px = pos[j] + ddx, py = pos[j + 1] + ddy, pz = pos[j + 2];
+    const dx = x - px, dy = y - py, dz = z - pz, k = kk[i] * f;
+    let vx = vel[j] + (dx - dy * sw) * k, vy = vel[j + 1] + (dy + dx * sw) * k, vz = vel[j + 2] + dz * k;
+    if (ps > .02){ const ex = px - ptr.x, ey = py - ptr.y, d2 = ex * ex + ey * ey; if (d2 < PRAD2){ const d = Math.sqrt(d2) + 1e-5, q = 1 - d / PRAD, fq = q * q * ps * .045 * f; vx += ex / d * fq; vy += ey / d * fq; } }
+    vx *= damp; vy *= damp; vz *= damp;
+    const sp = vx * vx + vy * vy + vz * vz; if (sp > .09){ const m = .3 / Math.sqrt(sp); vx *= m; vy *= m; vz *= m; }
+    vel[j] = vx; vel[j + 1] = vy; vel[j + 2] = vz;
+    pos[j] = px + vx * f; pos[j + 1] = py + vy * f; pos[j + 2] = pz + vz * f;
+  }
+  ptr.s *= Math.pow(.95, f);
+  cam.x += (cam.tx - cam.x) * e * .6; cam.y += (cam.ty - cam.y) * e * .6;
+  render();
+}
+function render(){
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.uniform1f(loc.uF, UF); gl.uniform1f(loc.uAspect, aspect); gl.uniform1f(loc.uPR, PR); gl.uniform1f(loc.uTime, T);
+  gl.uniform3f(loc.uCam, cam.x * .5, cam.y * .5, CAMZ); gl.uniform1f(loc.uSize, 1); gl.uniform1f(loc.uAlpha, .9); gl.uniform1f(loc.uWobble, 0);
+  gl.uniform1f(loc.uTwinkle, RM ? 0 : .6); gl.uniform1f(loc.uShift, scrollY * wpp * .5); gl.uniform1f(loc.uWrap, starH); gl.uniform1f(loc.uSparkle, 1);
+  bindSet(bufs.sp, bufs.sc, bufs.sm); gl.drawArrays(gl.POINTS, 0, SN);
+  gl.bindBuffer(gl.ARRAY_BUFFER, bufs.p); gl.bufferSubData(gl.ARRAY_BUFFER, 0, pos);
+  gl.uniform3f(loc.uCam, cam.x, cam.y, CAMZ); gl.uniform1f(loc.uSize, U.size); gl.uniform1f(loc.uAlpha, U.alpha);
+  gl.uniform1f(loc.uWobble, RM ? 0 : U.wobble); gl.uniform1f(loc.uTwinkle, U.twinkle); gl.uniform1f(loc.uShift, 0); gl.uniform1f(loc.uWrap, 0); gl.uniform1f(loc.uSparkle, U.sparkle);
+  bindSet(bufs.p, bufs.c, bufs.m); gl.drawArrays(gl.POINTS, 0, N);
+}
+function ripple(wx, wy, power){
+  if (RM || !gl) return; const R = 240 * wpp;
+  for (let i = 0; i < N; i++){ const j = i * 3, ex = pos[j] - wx, ey = pos[j + 1] - wy, d = Math.hypot(ex, ey) + 1e-5;
+    if (d < R){ const q = (1 - d / R) * power; vel[j] += ex / d * q; vel[j + 1] += ey / d * q; vel[j + 2] += (rnd() - .5) * q; } }
+}
+function burst(wx, wy){
+  if (RM || !gl) return;
+  for (let i = 0; i < N; i++){ const j = i * 3, ex = pos[j] - wx, ey = pos[j + 1] - wy, d = Math.hypot(ex, ey) + 1e-5, q = .1 + rnd() * .22;
+    vel[j] += ex / d * q; vel[j + 1] += ey / d * q; vel[j + 2] += (rnd() - .3) * q; }
+}
+
+let glReady = false;
+if (gl){
+  try {
+    measure(); initParticles(); initGL(); makeStars(); buildAll();
+    glReady = true;
+    root.classList.add("gl");
+    requestAnimationFrame(frame);
+    const fontsIn = Promise.all([
+      document.fonts.load('700 80px "Amiri"', "بسم"), document.fonts.load('500 80px "Bodoni Moda"', "N&S"), document.fonts.load('20px "Tenor Sans"', "NAVEED")
+    ]).catch(() => {});
+    Promise.race([fontsIn, new Promise(r => setTimeout(r, 2600))]).then(() => buildAll());
+    let rz = 0;
+    addEventListener("resize", () => {
+      measure(); makeStars(); clearTimeout(rz);
+      rz = setTimeout(() => { if (Math.abs(vw - builtW) > 2 || Math.abs(vh - builtH) > builtH * .22) buildAll(); }, 280);
+    });
+    addEventListener("pointermove", ev => {
+      ptr.x = (ev.clientX - vw / 2) * wpp; ptr.y = -(ev.clientY - vh / 2) * wpp; ptr.s = 1;
+      if (ev.pointerType === "mouse"){ cam.tx = (ev.clientX / vw - .5) * .5; cam.ty = -(ev.clientY / vh - .5) * .3; }
+    }, {passive: true});
+    addEventListener("touchmove", ev => { const t = ev.touches[0]; if (!t) return; ptr.x = (t.clientX - vw / 2) * wpp; ptr.y = -(t.clientY - vh / 2) * wpp; ptr.s = 1; }, {passive: true});
+    addEventListener("pointerdown", ev => { if (ev.target.closest("a,button,input,label")) return; ripple((ev.clientX - vw / 2) * wpp, -(ev.clientY - vh / 2) * wpp, .18); }, {passive: true});
+  } catch (err) { glReady = false; gl = null; }
+}
+if (!glReady){
+  root.classList.remove("gl"); root.classList.add("nogl");
+  $('[data-stage="charminar"]').innerHTML = `<svg viewBox="0 0 300 250" aria-hidden="true"><g fill="none" stroke="#ddb96c" stroke-width="1.1" stroke-linejoin="round">${CHARMINAR.map(d => `<path d="${d}"/>`).join("")}</g></svg>`;
+  addEventListener("scroll", detect, {passive: true});
+  detect();
+}
+
+/* ---------- opening ---------- */
+function sealCenter(){
+  const s = forms.seal; if (!s || !s.el) return {x: 0, y: 0};
+  const r = s.el.getBoundingClientRect(); if (r.width < 2) return {x: 0, y: 0};
+  return {x: (r.left + r.width / 2 - vw / 2) * wpp, y: -(r.top + r.height / 2 - vh / 2) * wpp};
+}
+let autoT = 0;
+function openInvite(){
+  if (root.classList.contains("opening")) return;
+  clearTimeout(autoT);
+  root.classList.add("opening");
+  if (glReady && !RM){ const c = sealCenter(); burst(c.x, c.y); forced = "burst"; setTimeout(() => { forced = null; }, 900); } else forced = null;
+  setTimeout(() => { root.classList.add("opened"); root.style.scrollBehavior = "auto"; scrollTo(0, 0); root.style.scrollBehavior = ""; activeSec = null; detect(); }, 700);
+  setTimeout(() => FX.petals(7000), 900);
+  setTimeout(() => { $("#gate").hidden = true; }, 1500);
+}
+$("#openBtn").addEventListener("click", openInvite);
+$("#gate").addEventListener("pointerdown", () => clearTimeout(autoT));
+$("#replay").addEventListener("click", () => {
+  root.classList.add("replay");
+  setTimeout(() => {
+    root.style.scrollBehavior = "auto"; scrollTo(0, 0); root.style.scrollBehavior = "";
+    if (!glReady || RM){ root.classList.remove("replay"); return; }
+    sealCentered = true; forced = "seal";
+    setTimeout(() => { burst(0, 0); forced = "burst"; FX.petals(6000); setTimeout(() => { forced = null; sealCentered = false; root.classList.remove("replay"); }, 900); }, 2600);
+  }, 650);
+});
+
+/* ---------- shooting stars ---------- */
+function shoot(){
+  if (!RM && !document.hidden){
+    const s = document.createElement("i"); s.className = "shoot"; s.setAttribute("aria-hidden", "true");
+    s.style.left = (8 + rnd() * 70) + "vw"; s.style.top = (4 + rnd() * 40) + "vh";
+    s.style.setProperty("--r", (14 + rnd() * 26) + "deg"); s.style.setProperty("--len", (22 + rnd() * 30) + "vw");
+    document.body.appendChild(s); s.addEventListener("animationend", () => s.remove());
+  }
+  setTimeout(shoot, 4000 + rnd() * 6000);
+}
+setTimeout(shoot, 3500);
+window.__film = {form(n){ forced = n; }, burstSeal(){ const c = sealCenter(); burst(c.x, c.y); forced = "burst"; }, fx: FX, cam};
+})();
+</script>
+
+<script>
+/* The film's running order, in seconds of film time. The recorder first runs PRE milliseconds unseen,
+   so the opening frame (the chat thumbnail) already shows the finished cover. */
+(() => {
+  const F = window.__film, root = document.documentElement, el = id => document.getElementById(id);
+  const PRE = 4000, at = (sec, fn) => setTimeout(fn, PRE + sec * 1000);
+  const on = id => { const s = el(id); s.classList.remove("out"); s.classList.add("on"); };
+  const off = id => { const s = el(id); s.classList.add("out"); s.classList.remove("on"); };
+  const GOLD = "#f8c76a", PALE = "#ffe7a8", WHITE = "#fff6e0", ROSE = "#f29fb2";
+  const fire = (sec, x, y, c) => at(sec, () => F.fx.rocket(x, y, c));
+
+  F.form("bismillah"); root.dataset.ch = "bismillah"; on("s1");          /* cover: Bismillah, then the couple */
+  at(5.6,  () => off("s1"));
+  at(6.1,  () => F.form("seal"));                                         /* the gold seal gathers */
+  at(6.6,  () => on("s2"));
+  at(11.4, () => off("s2"));
+  at(12.0, () => { F.burstSeal(); el("flash").classList.add("go"); F.fx.petals(23500); root.dataset.ch = "none"; });
+  at(12.7, () => F.form("rosette"));
+  at(12.8, () => on("s3"));                                               /* blessings and request */
+  at(21.0, () => off("s3"));
+  at(21.7, () => on("s4"));                                               /* the groom */
+  at(29.9, () => off("s4"));
+  at(30.6, () => on("s5"));                                               /* the bride */
+  at(38.8, () => off("s5"));
+  at(39.3, () => F.form("charminar"));                                    /* the date, with fireworks */
+  at(39.9, () => on("s6"));
+  fire(41.0, 150, 500, GOLD);  fire(41.9, 395, 490, ROSE);  fire(42.8, 270, 455, WHITE); fire(43.6, 95, 465, PALE);
+  fire(44.3, 445, 475, GOLD);  fire(45.1, 200, 480, ROSE);  fire(45.7, 340, 460, PALE);  fire(46.4, 120, 490, WHITE);
+  fire(46.7, 420, 485, GOLD);  fire(47.3, 270, 470, ROSE);
+  at(48.5, () => off("s6"));
+  at(49.1, () => F.form("galaxy"));
+  at(49.5, () => on("s7"));                                               /* the Shaadi */
+  at(59.7, () => off("s7"));
+  at(60.4, () => on("s8"));                                               /* the Valima */
+  at(69.8, () => F.fx.chapter("verse"));                                  /* lanterns begin to rise, and keep rising to the end */
+  at(70.6, () => off("s8"));
+  at(71.1, () => F.form("rings"));
+  at(71.6, () => on("s9"));                                               /* the verse */
+  at(78.6, () => off("s9"));
+  at(79.1, () => F.form("medallion"));
+  at(79.8, () => on("s10"));                                              /* the finale */
+  fire(80.2, 110, 230, GOLD);  fire(80.8, 435, 205, ROSE);  fire(81.5, 270, 120, WHITE); fire(82.4, 85, 470, PALE);
+  fire(82.8, 460, 450, GOLD);  fire(83.6, 150, 160, ROSE);  fire(84.1, 400, 235, PALE);  fire(84.9, 270, 110, GOLD);
+  fire(85.5, 95, 340, WHITE);  fire(85.8, 450, 320, ROSE);  fire(86.6, 180, 180, GOLD);  fire(87.0, 370, 160, WHITE);
+  fire(87.6, 270, 130, ROSE);
+  let t = 0; setInterval(() => { t += 100; F.cam.tx = Math.sin(t / 6500) * .1; F.cam.ty = Math.cos(t / 8000) * .05; }, 100);
+})();
+</script>
+</html>
