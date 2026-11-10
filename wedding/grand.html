@@ -929,7 +929,7 @@ function sealCenter(){
   const r = s.el.getBoundingClientRect(); if (r.width < 2) return {x: 0, y: 0};
   return {x: (r.left + r.width / 2 - vw / 2) * wpp, y: -(r.top + r.height / 2 - vh / 2) * wpp};
 }
-let autoT = setTimeout(openInvite, 15000);
+let autoT = setTimeout(openInvite, 10000);
 function openInvite(){
   if (root.classList.contains("opening")) return;
   clearTimeout(autoT);
